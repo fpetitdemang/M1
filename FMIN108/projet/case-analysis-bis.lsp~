@@ -1,0 +1,44 @@
+(defun case-analysis (expr env)
+  (if (atom expr)
+      (if (constantp expr)
+	  ;; EXPR est un symbole
+	  (if (assoc expr env
+		     (error "~s variable inconnue" expr)))
+	;; EXPR est une cellule
+	(if (consp (car expr))
+	    (if (eq ’lambda (caar expr))
+					; λ-expressions
+					; ⇒ récursion sur arguments
+					; ⇒ construction environnement
+					; ⇒ récursion sur corps de la λ-fonction
+		(error "une expression évaluable ne commence pas par (( : ~s"
+		       expr))
+	  (if (not (symbolp (car expr)))
+	      (error "~s n’est pas un symbole" (car expr))
+	    ;; (CAR EXPR) est un symbole
+	    ;; ici s’insère le cas des fonctions et macros méta-définies
+	    (if (not (fboundp (car expr)))
+		(error "~s fonction inconnue" (car expr))
+	      ;; (CAR EXPR) est un symbole qui joue le rôle de fonction
+	      (if (macro-function (car expr))
+		  (case-analysis (macroexpand-1 expr))
+					; macros
+		(if (special-form-p (car expr))
+		    (case (car expr)
+					; formes syntaxiques
+					; ⇒ récursion sur certains arguments
+			  (if ...)
+			  (quote ...)
+			  (setf ...)
+			  (function ...)
+			  (defun ...)
+			  ...
+			  (t
+					; pour rattraper ce qui n’est pas encore implémenté
+			   (error "forme spéciale NYI ~s" (car expr))))
+					; fonctions normales
+					; ⇒ récursion sur tous les arguments
+					; ⇒ éventuellement construction d’environnement
+					; ⇒ et analyse du corps de la fonction appelée
+		  )))))))
+  

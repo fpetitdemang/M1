@@ -1,0 +1,82 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <iostream>
+#include <sys/types.h>
+#include <sys/ipc.h>
+#include <sys/msg.h>
+#include <sys/shm.h>
+#include <sys/sem.h>
+#include <string.h>
+
+
+
+
+using namespace std;
+
+//Declare operations sur les semaphores
+struct sembuf op[] = {
+  {(u_short) 0, (short)-1, 0},//operations P(S1)
+  {(u_short) 0, (short)+1, 0},//operations V(S1)
+  {(u_short) 1, (short)-1, 0} //operations P(S2)
+};
+
+int main(){
+	int nbProcessusEmploye = 2;
+
+	//calcul de la cles
+	key_t cles = ftok("../fichier",10);
+	if (cles < 0)
+	{
+		fprintf(stderr, "Erreur recuperation de la cles.\n");
+		exit(1);
+	}	
+	
+	//creation et identification d'un segment
+	int sh_id;
+	do{
+	sh_id = shmget(cles,size_t(256),0644);//acces en lecture seule
+	}while(sh_id < 0);//boucle tant que le segment n'est pas creer
+
+	if (sh_id < 0)
+	{
+		fprintf(stderr, "Erreur creation du segment.\n");
+		exit(1);
+	}
+
+	//demande d'attachement
+	char * att;	
+	if(!(att = (char *)shmat(sh_id, NULL, 0)))
+	{
+		fprintf(stderr, "Erreur demande d'attachement.\n");
+		exit(1);
+	}
+	
+	//Verifie l'existance du semaphore associé à la cles
+	int sem_id = semget(cles,2,0644 | IPC_CREAT | IPC_EXCL );
+	if (sem_id < 0)
+	{
+		printf("Semaphore deja creer\n");
+
+		sem_id = semget(cles,2,0644);
+		if(sem_id < 0){
+			fprintf(stderr, "Erreur récupération du Semaphore.\n");
+			exit(1);
+		}
+	}else{
+		printf("Creation Semaphore\n");
+		//intialise les semaphores
+		int sarray[2]={0,nbProcessusEmploye};
+		semctl(sem_id, 0, SETALL, sarray);
+	}
+	
+	do{
+	semop(sem_id,op,1);//P(S1)
+	printf("%s\n",att);//Lit et affiche le msg sur le segment
+	semop(sem_id,op+1,1);//V(S1)
+	semop(sem_id,op+2,1);//P(S2)
+	exit(0);
+	}while(1);
+	
+	return 0;
+
+}

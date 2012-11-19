@@ -1,0 +1,105 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <iostream>
+#include <sys/types.h>
+#include <sys/ipc.h>
+#include <sys/msg.h>
+#include <sys/shm.h>
+#include <sys/sem.h>
+#include <string.h>
+#include <pthread.h>
+
+
+using namespace std;
+
+int n = 4;//nombre de taches lancer
+int nbZ = 4;//nombre de zone
+int tabD[n];//initialisation tableau traitement zone par thread
+
+pthread_mutex_t monVerrou = PTHREAD_MUTEX_INITIALIZER;//creation+initialisation verrou pour acces I/O tabD
+
+//creattion variable conditionnnel
+pthread_cond_t varCond0 = PTHREAD_COND_INITIALIZER;
+pthread_cond_t varCond1 = PTHREAD_COND_INITIALIZER;
+pthread_cond_t varCond2 = PTHREAD_COND_INITIALIZER;
+pthread_cond_t varCond3 = PTHREAD_COND_INITIALIZER;
+
+
+
+void info_thread(){
+	cout<<"je suis le thread "<<pthread_self()<<endl;
+}
+
+void traitement(int zone){}
+
+
+void *f1(void *p){
+
+  for (int i=0; i<nbZ; i++){
+    //prend le verrou
+    pthread_mutex_lock(&monVerrou);
+    
+    tabD[i]++;
+    //signal que l'on modifie le tableau
+    pthread_cond_signal(&cond[i]);
+    
+    if (i >= tabD[i-1]) pthread_cond_wait(&varCond,&cond[i-1]);
+    
+    //rend verrou
+    pthread_mutex_unlock(&monVerrou);
+
+    traitement(i)
+      }
+}
+
+
+
+
+	info_thread();
+	//sleep(1);
+
+	n--;
+	if (n==0) {
+		//cas ou c'est la derniere tache
+		//libere tous les threads bloqués
+		pthread_cond_broadcast(&varCond);
+	}else{
+		//attend la derniere tache 
+		//+ libere verrou en attendant 
+		//+ recupere le verrou a la fin après wait
+		pthread_cond_wait(&varCond,&monVerrou);
+	}
+	pthread_mutex_unlock(&monVerrou);//libere le verrou
+	pthread_exit(NULL);
+
+	//ajouter msg a la fin pour voir que les thread se reveille en meme temps
+}
+
+
+
+int main(){
+
+  int tabIdThread[n];
+
+
+
+
+  for (int i=0; i<n; i++){
+    tabD[i]=0;
+  }
+
+
+  //creation des n thread
+  for (int i=0; i<n; i++){
+    pthread_t t;	
+    tabIdThread[i]=t;
+    pthread_create(&t,NULL,f1,NULL);
+  }
+  
+  //attend la fin des taches
+  for(int i=0; i<n; i++){
+    pthread join(tabIdThread[i],NULL);
+  }
+  
+  return 0;
+}

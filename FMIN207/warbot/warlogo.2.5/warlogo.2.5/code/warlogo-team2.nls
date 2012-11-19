@@ -1,0 +1,112 @@
+;;-------------------------------------------------------
+;; basic behavior of robots in Warlogo
+;; site: warbot.fr
+;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;;;;; EXPLORER BEHAVIOR ;;;;;
+
+
+to-report explorer-t2-action
+  if not play-t2? [report "idle"]
+  let spotted-food percepts with [is-food? self]
+  
+  let hit-food spotted-food with [is-colliding? myself]
+  if not empty-bag? [
+    ifelse any? get-bases with [is-colliding? myself] [
+      report list "give" min-one-of get-bases [distance myself]
+    ] [
+      set-heading min-one-of get-bases [distance myself]
+      report "move"
+    ]
+  ]
+ ; let enemy-base one-of percepts with [is-base? self and is-my-enemy? myself] 
+ ; let my-base one-of get-bases
+;;  if enemy-base != nobody [
+;    broadcast-message get-rocket-launchers "attack" []  
+ ; ]
+  
+  if any? hit-food [
+    if not full-bag? [
+      report list "take" one-of hit-food
+    ]
+  ]
+  if energy <= rocket-damage and not empty-bag? [
+    report "eat"
+  ]
+  
+  if any? spotted-food [
+    let closest min-one-of spotted-food [distance myself]
+    ifelse headed-towards? closest [
+        report "move"
+    ] [
+      set-heading closest
+    ]
+  ]
+  if blocked? [
+    set-random-heading
+  ]
+  if (random 5 = 1) [
+    set-heading (heading + 0.1 * ((random-float 2) - 1))
+  ]
+  report "move"
+end
+
+
+;;;;; ROCKET-LAUNCHER BEHAVIOR ;;;;;
+
+to-report rocket-launcher-t2-action
+  if not play-t2? [report "idle"]
+  ;if get-energy self < 10 * rocket-damage and random 10 = 1 [
+ ;   report list "put-smell" 1
+ ; ]
+  if (get-energy self < rocket-damage and not empty-bag?) [
+    report "eat"
+  ]  
+  if (get-rocket-number = 0 and get-energy self > rocket-cost) [
+    report "build-rocket"
+  ]
+  
+  ;; attach first : not a very good idea !! :-)
+  while [not empty? incoming-queue]
+    [let msg get-message
+      if (get-performative msg) = "attack"
+      [ if show-messages [show (sentence "received message: " msg)]
+        set-heading get-heading-to-sender msg
+        report "move"
+      ]
+    ]
+  let target min-one-of percepts with [not is-rocket? self and not is-food? self and is-my-enemy? myself] [get-energy self]
+  if (target != nobody and get-rocket-number > 0) [
+    report list "launch-rocket" towards target
+  ]
+
+  if blocked? [
+    set-random-heading
+  ]
+  if (random 5 = 1) [
+    set-heading (heading + 0.1 * ((random-float 2) - 1)) 
+  ]
+  report "move"
+end
+
+
+;;;;; BASE BEHAVIOR ;;;;;
+
+to-report base-t2-action
+  if not play-t2? [report "idle"]
+  while [not empty? incoming-queue] 
+    [let msg get-message
+      show (sentence "received message: " msg)]
+  ifelse energy > 5 * rocket-launcher-cost and energy > 5 * explorer-cost [
+    ifelse random 20 < 5 
+    [report "build-rocket-launcher"]
+    [report "build-explorer"]
+  ] [
+    ifelse empty-bag? [
+      report "idle"
+    ] [
+      report "eat"
+    ]
+  ]
+end

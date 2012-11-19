@@ -1,0 +1,9 @@
+(defun expr-print-length(expr)
+	(if (atom expr)
+		(cond ((symbolp expr);cas string
+			length) expr
+		((constantp expr);cas symbole
+			)
+		((t); autre
+			1)
+	(+ 2 (expr-print-length (car expr))(expr-print-length (cdr expr)))))) ;+2 pour compter les parentheses

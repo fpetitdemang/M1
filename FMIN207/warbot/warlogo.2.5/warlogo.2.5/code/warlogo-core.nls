@@ -1,0 +1,636 @@
+
+;; Warlogo core
+;; V. 2.5 - Nov. 2012
+;; War of Robots written in NetLogo
+;; from Warbot based on MadKit by Jacques Ferber & Fabien Michel
+;; Authors: Lois Vanhee, Fabien Hervouet, Jacques Ferber
+;; site: www.warbot.fr
+
+;; includes some libraries
+__includes["warlogo-communications.nls"]
+
+;; Three important breeds (explorers, rocket-launchers and bases)
+breed [explorers explorer]
+breed [rocket-launchers rocket-launcher]
+breed [bases base]
+
+;; Items are declared as objects (e.g. turtles out of the main loop). So they can more easily be
+;; moved and their status are easier to maintain. It could have been handled with patches. 
+breed [rockets rocket]
+breed [foods food]
+
+;; A correct hierarchy should have avoided such redundancy
+explorers-own [percepts blocked energy detection-range speed just-shot? bag ctask beliefs incoming-queue ]
+rocket-launchers-own [percepts blocked energy detection-range speed just-shot? bag reloading rocket-number ctask beliefs incoming-queue ]
+bases-own [percepts bag beliefs detection-range blocked energy just-shot? ctask incoming-queue ]
+rockets-own [fuel]
+
+patches-own [t1-smell t2-smell]
+
+
+globals [params size-object speed-seed rocket-damage reloading-time 
+  rocket-speed initial-rocket-number rocket-cost rocket-launcher-cost explorer-cost
+  food-energy-value rocket-fuel-size diffusion-ratio
+  robot-bag-size]
+
+
+to setup
+  clear-all
+  ;; globals parameters
+  set rocket-damage 200
+  set reloading-time 25
+  set rocket-speed 4
+  set initial-rocket-number 2
+  set rocket-cost 50
+  set food-energy-value 500
+  set rocket-fuel-size 30
+  set diffusion-ratio 1
+  set robot-bag-size 4
+  set rocket-launcher-cost 3000
+  set explorer-cost 1000
+  
+  ;; standard initialization
+  set-default-shape explorers "lander 2"
+  set-default-shape rocket-launchers "tank"
+  set-default-shape bases "house"
+  set-default-shape rockets "rocket"
+  set-default-shape foods "crate"
+  
+  set size-object 12
+  set speed-seed 1
+  
+  make-food
+  
+  ;; make first team "base" agents
+  let i 0
+  while [i < nb-bases]
+  [
+    set i i + 1
+    make-base team-1-color (min-pxcor + 0.1 * world-width * (nb-bases - i) / (nb-bases + 1))+ 1 (min-pycor  + 0.05 * world-height *  (i + 1) / (nb-bases + 2)+ 1)
+  ]
+  
+  ;; make second team "base" agents
+  set i 0
+  while [i < nb-bases]
+  [
+    set i i + 1
+    make-base team-2-color (max-pxcor - 0.1 * world-width * (nb-bases - i) / (nb-bases + 1)) - 1 (max-pycor  - 0.05 * world-height *  (i + 1) / (nb-bases + 2) - 1)
+  ]  
+  
+  ;; make first team "explorer" agents
+  set i 0
+  while [i < nb-explorers]
+  [
+    make-explorer team-2-color  (max-pxcor - 0.30 * world-width + 0.30 * world-width / nb-explorers * ( i + 0.5) ) (max-pycor -  0.30 * world-height + 0.30 * world-height / nb-explorers * (nb-explorers - i - 0.5))
+    set i i + 1
+  ]
+  
+  ;; make second team "explorer" agents
+  set i 0
+  while [i < nb-explorers]
+  [
+    make-explorer team-1-color  (min-pxcor + 0.30 * world-width - 0.30 * world-width / nb-explorers * ( i + 0.5) ) (min-pycor +  0.30 * world-height - 0.30 * world-height / nb-explorers * (nb-explorers - i - 0.5))
+    set i i + 1
+  ]
+  
+  ;; make first team "rocket-launcher" agents
+  set i 0
+  while [i < nb-rocket-launchers]
+  [
+    make-rocket-launcher team-2-color  (max-pxcor - 0.20 * world-width + 0.20 * world-width / nb-rocket-launchers * ( i + 0.5) ) (max-pycor -  0.20 * world-height + 0.20 * world-height / nb-rocket-launchers * (nb-rocket-launchers - i - 0.5))
+    set i i + 1
+  ]
+  
+  ;; make second team "rocket-launcher" agents
+  set i 0
+  while [i < nb-rocket-launchers]
+  [
+    make-rocket-launcher team-1-color  (min-pxcor + 0.20 * world-width - 0.20 * world-width / nb-rocket-launchers * ( i + 0.5) ) (min-pycor +  0.20 * world-height - 0.20 * world-height / nb-rocket-launchers * (nb-rocket-launchers - i - 0.5))
+    set i i + 1
+  ]
+  
+  ;; setting initial heading towards to [0;0] for moving agents
+  ask rocket-launchers [set heading towards patch 0 0]
+  ask explorers [set heading towards patch 0 0]
+  reset-ticks
+end
+
+
+;; MAIN LOOP
+to go
+;  diffuse t1-smell diffusion-ratio
+;  diffuse t2-smell diffusion-ratio
+  
+;  ask patches [
+;    if t1-smell > 0.1 or t2-smell > 0.1 [
+;      set pcolor approximate-rgb (t2-smell * 255) 0 (t1-smell * 255)
+;    ]
+;  ]
+  
+  if (count bases with [color = team-1-color ] = 0) or (count bases with [color = team-2-color ] = 0) [
+    repeat 3 [ beep wait 0.5]
+    print "game over !"
+     stop ]
+  tick
+  
+  ask rockets [
+    rocket-action
+  ]
+  
+  ask turtles with [ is-robot? self] [
+    apply-life-constants
+    set percepts _perceive
+    let action "no-action"
+    
+    let agent-type ""
+    ifelse (is-explorer? self) [
+      set agent-type "explorer"
+    ]
+    [
+      ifelse (is-rocket-launcher? self)
+      [
+        set agent-type "rocket-launcher"
+      ]
+      [
+        set agent-type "base"
+      ]
+    ]
+    
+    let team ""
+    ifelse get-team = team-1-color
+    [
+      set team "t1"
+    ]
+    [
+      set team "t2"
+    ]
+    
+    set action run-result (word agent-type "-" team "-action")
+    
+       
+    if is-robot? self [ set blocked false ]
+
+    set blocked false
+    ifelse is-string? action [
+      run action
+    ] [
+      let procedure-to-run action 
+      set params but-first action
+      run (first action) 
+    ]
+
+    ;; resetting just-shot? to false after local processing
+    if is-robot? self [
+      set just-shot? false
+    ]
+  ]
+  
+  ;; randomly creating food in the world
+  if random-float 1 < food-appearance [
+    make-food
+  ]
+end
+
+
+to apply-life-constants
+  if is-robot? self [
+    if energy <= 0 [ die ] 
+    set label energy
+    ifelse (empty? incoming-queue)
+        [set label-color white]
+        [set label-color green]
+    if is-rocket-launcher? self [
+      if reloading > 0 [
+        set reloading reloading - 1
+      ]
+    ]
+  ]
+end
+
+to-report rocket-launcher-speed
+  ;; report  (min list world-width world-height) / 40
+  report speed-seed
+end
+
+to-report explorer-speed
+  ;; report  (min list world-width world-height) / 20
+  report speed-seed * 2
+end
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;INTERFACE;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+to make-food 
+  create-foods 1 [
+    ;; set size (min list world-width world-height) / 20
+    set size 4
+    set color orange
+    set xcor random-xcor
+    set ycor random-ycor
+  ]
+end
+
+
+to create-food
+  hatch-foods 1 [
+    set color [color] of myself
+    set label ""
+  ]
+end
+
+
+to make-explorer [c x y]
+  create-explorers 1 [
+    set color c
+    ;; set size (min list world-width world-height) / 20
+    set xcor x
+    set ycor y
+    init-explorer
+  ]
+end
+
+to make-rocket-launcher [c x y]
+  create-rocket-launchers 1 [
+    
+    init-rocket-launcher
+    set color c
+    ;; set size (min list world-width world-height) / 20
+    set xcor x
+    set ycor y
+  ]
+end
+
+
+to make-base [c x y]
+  create-bases 1 [
+    set color c
+    ;; set size (min list world-width world-height) / 10
+    set size 4
+    set energy 12000
+    set detection-range 30
+    set just-shot? false
+    set bag []
+    set xcor x
+    set ycor y
+    set beliefs []
+    set ctask "initial-state"
+    set incoming-queue []
+  ]
+end
+
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;ACTIONS;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+
+to build-explorer
+  if is-base? self [
+    hatch-explorers 1 [
+      init-explorer
+    ]
+    set energy energy - explorer-cost
+  ]
+end
+
+to init-explorer
+  set size (min list world-width world-height) / 20
+  set energy 1000
+  set detection-range 20
+  set speed explorer-speed
+  set just-shot? false
+  set blocked  false
+  set ctask "initial-state"
+  set bag []
+  set incoming-queue []
+  set beliefs []
+end
+
+
+
+to build-rocket-launcher
+  if is-base? self [
+    hatch-rocket-launchers 1 [
+      init-rocket-launcher
+    ]
+    set energy energy - rocket-launcher-cost
+  ]
+end
+
+to init-rocket-launcher
+      set size (min list world-width world-height) / 20
+      set energy rocket-launcher-cost
+      set detection-range 10
+      set speed rocket-launcher-speed
+      set just-shot? false
+      set blocked false
+      set reloading 0
+      set rocket-number initial-rocket-number
+      set ctask "initial-state"
+      set bag []
+      set incoming-queue []
+      set beliefs []
+end
+
+
+;; The description of the speed is unclear. The lower speed, the faster. In "move" description the
+;; higher speed the faster
+to move
+  let last-move-lenght 0
+  while [last-move-lenght < speed] [
+    fd 1
+    set last-move-lenght last-move-lenght + 1
+    if any? other turtles-here with [is-colliding? myself] or hitting-north-wall? self or hitting-south-wall? self or hitting-east-wall? self or hitting-west-wall? self
+    [ set blocked true ]
+  ]
+end
+
+
+to take
+  if(not is-base? self)
+  [
+    ifelse ((is-food? first params) and (is-colliding? first params) and not full-bag?) [
+      set bag fput "food" bag
+      ask first params [die]
+    ]
+    [show (sentence self " error in taking " first params "(param not food / not collided / bag full)")]
+  ]
+end
+
+
+to launch-rocket
+  let t first params
+  if reloading = 0 and rocket-number > 0 [
+    hatch-rockets 1 [
+      set fuel rocket-fuel-size
+      set label ""
+      set heading t
+      fd [size] of myself
+    ]
+    set reloading reloading-time
+    set rocket-number rocket-number - 1
+  ]
+end
+
+
+to eat
+  ifelse member? "food" bag [
+    set energy energy + food-energy-value
+    set bag but-first bag
+  ] [
+    print self
+    print "trying to eat from an empty bag"
+  ]
+end
+
+
+to drop
+  ifelse empty? bag [
+    print self
+    print "trying to put something from an empty bag"
+  ] [
+    set bag but-first bag
+    create-food
+  ]
+end
+
+
+to build-rocket
+  if is-rocket-launcher? self [
+    set energy energy - rocket-cost
+    set rocket-number rocket-number + 1
+  ]
+end
+
+
+to idle
+end
+
+
+to give
+  let a first params
+  ifelse empty-bag? [
+    print "trying to give with an empty bag"
+  ] [
+    let given? false
+    if is-colliding? a [
+      ask a [
+        ifelse full-bag? [
+          print "trying to give an item to an agent with a bag full"
+        ] [
+          set bag lput [first bag] of myself bag
+          set given? true
+        ]
+      ]
+      if given? [
+        set bag but-first bag
+      ]
+    ]
+  ]
+end
+
+
+to put-smell
+  ifelse color = team-1-color [
+    set t1-smell first params
+  ] [
+    set t2-smell first params
+  ]
+end
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;COMMUNICATION;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+
+to send-message [receiver performative content]
+  let msg create-message performative content
+  send receiver msg
+end
+
+
+to reply [input-msg performative content]
+  if show-messages [ show (sentence "Reply: " performative content " to: " (get-sender input-msg)) ]
+  let msg create-message performative content
+  send (get-sender input-msg) msg
+end
+
+to broadcast-message [lst performative content]
+  let msg create-message performative content
+  broadcast lst msg
+end
+
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;TESTING OPERATIONS;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+
+to-report are-enemies? [a1 a2]
+  if not (is-robot? a1 or is-base? a1 or not is-robot? a2 or is-base? a2) [print (sentence "are-enemies" a1 a2) print "using are-enemies? on an item without group"
+    report false]
+  report not are-friends? a1 a2
+end
+
+
+to-report carriable-lenght
+  ifelse is-explorer? self or is-rocket-launcher? self
+  [report robot-bag-size]
+  [report 500]
+end 
+
+to-report is-robot? [a]
+  report is-explorer? a or is-rocket-launcher? a or is-base? a
+end
+
+to-report are-friends? [a1 a2]
+  report [color] of a1 = [color] of a2
+end
+
+to-report is-my-enemy? [a]
+  report are-enemies? a self
+end
+
+to-report is-my-friend? [a]
+  report are-friends? a self
+end
+
+to-report hitting-north-wall? [a]
+  report [pycor] of a = max-pycor
+end
+
+to-report hitting-south-wall? [a]
+  report [pycor] of a = min-pycor
+end
+
+to-report hitting-east-wall? [a]
+  report [pxcor] of a = max-pxcor
+end
+
+to-report hitting-west-wall? [a]
+  report [pxcor] of a = min-pxcor
+end
+
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;SENSING;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+
+to-report get-heading
+  report heading
+end
+
+
+to-report blocked?
+  report blocked
+end
+
+
+to-report _perceive
+  report other turtles in-radius detection-range
+end
+
+to-report perceive
+  report percepts
+end
+
+to-report get-rocket-number
+  report rocket-number
+end
+
+
+to-report get-team
+  report color
+end
+
+
+to-report get-energy [a]
+  report [energy] of a
+end
+
+
+to-report is-colliding? [o]
+  report distance o < (size + [size] of o) / 3
+end
+
+
+to-report headed-towards? [o]
+  report towards o = heading
+end
+
+
+to set-heading [a]
+  ifelse is-turtle? a
+  [set heading towards a]
+  [set heading a]
+end
+
+
+to set-random-heading
+  set heading random 360
+end
+
+
+to-report full-bag?
+  report length bag = carriable-lenght
+end
+
+
+to-report empty-bag?
+  report empty? bag
+end
+
+
+to-report in-base?
+  report any? bases with [is-colliding? myself and is-my-friend? myself]
+end 
+
+
+to-report smell-friend
+  report t1-smell
+end
+
+
+to-report smell-enemy
+  report t2-smell
+end
+
+
+to-report get-closest [l]
+  report min-one-of l [distance myself]
+end
+
+
+to-report get-rocket-launchers
+  report rocket-launchers with [is-my-friend? myself]
+end
+
+to-report get-explorers
+  report explorers with [is-my-friend? myself]
+end
+
+to-report get-bases
+  report bases with [is-my-friend? myself]
+end
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ROCKET BEHAVIOR ;;;;;
+to rocket-action
+  ifelse fuel = 0 
+  [ die ] 
+  [ set fuel fuel - 1 ]
+  let crossed 0
+  if hitting-east-wall? self or hitting-west-wall? self or hitting-north-wall? self or hitting-south-wall? self 
+  [ die ]
+  
+  while [crossed < rocket-speed] [
+    set crossed crossed + 1
+    fd 1
+    let agents-hit other turtles with [not is-rocket? self and is-colliding? myself]
+    if any? agents-hit [
+      ask agents-hit [
+        if is-food? self [die]
+        set just-shot? true set energy energy - rocket-damage 
+      ]
+      die
+    ]
+  ]
+end
+

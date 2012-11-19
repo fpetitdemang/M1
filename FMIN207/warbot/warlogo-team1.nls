@@ -1,0 +1,157 @@
+;;----------------------------------------------------------------------------------------------
+;; Warlogo: The Team to be defined...
+;;
+;; Warlogo...
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; EXPLORER BEHAVIOR ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+
+to-report explorer-t1-action
+  if ctask = "initial-state" [ set ctask "find-food"];definit etat initial
+  report runresult ctask
+end
+
+
+to-report find-food 
+  
+  let spotted-food percepts with [is-food? self]
+  let hit-food spotted-food with [is-colliding? myself]
+  
+  ;agent touche peut attaper nourriture
+  ;prend nourriture
+  ;back-to-bases
+  if any? hit-food [
+      set ctask "back-to-bases"
+      report list "take" one-of hit-food
+  ]
+  
+  ;agent perçoit nourriture
+  ;move vers nourriture
+  ;find-food
+  ifelse any? spotted-food [
+    let closest min-one-of spotted-food [distance myself]
+    ifelse headed-towards? closest 
+    [
+      set ctask "find-food"
+      report "move"
+    ] 
+    [
+      set-heading closest
+      set ctask "find-food"
+      report "move"
+    ]
+  ]
+  ;agent perçoit pas nourriture
+  ;move alétoirement
+  ;find-food
+  [
+    ifelse (random 5 = 1)
+    [ 
+      set-random-heading 
+      set ctask "find-food"
+      report "move"
+    ]
+    [
+      set ctask "find-food"
+      report "move"
+    ]
+  ]
+  
+
+  
+end
+
+to-report back-to-bases
+  
+  ;percoit nourriture et sac non plein
+  ;move vers nourriture
+  ;find-food 
+  let spotted-food percepts with [is-food? self]
+  if any? spotted-food and not full-bag? 
+  [
+    set-heading min-one-of spotted-food [distance myself]
+    set ctask "find-food"
+    report "move"
+  ]
+  
+  ;si arrivé à la base
+  ;give
+  ;find-food
+  ifelse any? get-bases with [is-colliding? myself] 
+  [
+    set ctask "find-food"
+    report list "give" min-one-of get-bases [distance myself]
+  ]
+  ;sinon
+  ;move ma base
+  ;back-to-bases
+  [
+    set-heading min-one-of get-bases [distance myself]
+    set ctask "back-to-bases"
+    report "move"
+  ] 
+end
+
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ROCKET-LAUNCHER BEHAVIOR ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+to-report rocket-launcher-t1-action
+  if ctask = "initial-state" [ set ctask "explore"];definit etat initial
+  report runresult ctask
+end
+
+to 
+to-report explore
+  let target min-one-of percepts with [not is-rocket? self and not is-food? self and is-my-enemy? myself] [get-energy self]
+  ifelse (target != nobody and get-rocket-number > 0) [
+    set ctask "attack"
+    report "idle"
+  ][
+  ;if (random 5 = 1)[ set-random-heading]
+  set ctask "explore"
+  report "move"
+  ]   
+end
+
+to-report attack
+  let target min-one-of percepts with [not is-rocket? self and not is-food? self and is-my-enemy? myself] [get-energy self]
+  
+  ;plus de rocket et energie suffisante
+  ;build-rocket
+  ;attack
+  if (get-rocket-number = 0 and get-energy self > rocket-cost) 
+  [
+    report "build-rocket"
+  ]
+  
+  ;perçoit enemi et rocket > 0
+  ;launch-rocket
+  ;attack
+  if (target != nobody and get-rocket-number > 0) 
+  [
+    set ctask "attack"
+    report list "launch-rocket" towards target
+  ]
+  
+  ;perçoit plus ennemi
+  ;move 
+  ;explore
+  if (target = nobody)
+  [ 
+    set-random-heading
+    set ctask "explore"
+    report "move"
+  ]
+end
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; BASE BEHAVIOR ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+to-report base-t1-action
+  ifelse empty-bag? [
+    report "idle"
+  ] [
+  report "eat"
+  ]
+end
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
