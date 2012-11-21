@@ -1,12 +1,19 @@
+;declaration des registres
+;+initiailisation
+
 
 ;implementation de la vm
-;construit la vm -> initialisation
-(defun make-vm(nom-vm taille code)
+;construit les elements de la vm
+(defun make-vm(nom-vm taille)
   (progn 
-    (setf (get nom-vm 'ram) 10000)
-    (setf (get nom-vm 'R0) 0)
-    (setf (get nom-vm 'R1) 0) 
-    ))
+    (setf (get nom-vm ':RO) 1)
+    (setf (get nom-vm ':MEM) (make-array (list taille):initial-element (list 'NOP))) 
+    (setf (get nom-vm ':BP) 0)
+    (setf (get nom-vm ':SP) 0)
+    (setf (get nom-vm ':RO) 0)
+    (setf (get nom-vm ':R1) 0)
+    )
+  )
 
 (defun exec-vm(instruction)
   ;analyse par cas des instructions
@@ -16,24 +23,43 @@
   )
 
 ;charge le code dans le registre d'instruction
-;vm : la vm que l'on manipule
+;nom-vm : la vm que l'on manipule
 ;code : liste plate des intructions 
-(defun load-vm(vm code)
+(defun load-vm(nom-vm code)
   (loop for instruction in code
 	do
-	;instru->(move ('1 ) R0)
+	;ecrit le code dans la memoire
+	(ecrire-mem nom-vm (get-registre nom-vm ':SP) instruction)
+	;incremte le SP
+	(set-registre nom-vm ':SP (+ (get-registre nom-vm ':SP) 1))
 	)
   )
 
-(defun get-registre(nom reg)
-  (get nom reg))
-(defun set-registre(nom reg)
-  (setf ())
+;recupere la valeur d'un registre
+(defun get-registre(nom-vm registre) 
+  (get nom-vm registre))
 
-(defun lire-mem(vm adresse)
-  (aref (get vm 'MEM) adresse))
+;ecrit dans un registre
+(defun set-registre(nom-vm registre valeur)
+  (setf (get nom-vm registre) valeur))
 
-(defun ecrire-mem(vm adresse valeur)
-  (setf (aref (get vm 'MEM) adresse) valeur))
+;recupere une instance de memoire
+(defun get-mem(nom-vm) 
+  (get nom-vm ':MEM))
 
+;lit dans la memoire de la vm
+(defun lire-mem(nom-vm adresse)
+  (aref nom-vm  adresse))
 
+;ecrit dans le memoire de la vm
+(defun ecrire-mem(nom-vm adresse valeur)
+  (setf (aref (get-mem nom-vm) adresse) valeur))
+
+;affiche la memoire de la machine virtuel
+(defun affiche-mem(nom-vm)
+
+  (loop for i from 0 to (- (array-total-size (get nom-vm ':MEM)) 1)
+	do
+	(format t "cellule : ~s ~%" (lire-mem (get nom-vm ':MEM) i))
+  )
+)

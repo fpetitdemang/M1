@@ -119,7 +119,7 @@ INPUTBOX
 338
 535
 nb-rocket-launchers
-5
+1
 1
 0
 Number
@@ -236,7 +236,7 @@ SWITCH
 493
 play-t2?
 play-t2?
-0
+1
 1
 -1000
 

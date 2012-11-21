@@ -6,19 +6,95 @@
 
 
 to-report explorer-t1-action
-  if ctask = "initial-state" [ set ctask "find-food"];definit etat initial
+  if ctask = "initial-state" [ set ctask "avancer"];definit etat initial
+  if ctask != "rien-faire" [ 
+    traitement-fils-message
+    envoie-message
+  ]
+  set label ctask
   report runresult ctask
 end
 
+to traitement-fils-message
+  
+
+    while [not empty? incoming-queue] [
+      let msg get-message
+      let performatif get-performative msg 
+      let contenu get-content msg
+      let emetteur get-sender msg ;; pour récupérer l'émetteur du message..
+      let head get-heading-to-sender msg ;; la direction dans laquelle se trouve l'émetteur du message
+      let dist get-distance-to-sender msg ;; la distance qui sépare l'émetteur du récepteur du message
+                                          ;; faire l'action que l'on désire à partir du performatif du message et son contenu
+      
+                                          ;; pour répondre à un message faire:
+                                          ;; reply msg "action" "contenu"
+       ]
+    
+end
+
+to envoie-message
+  
+  ;j'ai reperer base ennemi
+  ;lance appel d'offre
+   broadcast-message get-rocket-launchers "cfp" ["1"]
+   
+  ;attend qlq seconde
+  ;timer()
+  
+  ;recupere les reponses
+    while [not empty? incoming-queue] [
+      let msg get-message
+      let performatif get-performative msg 
+      let contenu get-content msg
+      let emetteur get-sender msg 
+      let head get-heading-to-sender msg 
+      let dist get-distance-to-sender msg
+      
+      let lCandidat []
+      
+      if  performatif = "propose"[
+        ;rajoute le candidat
+        set lCandidat lput msg lCandidat
+      ]
+      if  performatif = "refuse"[]
+      
+      ;tri les candidats par energie/distance      
+      
+      ;envoie accept-proposal au n premier et refuse-proposal au reste
+      
+      ;attend les retours inform-done/ faillur
+      
+    ]
+  ;msg : signal une base ennemi
+  ;type/destinataire : broadcast rocket-lancher
+  let enemy-base one-of percepts with [is-base? self and is-my-enemy? myself]
+  if enemy-base != nobody
+    [
+     
+      show "broacast(seen-base)"
+      set ctask "rien-faire"
+    ]
+   
+ 
+  
+end
+
+to-report avancer
+  set ctask "avancer"
+  report "move"
+end
+
+to-report rien-faire
+  set ctask "rien-faire"
+  report "idle"
+end
 
 to-report find-food 
   
   let enemy-base one-of percepts with [is-base? self and is-my-enemy? myself]
   let my-base one-of get-bases
-  if enemy-base != nobody and my-base != nobody 
-  [
-    broadcast-message get-rocket-launchers "seen-base" []
-  ]
+
   
  
   let spotted-food percepts with [is-food? self]
@@ -104,22 +180,59 @@ end
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ROCKET-LAUNCHER BEHAVIOR ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 to-report rocket-launcher-t1-action
-  if ctask = "initial-state" [ set ctask "patrouiller"];definit etat initial
+ if ctask = "initial-state" [ set ctask "rien-faire-rocket-lancher"];definit etat initial
   
   ;reflexe
+ ; if blocked? [ set-random-heading ]
+ ; let ennemy-rocket-launcher one-of percepts with [is-rocket-launcher? self and is-my-enemy? myself]
+ ; if (ennemy-rocket-launcher != nobody) and (get-energy self < 2990)  [  set ctask "fuir"]
   
-  if blocked? [ set-random-heading ]
-  
-  let ennemy-rocket-launcher one-of percepts with [is-rocket-launcher? self and is-my-enemy? myself]
-  if (ennemy-rocket-launcher != nobody) and (get-energy self < 2990)  [ 
-    set ctask "fuir"
-    show "reflexe"]
+  ;message
+  traitement-fils-message-rocket-laucher
+  envoie-message-rocker-laucher
   
   set label ctask
   ;set label self
   report runresult ctask
+
 end
 
+to traitement-fils-message-rocket-laucher
+  
+
+  
+   
+  
+    while [not empty? incoming-queue] [
+      let msg get-message
+      let performatif get-performative msg 
+      let contenu get-content msg
+      let emetteur get-sender msg ;; pour récupérer l'émetteur du message..
+      let head get-heading-to-sender msg ;; la direction dans laquelle se trouve l'émetteur du message
+      let dist get-distance-to-sender msg ;; la distance qui sépare l'émetteur du récepteur du message
+      
+          
+    
+      reply msg "ack" []
+      show performatif
+      show item 0 contenu
+      show emetteur
+      show head
+      show dist
+      if performatif = "seen" and item 0 contenu = "base" [set ctask "attack"]
+       ]
+    
+end
+
+to envoie-message-rocker-laucher
+  
+  
+end
+
+to-report rien-faire-rocket-lancher
+  set ctask "rien-faire"
+  report "idle"
+end
 to-report fuir
   
 let my-ennemy-rocket-launcher one-of percepts with [is-rocket-launcher? self and is-my-enemy? myself]
@@ -316,7 +429,7 @@ to-report attack
 end
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; BASE BEHAVIOR ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
+;si attquer appeler demande autant de lauch-rocket que d'attaquant
 to-report base-t1-action
   while [not empty? incoming-queue] 
     [let msg get-message
