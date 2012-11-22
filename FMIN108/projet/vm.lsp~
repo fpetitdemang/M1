@@ -6,13 +6,12 @@
 ;construit les elements de la vm
 (defun make-vm(nom-vm taille)
   (progn 
-    (setf (get nom-vm ':RO) '1)
-    ;(setf mem (make-array (list taille):initial-element (list 'NOP)))
-    ;(setf 'name nom) 
-    ;(setf 'BP 0)
-    ;(setf 'SP 0)
-    ;(setf 'R0 0)
-    ;(setf 'R1 0)
+    (setf (get nom-vm ':RO) 1)
+    (setf (get nom-vm ':MEM) (make-array (list taille):initial-element (list 'NOP))) 
+    (setf (get nom-vm ':BP) 0)
+    (setf (get nom-vm ':SP) 0)
+    (setf (get nom-vm ':RO) 0)
+    (setf (get nom-vm ':R1) 0)
     )
   )
 
@@ -24,39 +23,43 @@
   )
 
 ;charge le code dans le registre d'instruction
-;vm : la vm que l'on manipule
+;nom-vm : la vm que l'on manipule
 ;code : liste plate des intructions 
-(defun load-vm(vm code)
+(defun load-vm(nom-vm code)
   (loop for instruction in code
 	do
-	;instru->(move ('1 ) R0)
-	(ecrire-mem mem (get-registre 'SP) instruction)
-	;incremente SP
-	(set-registre vm 'SP (+ (get-registre vm 'SP) 1))
+	;ecrit le code dans la memoire
+	(ecrire-mem nom-vm (get-registre nom-vm ':SP) instruction)
+	;incremte le SP
+	(set-registre nom-vm ':SP (+ (get-registre nom-vm ':SP) 1))
 	)
   )
 
 ;recupere la valeur d'un registre
-(defun get-registre(registre)
-  (get vm registre))
+(defun get-registre(nom-vm registre) 
+  (get nom-vm registre))
 
 ;ecrit dans un registre
-(defun set-registre(vm registre valeur)
-  (setf (get vm registre) valeur))
+(defun set-registre(nom-vm registre valeur)
+  (setf (get nom-vm registre) valeur))
+
+;recupere une instance de memoire
+(defun get-mem(nom-vm) 
+  (get nom-vm ':MEM))
 
 ;lit dans la memoire de la vm
-(defun lire-mem(vm adresse)
-  (aref vm  adresse))
+(defun lire-mem(nom-vm adresse)
+  (aref nom-vm  adresse))
 
 ;ecrit dans le memoire de la vm
-(defun ecrire-mem(vm adresse valeur)
-  (setf (aref vm adresse) valeur))
+(defun ecrire-mem(nom-vm adresse valeur)
+  (setf (aref (get-mem nom-vm) adresse) valeur))
 
 ;affiche la memoire de la machine virtuel
-(defun affiche-mem(vm)
-  (loop for cellule in mem
+(defun affiche-mem(nom-vm)
+
+  (loop for i from 0 to (- (array-total-size (get nom-vm ':MEM)) 1)
 	do
-	;instru->(move ('1 ) R0)
-	(format t "cellule : ~s ~%" cellule)
-	(break)	)
+	(format t "cellule : ~s ~%" (lire-mem (get nom-vm ':MEM) i))
   )
+)
