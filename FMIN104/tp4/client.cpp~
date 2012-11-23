@@ -1,0 +1,59 @@
+#include <iostream>
+#include <errno.h>
+#include <sys/socket.h>
+#include <stdio.h>
+#include <sys/types.h>
+#include <netinet/in.h>
+#include <netdb.h>
+#include <strings.h>
+#include <string.h>
+#include <unistd.h>
+
+
+
+#include "sock.h"
+#include "sockdist.h"
+
+#include <stdlib.h>
+
+#define PORTS 80	//numéro BrServeur
+
+using namespace std;
+
+int main(int argc, char *argv[]){
+
+	cout << "Client en route" << endl;
+	string nomHote = "213.186.33.19";
+	char buffer[256]="salut";
+	char buffer_rec[256];
+
+
+	Sock brCli(SOCK_STREAM,80,0);//Création de la Boite reseau local
+	int descBrCli;
+	if(brCli.good()) descBrCli = brCli.getsDesc();
+
+	SockDist brPub(nomHote.c_str(), (short)PORTS);//Création de la Boite reseau distance
+	struct sockaddr_in *adrBrPub= brPub.getAdrDist();
+	int lgAdrBrPub=sizeof(struct sockaddr_in);
+
+	if (connect(descBrCli,(struct sockaddr *)adrBrPub, lgAdrBrPub) < 0)
+	{
+		perror("accept");
+		exit(1);
+	}
+		perror("accept");
+
+
+	int envoie = send(descBrCli, buffer, strlen(buffer), 0);
+	if (envoie < 0)
+	{
+		perror("send");
+	}
+	int reception = recv(descBrCli, buffer_rec, strlen(buffer_rec), 0);
+	if (reception < 0)
+	{
+		perror("send");
+	}
+	cout<<buffer_rec<<endl;
+	return 0;
+}
