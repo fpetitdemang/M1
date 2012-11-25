@@ -58,13 +58,13 @@ to-report explorer-t1-action
     set beliefs lput nobody beliefs
   ];definit etat initial
   
-  traitement-fils-message
+  traitement-fils-message-explorer
   
   set label ctask
   report runresult ctask
 end
 
-to traitement-fils-message
+to traitement-fils-message-explorer
   
 
     while [not empty? incoming-queue] [
@@ -287,6 +287,25 @@ end
  ;cible amis
  ;cible ennemi
  ;manager
+ 
+ to traitement-fils-message-lancher
+
+    while [not empty? incoming-queue] [
+      let msg get-message
+      let performatif get-performative msg 
+      let contenu get-content msg
+      let emetteur get-sender msg ;; pour récupérer l'émetteur du message..
+      let head get-heading-to-sender msg ;; la direction dans laquelle se trouve l'émetteur du message
+      let dist get-distance-to-sender msg ;; la distance qui sépare l'émetteur du récepteur du message
+                                          
+      
+      if performatif = "cfp"[reply msg "propose" []]
+      
+      if performatif = "accept-proposal"[]
+      
+    ]
+    
+end
 
 to-report rocket-launcher-t1-action
   
