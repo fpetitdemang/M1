@@ -15,6 +15,7 @@
 #include <netdb.h>
 #include <strings.h>
 #include <string.h>
+#include <pthread.h>
 
 #include "../Sock/sock.h"
 #include "../Sock/sockdist.h"
@@ -31,14 +32,14 @@ void *f1(void *pBr){
   do{
    
     char msgR[256];
-    int reception = recv(pBr[0], msgR, 256, 0);
+    int reception = recv((int)pBr[0], msgR, 256, 0);
     if (reception < 0){
       perror("Send");
     }else{
       perror("Send");
     }
 
-    int envoie = send(pBr[1], msgR, 256, 0);
+    int envoie = send((int)pBr[1], msgR, 256, 0);
     if (envoie < 0){
       perror("Send");
     }else{
@@ -47,6 +48,8 @@ void *f1(void *pBr){
 
   }while(1);
 }
+
+
 
 
 int main(){
@@ -80,7 +83,6 @@ int main(){
   
 
   int nbClientCo = 0;
-  int TdescBrCv[2];
   //accepte 2 premiers clients
   while(nbClientCo < 2){
     cout<<"Attent demande connexion"<<endl;
