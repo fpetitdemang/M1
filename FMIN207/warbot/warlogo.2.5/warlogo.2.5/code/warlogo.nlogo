@@ -119,7 +119,7 @@ INPUTBOX
 338
 535
 nb-rocket-launchers
-3
+1
 1
 0
 Number
@@ -155,7 +155,7 @@ food-appearance
 food-appearance
 0
 1
-0.1
+0
 0.01
 1
 NIL

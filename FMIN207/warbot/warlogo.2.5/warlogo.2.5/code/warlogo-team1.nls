@@ -4,10 +4,33 @@
 ;; Warlogo...
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; EXPLORER BEHAVIOR ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+to addLAgent [ag]
+  let lAg item 1 beliefs
+  set lAg lput ag lAg
+  set beliefs replace-item 1 beliefs lAg
+end 
+
+to-report getLAgent 
+  report item 1 beliefs
+end
+
+to rmLAgent 
+  set beliefs replace-item 1 beliefs []
+end
+
+to setTimer [ti]
+  set beliefs replace-item 0 beliefs ti
+end
+
+to-report getTimer
+  report item 0 beliefs
+end
+
+
 ;beliefs 
- ;timer 0
- ;lCandidats
- ;listeAgent
+ ;[0]timer 0
+ ;[1]listeAgent
+ ;[2]listeAgent
 
 ;renvoi les coordonnées polaire de la cible pour le tireur
 to-report position-polaire [cible source]
@@ -78,10 +101,14 @@ to traitement-fils-message-explorer
       
       ;candidat accepte
       if  performatif = "propose"[ 
-        let lCandidat item 1 beliefs
-        set lCandidat lput msg lCandidat
-        set beliefs replace-item 1 beliefs lCandidat 
+        addLAgent msg 
       ]
+      
+      ;agent dans zone de commandement
+      if  performatif = "here"[ 
+        addLAgent msg 
+      ]
+      
       ;candidat refuse
       if  performatif = "refuse"[]
     ]
@@ -93,15 +120,13 @@ end
 ;lance appel d'offre
 to-report appel-offre
   
-   broadcast-message get-rocket-launchers "cfp" ["1"]
+   if getTimer = 0 [broadcast-message get-rocket-launchers "cfp" []]
            
     ;attend 2 tick avt de traiter les reponse
     ;idle
     ;appel-offre
-    ifelse item 0 beliefs < 5 [ 
-      let my-timer item 0 beliefs
-      set my-timer my-timer + 1
-      set beliefs replace-item 0 beliefs my-timer
+   ifelse getTimer < 5 [ 
+      setTimer (getTimer + 1)
       set ctask "appel-offre"
       report "idle"
     ][
@@ -120,54 +145,61 @@ to-report appel-offre-rep
     ;traite reponse
     ;idle
     ;rien-faire-explorer
-  let lCandidat item 1 beliefs
-  set beliefs replace-item 0 beliefs 0
+    let lCandidat getLAgent
   
   ;tri les candidats par energie/distance 
   
   ;envoie accept-proposal au 3 premier et refuse-proposal au reste
   let compt 0
   (foreach lCandidat [
-    ifelse compt < 3 [
-      
-      let enemy-base one-of percepts with [is-base? self and is-my-enemy? myself]
-      set heading towards enemy-base
-      
-      ;position cible
-      let A []
-      set A lput get-heading A
-      set A lput distance enemy-base A
-
-      
-      ;position tireur
-      let B []     
-      set B lput (get-heading-to-sender ?) B
-      set B lput get-distance-to-sender ? B
-
-      
-      ;recupere position cible depuis tireur
-      let posEnnemi position-polaire A B
-            
-      ;initialise msg reponse
-      let contenuMsg []
-      set contenuMsg lput "attack" contenuMsg
-      set contenuMsg lput posEnnemi contenuMsg
-      
-      reply ? "accept-proposal" contenuMsg
-      ;set beliefs item 2 lput get-sender ?  beliefs item 2
-    ]    
-    [ 
-      reply ? "refuse-proposal" ["attack"]
-      set lCandidat remove ? lCandidat
-    ]
-    
+    if compt < 3 [      
+      reply ? "accept-proposal" ["attack"]
+    ]   
     set compt compt + 1
   ])
   
-  set ctask "rien-faire-explorer"
+  rmLAgent 
+
+  set ctask "attack-explorer"
   report "idle"
   
 end
+
+to-report attack-explorer
+  let lAg getLAgent
+  show getLAgent
+  let enemy-base one-of percepts with [is-my-enemy? myself]
+  
+  if enemy-base = nobody [
+    set ctask "explorer-explorer"
+    report "idle"
+  ]
+  
+  set heading towards enemy-base
+  
+  ;position cible
+  let A []
+  set A lput get-heading A
+  set A lput distance enemy-base A
+ 
+  
+  foreach lAg [
+    ;position tireur
+    let B []     
+    set B lput (get-heading-to-sender ?) B
+    set B lput get-distance-to-sender ? B
+    
+    ;recupere position cible depuis tireur
+    let posEnnemi position-polaire A B
+              
+     reply ? "tirer" posEnnemi
+  ]
+  
+  set ctask "attack-explorer"
+  report "idle"
+  
+end 
+
 
 to-report explorer-explorer
   ;base ennemi reperer
@@ -184,7 +216,7 @@ to-report explorer-explorer
 end
 
 to-report rien-faire-explorer
-  ;show item 1 beliefs
+  show beliefs
   set ctask "rien-faire-explorer"
   report "idle"
 end
@@ -283,10 +315,38 @@ end
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ROCKET-LAUNCHER BEHAVIOR ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+to setManager [manager]
+  set beliefs replace-item 2 beliefs manager
+end
+
+
+to-report getManager
+  report item 2 beliefs
+end
+
+to setCible [cible]
+  set beliefs replace-item 1 beliefs cible
+end
+
+to-report getCible
+  report item 1 beliefs
+end
+
+to setTache [tache]
+  set beliefs replace-item 3 beliefs tache
+end
+
+to-report getTache
+  report item 3 beliefs
+end
+
+
+
 ;beliefs 
- ;cible amis
- ;cible ennemi
+ ;cible 
+ ;cible 
  ;manager
+ ;tache
  
  to traitement-fils-message-lancher
 
@@ -301,7 +361,17 @@ end
       
       if performatif = "cfp"[reply msg "propose" []]
       
-      if performatif = "accept-proposal"[]
+      if performatif = "accept-proposal"[
+        setManager emetteur
+        setCible emetteur
+        setTache item 0 contenu
+        set ctask "rejoindre-cible"
+      ]
+      
+      if performatif = "tirer" [
+        setCible contenu
+        set ctask "attack"      
+      ]
       
     ]
     
@@ -314,6 +384,7 @@ to-report rocket-launcher-t1-action
     set beliefs lput nobody beliefs
     set beliefs lput nobody beliefs
     set beliefs lput nobody beliefs
+    set beliefs lput nobody beliefs
   ];definit etat initial
   
   ;reflexe
@@ -322,52 +393,64 @@ to-report rocket-launcher-t1-action
   ; if (ennemy-rocket-launcher != nobody) and (get-energy self < 2990)  [  set ctask "fuir"]
   
   ;message
-  ;traitement-fils-message-rocket-laucher
+  traitement-fils-message-lancher
   ;envoie-message-rocker-laucher
-  
-  let cibleA item 0 beliefs
-  let cibleE item 1 beliefs
-  let manager item 2 beliefs
-  
+
   set label ctask
   ;set label self
   report runresult ctask
   
 end
 
-to-report repondre-appel-offre
+to-report attack
+      
+  ;let target getCible
+  ;let target min-one-of percepts with [not is-rocket? self and not is-food? self and is-my-enemy?
+  ;myself and is-rocket-launcher? myself or is-base? myself] [get-energy self]
   
-    while [not empty? incoming-queue] [
-      let msg get-message
-      let performatif get-performative msg 
-      let contenu get-content msg
-      let emetteur get-sender msg ;; pour récupérer l'émetteur du message..
-      let head get-heading-to-sender msg ;; la direction dans laquelle se trouve l'émetteur du message
-      let dist get-distance-to-sender msg ;; la distance qui sépare l'émetteur du récepteur du message
-      
-      if performatif = "cfp"[
-        
-        reply msg "propose" []
-      ]
-      
-      if performatif = "accept-proposal" and item 0 contenu = "attack"
-      [
+  ;plus de rocket et energie suffisante
+  ;build-rocket
+  ;attack
+  if (get-rocket-number = 0 and get-energy self > rocket-cost) 
+  [
+    report "build-rocket"
+  ]
 
-        set-heading head - 20
-        
-        show "s'engage avec "
-        show emetteur
-               
-        set beliefs lput emetteur beliefs
-        
-        set ctask "avancer"
-        report "move"
-      ]
-    ]
-    
+   set ctask "rien-faire-rocket-lancher"
+   report list "launch-rocket" item 0 getCible
+  
+  ;perçoit enemi et rocket > 0
+  ;launch-rocket
+  ;attack
+  ;if (target != nobody and get-rocket-number > 0) 
+  ;[
+  ;  set ctask "attack"
+  ;  report list "launch-rocket" towards target
+  ;]
+  
+  ;perçoit plus ennemi
+  ;move 
+  ;explore
+  
+ 
+
+end
+
+to-report rejoindre-cible
+  if distance getCible >= 1 [ 
+    set heading towards getCible
+    set ctask "rejoindre-cible"
+    report "move"
+  ]
+  send-message getManager "here" []
+  setCible nobody
+  set ctask "rien-faire-rocket-lancher"
+  report "idle"
+end
+
+to-report repondre-appel-offre
     set ctask "repondre-appel-offre"
     report "idle"
-    
 end
 
 to-report avancer
@@ -387,25 +470,9 @@ to-report avancer
 end
 
 to-report rien-faire-rocket-lancher
-
-  ;recoit une offre
-  ;idle
-  ;repondre appel-offre
-  if not empty? incoming-queue [
-    let msg get-message
-    let performatif get-performative msg 
-    if performatif = "cfp"[
-      
-      reply msg "propose" []
-      
-      set ctask "repondre-appel-offre"
-      report "idle"
-    ]
-  ]
-  
-  ;defaut
-  ;idle
-  ;rien-faire-rocket-lancher
+ ;defaut
+ ;idle
+ ;rien-faire-rocket-lancher
   set ctask "rien-faire-rocket-lancher"
   report "idle"
 end
@@ -560,41 +627,7 @@ to-report defendre
 end
 
 
-to-report attack
-  
-  
-  
-  
-  
-    
-  let target min-one-of percepts with [not is-rocket? self and not is-food? self and is-my-enemy?
- myself and is-rocket-launcher? myself or is-base? myself] [get-energy self]
-  
-  ;plus de rocket et energie suffisante
-  ;build-rocket
-  ;attack
-  if (get-rocket-number = 0 and get-energy self > rocket-cost) 
-  [
-    report "build-rocket"
-  ]
-  
-  ;perçoit enemi et rocket > 0
-  ;launch-rocket
-  ;attack
-  if (target != nobody and get-rocket-number > 0) 
-  [
-    set ctask "attack"
-    report list "launch-rocket" towards target
-  ]
-  
-  ;perçoit plus ennemi
-  ;move 
-  ;explore
-  
-  set ctask "explore"
-  report "move"
 
-end
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; BASE BEHAVIOR ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;si attquer appeler demande autant de lauch-rocket que d'attaquant
