@@ -8,6 +8,8 @@
 #include <strings.h>
 #include <string.h>
 #include <unistd.h>
+#include <pthread.h>
+
 
 
 
@@ -16,12 +18,45 @@
 
 #include <stdlib.h>
 
-#define PORTC 38523
-#define PORTS 38519
+#define PORTS 38521
+
+void *thread_reception(void *p){
+  
+  int pBrCli = (int )p;
+  
+  do{
+    char msgR[256];
+    int reception = recv(pBrCli, msgR, 256, 0);
+    if (reception < 0){
+      perror("recv");
+      close(pBrCli);
+      close(pBrCli);
+      cout<<"Fermeture serveur"<<endl;
+      exit(1);
+    }
+    
+    if(reception == 0){
+      perror("send");
+      close(pBrCli);
+      close(pBrCli);
+      cout<<"Fermeture serveur"<<endl;
+      exit(1);
+    }
+    
+    if(reception > 0) cout<<"rcv : Success"<<endl;
+    
+    cout<<msgR<<endl;
+  }while(1);
+  
+}
 
 using namespace std;
 
 int main(int argc, char *argv[]){
+  
+  int PORTC;
+  printf("BR client : \n");
+  cin>>PORTC;
 
   cout << "Client en route" << endl;
   cout << "===============\n" << endl;
@@ -55,7 +90,10 @@ int main(int argc, char *argv[]){
     perror("Demande connexion");
   }
   
-
+  /*thread reception*/
+  pthread_t t1;
+  pthread_create(&t1,NULL,thread_reception,(void*)descBrCli);		   
+	
   
   do{
 
@@ -63,21 +101,23 @@ int main(int argc, char *argv[]){
     printf("Saisir message : \n");
     scanf("%s", msgE);
     
-    int envoie = send(descBrCli, msgE, strlen(msgE)+1, 0);
+    int envoie = send(descBrCli, msgE, 256, 0);
     if (envoie < 0){
-      perror("Send");
-    }else{
-      perror("Send");
+      close(descBrCli);
+      close(descBrCli);
+      perror("send");
     }
+    if (envoie == 0){
+      close(descBrCli);
+      close(descBrCli);
+      perror("send");
+    }
+
+    if(envoie > 0) cout<<"send : Success"<<endl;
+
+    /***************/
     
-    /*char msgR[256];
-    int reception = recv(descBrCli, msgR, 256, 0);
-    if (reception < 0){
-      perror("Send");
-    }else{
-      perror("Send");
-      }*/
-    
+
   }while(1);
   
   

@@ -1,6 +1,6 @@
 CREATE OR REPLACE TYPE Annee_T AS OBJECT(
 		valeur integer
-	)
+	);
 /
 
 CREATE OR REPLACE TYPE Adresse_T 

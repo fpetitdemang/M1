@@ -1,0 +1,26 @@
+what,kind,bundleId,bundleVersion,description,time
+java.runtime.version,sysinfo,,,"1.6.0_16-b01",1354613219109
+java.specification.name,sysinfo,,,"Java Platform API Specification",1354613219109
+java.specification.vendor,sysinfo,,,"Sun Microsystems Inc.",1354613219109
+java.specification.version,sysinfo,,,"1.6",1354613219109
+java.vendor,sysinfo,,,"Sun Microsystems Inc.",1354613219109
+java.version,sysinfo,,,"1.6.0_16",1354613219109
+java.vm.info,sysinfo,,,"mixed mode, sharing",1354613219109
+java.vm.name,sysinfo,,,"Java HotSpot(TM) Client VM",1354613219109
+java.vm.specification.name,sysinfo,,,"Java Virtual Machine Specification",1354613219109
+java.vm.specification.vendor,sysinfo,,,"Sun Microsystems Inc.",1354613219109
+java.vm.specification.version,sysinfo,,,"1.0",1354613219109
+java.vm.vendor,sysinfo,,,"Sun Microsystems Inc.",1354613219109
+java.vm.version,sysinfo,,,"14.2-b01",1354613219109
+started,bundle,org.eclipse.mylyn.tasks.ui,3.2.2.v20090912-0400-e3x,"org.eclipse.mylyn.tasks.ui",1354613219137
+started,bundle,org.eclipse.mylyn.team.ui,3.2.2.v20090912-0400-e3x,"org.eclipse.mylyn.team.ui",1354613219146
+started,bundle,org.eclipse.update.scheduler,3.2.200.v20081127,"org.eclipse.update.scheduler",1354613219171
+started,bundle,org.eclipse.update.core,3.2.300.v20090525,"org.eclipse.update.core",1354613219247
+started,bundle,org.eclipse.mylyn.monitor.ui,3.2.2.v20090912-0400-e3x,"org.eclipse.mylyn.monitor.ui",1354613219248
+started,bundle,org.eclipse.wst.ws.service.policy.ui,1.0.102.v200903070248,"org.eclipse.wst.ws.service.policy.ui",1354613219265
+started,bundle,org.eclipse.jsch.core,1.1.100.I20090430-0408,"org.eclipse.jsch.core",1354613219416
+started,bundle,org.eclipse.team.cvs.core,3.3.200.I20090430-0408,"org.eclipse.team.cvs.core",1354613219418
+started,bundle,org.eclipse.team.ui,3.5.0.I20090430-0408,"org.eclipse.team.ui",1354613219459
+started,bundle,org.eclipse.ui.console,3.4.0.v20090513,"org.eclipse.ui.console",1354613219481
+started,bundle,org.eclipse.team.cvs.ui,3.3.201.R35x_v20090826-0905,"org.eclipse.team.cvs.ui",1354613219537
+deactivated,workbench,org.eclipse.ui.workbench,3.5.1.M20090826-0800a,"",1354613219741

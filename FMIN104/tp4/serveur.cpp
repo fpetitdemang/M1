@@ -22,29 +22,57 @@
 
 #include <stdlib.h>
 
-#define PORT 38519	//num de la BR publique
+#define PORT 38521
 
 
 using namespace std;
 
-void *f1(void *pBr){
+void *thread_reception(void *p){
   
+  int* pBr = (int*)p;
   do{
    
     char msgR[256];
-    int reception = recv((int)pBr[0], msgR, 256, 0);
+    int reception = recv(pBr[0], msgR, 256, 0);
     if (reception < 0){
-      perror("Send");
-    }else{
-      perror("Send");
+      perror("recv");
+      close(pBr[0]);
+      close(pBr[1]);
+      cout<<"Fermeture serveur"<<endl;
+      exit(1);
     }
 
-    int envoie = send((int)pBr[1], msgR, 256, 0);
-    if (envoie < 0){
-      perror("Send");
-    }else{
-      perror("Send");
+    if(reception == 0){
+      perror("send");
+      close(pBr[0]);
+      close(pBr[1]);
+      cout<<"Fermeture serveur"<<endl;
+      exit(1);
     }
+
+    if(reception > 0) {
+      cout<<"rcv : Success"<<endl;
+      cout<<msgR<<endl;
+    }
+    
+
+    int envoie = send(pBr[1], msgR, 256, 0);
+    if (envoie < 0){
+      close(pBr[0]);
+      close(pBr[1]);
+      perror("send");
+    }
+    if (envoie == 0){
+      close(pBr[0]);
+      close(pBr[1]);
+      perror("send");
+    }
+
+    if(envoie > 0){
+      cout<<"send : Success"<<endl;
+      cout<<msgR<<endl;
+    }    
+
 
   }while(1);
 }
@@ -52,7 +80,10 @@ void *f1(void *pBr){
 
 
 
+
+
 int main(){
+  
 
   cout<<"\n"<<endl;
   cout<<"Serveur en route"<<endl;
@@ -64,7 +95,7 @@ int main(){
   int descBrPub;
   if(brPub.good()){
     descBrPub=brPub.getsDesc();
-    perror("Creation BR publique");
+    cout<<"Creation BR publique : Ok"<<endl;
   }else{
     perror("Creation BR publique");
     exit(1);
@@ -75,50 +106,65 @@ int main(){
     perror("Creation liste attente");
     exit(1);
   }else{
-    perror("Creation liste attente");
+    cout<<"Creation liste attente : Ok"<<endl;
   }
 
   struct sockaddr_in brCv;
   socklen_t lgbrCv = sizeof(struct sockaddr_in);
   
 
+  //Traite les deux premieres demande de connexion
   int nbClientCo = 0;
-  //accepte 2 premiers clients
+  int TdescBrA[nbClientCo];
+  int TdescBrB[nbClientCo];
+
   while(nbClientCo < 2){
-    cout<<"Attent demande connexion"<<endl;
+    cout<<"Attend demande connexion"<<endl;
     int descBrCv = accept(descBrPub,(struct sockaddr*)&brCv,&lgbrCv);
     if (descBrCv < 0){
       perror("Traitement demande connexion");
       exit(1);
     }else{
-      perror("Traitement demande connexion");
+      cout<<"Traitement demande connexion n°"<<nbClientCo + 1<<endl;
     }
     
-    TdescBrCv[nbClientCo];
-    nbClientCo++;
-
+    /* TdescBrA[brA:brB]
+       TdescBrB[brB:brA]
+    */
+    if (nbClientCo == 0){
+      TdescBrA[0] = descBrCv;
+      TdescBrB[1] = descBrCv;
+      
+    }else{
+      TdescBrA[1] = descBrCv;
+      TdescBrB[0] = descBrCv;
+      }
+    
+    nbClientCo = nbClientCo + 1;
+    cout<<nbClientCo<<endl;
   }
 
+  
   int tabIdThread[nbClientCo];
 
-  //creation thread
-  pthread_t t1;	
-  tabIdThread[0]=t1;
-  pthread_create(&t1,NULL,f1,TdescBrCv);
-		 
-  int TdescBrCv_tmp = TdescBrCv[0];
-  TdescBrCv[0] =   TdescBrCv[1];
-  TdescBrCv[1] =   TdescBrCv_tmp;
+  //Créer thread de reception
+  for (int i=0; i<nbClientCo; i++){
+    pthread_t t1;	
+    tabIdThread[i]=t1;
+
+    if ( i == 0){
+      pthread_create(&t1,NULL,thread_reception,TdescBrA);		   
+    }else{
+      pthread_create(&t1,NULL,thread_reception,TdescBrB);	
+    }
+  }
+
 
   
-  pthread_t t2;	
-  tabIdThread[1]=t2;
-  pthread_create(&t2,NULL,f1,TdescBrCv);
-		   
-    
-
-  
-
-
+  //attend la fin des taches
+  for(int i=0; i<nbClientCo; i++){
+    pthread_join(tabIdThread[i],NULL);
+  }
+		
   return 0;
 }

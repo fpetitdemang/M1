@@ -31,4 +31,5 @@ CREATE TABLE Personne OF Personne_T
 	CHECK (annee.valeur < 2007)
  );
 
-
+INSERT INTO Personne
+	VALUES("franck",1990);
