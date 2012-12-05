@@ -1,0 +1,10 @@
+(defun eval-li (expr env)
+  (case (car expr)
+    (:const 
+     (cdr expr)
+     )
+
+    )
+     
+
+)
