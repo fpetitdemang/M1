@@ -1,0 +1,129 @@
+;;; 
+;;; Warlogo communication message
+;;; Version 2.2
+;;;
+;;; Authors: Jacques Ferber, Fabien Hervouet, Lois Vanhee
+;;; License GPL (as usual)
+;;;
+;;; Inspired and modified from the Communication for NetLogo Multiagent models
+;;; from I. Sakellariou (2005-2008)
+;;; 
+;;; main transformation are:
+;;; - getting rid of the ACL string syntax.. 
+;;; - receivers and senders are represented by their reference (and not a number as in the previous version)
+;;;   messages, when received, are now structured list of the form [performative content sender args angle-to-sender distance-to-sender ..]
+;;; - agents are represented as references and reference may be communicated
+;;; - adding groups and roles in a AGL style (see MadKit)
+;;;
+;;; 
+;;; Requirements (from the original version of I Sakellariou)
+;;; All agents that are able to communicate MUST have a declated -own variable incoming-queue.
+;;; This is the variable to which all messages are recorded. So, in your model if there is a breed of turtles 
+;;; which you desire to communicate, then you should have a BREED-own [incoming-queue] declaration (along with any other 
+;;; variables that you wish to include in your model.
+;;; MAKE SURE that when you create the variables you set its values to empty list ([]).
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;; COMMUNICATION
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;; MESSAGE PROCESSING ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Sending Messages
+;; (One man's send is another man's receive..)
+;; The second commented out line presents an alternative send implementation. 
+;; The commented out line represents an alternative method. 
+;; Problem: What if the agent I am sending the message is "killed" 
+;; Solution: Nothing Happens. Could yield an error message Alternative: create a safe send.
+to send [receiver msg]
+  if show-messages [ show (sentence "Msg: " msg) ]
+   ask receiver [receive msg] ;; read-from-string is required to convert the string to number
+end
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; Message reception deals with updating incoming-queue
+to receive [msg]
+   let s get-sender msg
+   let m sentence msg (list towards s distance s) 
+   set incoming-queue lput m incoming-queue
+end 
+
+;; This reporter returns the next message in the list and removes it from the queue.
+to-report get-message
+  if empty? incoming-queue [report "no-message"]
+  let nextmsg first incoming-queue
+  remove-msg
+  report nextmsg     
+end 
+
+;; This reporter returns the next message in the list WITHOUT removimg it from the queue.
+to-report read-message
+  if empty? incoming-queue [report "no-message"]
+  report first incoming-queue
+end
+
+;; Explicit remove-msg. 
+;; This is needed since reporters *cannot* change a variable's values (apparently). 
+to remove-msg
+  set incoming-queue but-first incoming-queue
+end 
+
+;; broadcasting to all agents in lst
+to broadcast [lst msg]
+  ifelse (is-agentset? lst)
+    [ask lst [send self msg]]
+    [foreach lst [
+     send ? msg ]
+    ]
+end 
+
+
+;; Creating Messages and adding the sender.
+to-report create-message [performative content]
+ report (list performative content self ) 
+end 
+
+
+;; Accesing information on Messages
+;; Reports the sender of a message
+to-report get-sender [msg]
+  report item 2 msg ;; 2 is the index of sender
+  ;; report remove "sender:" first (filter [not is-number? ? and member? "sender:" ?] msg) 
+  ;;report item ((position "sender:" msg) + 1) msg 
+end
+
+;; Reports (returns) the content of a message
+to-report get-content [msg]
+  report item 1 msg ;; 1 is index of content
+  ;; report item (position "content:" msg + 1) msg 
+end
+
+;; reports the message performative. 
+to-report get-performative [msg]
+  report first msg
+end 
+
+to-report get-heading-to-sender [msg]
+  report item 3 msg
+end
+
+to-report get-distance-to-sender [msg]
+  report item 4 msg
+end
+
+;;; ADDING FIELDS TO A MESSAGE
+
+
+;; Adding content to a message 
+to-report add-content [content msg]
+	report replace-item 1 msg content
+end
+
+;; Adding a sender to a message.
+to-report add-sender [sender msg]
+  report replace-item 2 msg sender
+end
+
+

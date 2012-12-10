@@ -1,0 +1,98 @@
+breed [people person]
+people-own [beliefs intentions incoming-queue]
+
+;;; Creates stohastically a passenger on one of the streets according to a probability.
+;;; The latter is set by a slider on the simulation environment. 
+;;; This give a model in which passengers appear at different execution times
+to create-passengers-probability
+if passengers-left > 0 
+  [
+  let p random 100
+  if p < 10 [
+     create-people 1 [
+       set shape "person"
+       set color yellow
+       rand-xy-co-on-road
+       set beliefs []
+       set intentions []
+       set incoming-queue []
+       add-intention "find-a-taxi" "false"
+       set passengers-left passengers-left - 1
+       ]
+     ]
+  ]
+end
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; Top Level Procedure (called by Observer to run the experiment
+to people-behaviour
+   execute-intentions
+end
+
+;;; Plan to find a Taxi (carefull reverse order)
+to find-a-taxi
+  set color yellow
+  add-intention "evaluate-proposals-and-send-replies" "true"  
+  add-intention "collect-proposals" timeout_expired cfp-deadline
+  add-intention "send-cfp-to-agents" "true"
+end
+
+;;; sending a call for proposals to all taxis
+to send-cfp-to-agents
+  broadcast-to taxis add-content (list "taxi needed" my-coordinates) create-message "cfp"
+end
+
+;;; Collecting Proposals
+to collect-proposals
+  let msg 0
+  let performative 0
+while [not empty? incoming-queue]
+  [
+   set msg get-message
+   set performative get-performative msg
+   if performative = "propose" [record-proposal msg]
+   if performative = "refuse" [do-nothing]
+   ]
+end
+
+;;; records beliefs of type [proposal senderID distance]
+to record-proposal [msg]
+  add-belief (list "proposal" get-sender msg get-content msg) 
+end
+
+;;; Evaluates proposals stored as beliefs
+to evaluate-proposals-and-send-replies
+  let best 0
+  let proposals 0
+  
+  set proposals beliefs-of-type "proposal"
+  if empty? proposals [show "no proposals" add-intention "do-nothing" timeout_expired 10 stop] ;; no proposals arrived, so do nothing.
+
+  foreach proposals [remove-belief ?] ;;; clear beliefs
+  set best first sort-by [item 2 ?1 < item 2  ?2] proposals ;;; select the best (closest)
+
+  send add-receiver item 1 best add-content (list "pick me up" my-coordinates who) create-message "accept-proposal" 
+  set color green  ;;; Indication showing that we are waiting.
+ 
+  add-intention "waiting-for-taxi" "false" ;; waiting for the taxi to arrive   
+end
+
+;;; waiting for the taxi and possible failures.
+to waiting-for-taxi
+  let msg 0
+  let performative 0
+  while [not empty? incoming-queue]
+  [
+   set msg get-message
+   set performative get-performative msg
+   if performative = "propose" or performative = "refuse" [do-nothing] ;;; any proposals arriving later than deadline
+   if performative = "failure" [remove-intention get-intention set color red] ;;; Problem with the taxi, so redo the proposal.
+   ]
+end
+
+;;;;;;;;;;;; end of Passenger Agent
+
+
+
+
+
