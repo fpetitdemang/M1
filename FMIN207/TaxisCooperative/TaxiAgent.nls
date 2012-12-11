@@ -1,0 +1,256 @@
+breed [ taxis taxi]
+taxis-own [onboard beliefs intentions incoming-queue]
+
+;;; Creates the number of taxis defined by the appropriate slider in the menu.
+;;; takes special care to place the taxis on available positions on the streets (rand-xy-co-on-road)
+to setup-taxis
+   create-taxis no-of-taxis [   
+      set shape "taxi"
+      set color blue
+      set onboard 0
+      set heading 0
+      set beliefs []
+      set intentions []
+      add-intention "look-for-passenger" "false"
+      set incoming-queue []
+      rand-xy-co-on-road
+      ]  
+end
+
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; The Taxi Agent
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; Agent has sensors, effectors (actions) and a behaviour (reactive)
+;;; The agent behaviour encoded as reactive rules, and only one rule is executed at each run.
+to taxi-behaviour
+   ;;; start with reactive part
+   if detect-taxi [turn-away stop]
+   if detect-street-edge-left [rt 5 stop]
+   if detect-street-edge-right [lt 5 stop]
+   ;;; if all goes well, start with your intentions
+   execute-intentions
+end
+  
+   
+;;; Basic Intention that simply makes the taxi to wonder around .....
+to look-for-passenger   
+   listen-to-messages
+   if detect-junction [move-randomly-90 stop]
+   if true [move-ahead stop]
+end  
+
+;;; Basic Plan listen to messages and wonder around....
+to listen-to-messages
+  let msg 0
+  let performative 0
+while [not empty? incoming-queue]
+  [
+   set msg get-message
+   set performative get-performative msg
+   if performative = "cfp" [evaluate-and-reply-cfp msg] 
+   if performative = "accept-proposal" [plan-to-pickup-passenger msg stop]
+   if performative = "reject-proposal" [do-nothing]
+   ] 
+end
+
+to evaluate-and-reply-cfp [msg]
+     send add-content distance-coords (item 1 get-content msg) create-reply "propose" msg
+end
+;;; Adds the plan to pick up the passenger
+to plan-to-pickup-passenger [msg]
+    let coords item 1 get-content msg
+    let pass_no item 2 get-content msg  
+    let inter select-close-junction-point coords
+    add-intention "drop-passenger" "true"
+    add-intention "carry-passenger-to-airport" "reached-airport"
+    add-intention (word "check-passenger-onboard " pass_no) "true"
+    add-intention (word "pick-up-passenger " pass_no) "true"
+    add-intention (word "move-to-dest " coords) (word "at-dest " coords)
+    add-intention (word "move-to-dest" inter) (word "at-dest " inter)
+end
+
+
+to-report select-close-junction-point [coords]
+   let p min-one-of patches with [road = 2 and (pxcor = first coords or pycor = item 1 coords)] [distancexy first coords item 1 coords]
+   report (list ([pxcor] of p) ([pycor] of p))
+end
+
+;;; I am going to the airport but listing to messages as well.
+to carry-passenger-to-airport
+  let msg 0
+  let performative 0
+while [not empty? incoming-queue]
+  [
+   set msg get-message
+   set performative get-performative msg
+   if performative = "cfp" [refuse-proposal msg] 
+   if performative = "accept-proposal" [fail-proposal msg]
+   if performative = "reject-proposal" [do-nothing]
+   ] 
+; keep on target
+   move-to-airport
+end
+
+
+to check-passenger-onboard [pass_no]
+   ifelse onboard > 0 
+       [do-nothing]
+       [remove-intention  (list "carry-passenger-to-airport" "reached-airport")
+         remove-intention (list "drop-passenger" "true")
+         send add-content "sorry, I could not find you" add-receiver pass_no create-message "failure"]
+end
+
+
+
+;;; Moves towards a specific destination (coordinates)
+;;; While intercepting messages.
+to move-to-dest [coords]
+  let msg 0
+  let performative 0
+while [not empty? incoming-queue]
+  [
+   set msg get-message
+   set performative get-performative msg
+   if performative = "cfp" [refuse-proposal msg] 
+   if performative = "accept-proposal" [fail-proposal msg]
+   if performative = "reject-proposal" [do-nothing]
+   ] 
+   move-towards-dest coords
+end
+
+
+;;; send a refusal message to a cfp
+to refuse-proposal [msg]
+ send add-content "busy" create-reply "refuse" msg
+end
+
+to fail-proposal [msg]
+ send add-content "sorry" create-reply "failure" msg
+end
+
+
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; Taxi Sensors
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; Detecting taxis (obstacles) in front of the unit. 
+;;; Reports true if there is a taxi in front.
+to-report detect-taxi
+ if any? other taxis in-cone 2 60 [report true]
+ if any? other taxis in-cone 1 90 [report true]
+ if any? other taxis in-cone 0.8 270 [report true]
+ report false 
+end   
+
+;;; Detects if there is a street edge on the agents left so that it can correct its 
+;;; course. 
+to-report detect-street-edge-left
+ ifelse [road = 0] of patch-left-and-ahead 30 1 [report true][report false]
+end
+
+;;; Detects if there is a street edge on the agents right so that it can correct its 
+;;; course. 
+to-report detect-street-edge-right
+;;ifelse any? patches with [pcolor = black] in-cone 1 1 [report true][report false]
+ ifelse [road = 0] of patch-right-and-ahead 30 1 [report true][report false]
+end
+
+;;; Detects if the agent is on a junction, so that the agent can potentially turn.
+to-report detect-junction
+ ifelse [road = 2] of patch-here [report true][report false]
+end
+
+;;; Detects a passenger in the neighborhood of the unit (8 patches around the taxi)
+to-report detect-passenger
+  ifelse any? people-on neighbors  
+    [report true]
+    [report false]
+end 
+
+;;; Do I have a passenger?
+to-report have-passenger 
+  ifelse onboard > 0 [set color yellow report true]
+    [set color blue report false]
+end
+
+;;; Have I reached the airport?
+to-report reached-airport
+  ifelse [pcolor = yellow] of patch-here [report true][report false]
+end
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; Taxi Actions
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; Moving randomly. First move then turn by 90, -90, 0 deg
+to move-randomly-90
+  move-ahead
+  turn-randomly-90
+end
+
+;;; Moves ahead the agent. Its speed is inversly proportional to the water it is carrying.
+to move-ahead
+  fd speed
+end
+
+;;; Turns the unit at a random direction within the Angle.
+to turn-randomly [Angle]
+  let ra random Angle
+  set heading heading + one-of (list ra (- ra))
+end
+
+;;; Turns taxi towards a free space
+to turn-away
+   let free-patches neighbors with [not any? taxis-on self and road > 0] 
+   if any? free-patches [face one-of free-patches]
+end
+
+;;; Decides based on a probability whether to turn or not. 
+;;; This allows the agent to change direction in a junction (if appropriately used in a rule).
+to turn-randomly-90
+  let p random 100
+  if p < probability-to-turn [
+      set heading heading + one-of [90 -90]
+   ]
+end
+ 
+;;; Moves the agent towards the direction of the airport. 
+;;; We first move and then turn, since collision detection
+;;; happens before. 
+to move-to-airport
+  move-ahead
+  face min-one-of neighbors4 with [road > 0] [distance-airport] 
+end
+
+;;; Moves the agent towards the direction of the coordinates. 
+;;; We first move and then turn, since collision detection
+;;; happens before. 
+to move-towards-dest [dest]
+  move-ahead
+  face min-one-of neighbors4 with [road > 0] [distancexy first dest item 1 dest] 
+end
+
+
+;;; Dropping a passenger.
+;;; A passenger is left at the airport (appropriate turtle is created)
+;;; and the variables are updated.  
+ to drop-passenger
+    hatch-people-arrived 1 [set shape "person" set color red] 
+    set passengers-on-taxis passengers-on-taxis - 1
+    set onboard onboard - 1
+    set passengers-arrived passengers-arrived + 1
+end
+
+
+;;; Picking up a passenger.
+;;; In this case the turtle of the passenger found is removed from the experiment,
+;;; and the approrpiate variables are updated.  
+to pick-up-passenger [pass_no]
+      if any? (people-on (patch-set patch-here neighbors)) with [who = pass_no]
+      [ask person pass_no [die] 
+      set passengers-on-taxis passengers-on-taxis + 1
+      set onboard onboard + 1
+     ]
+end

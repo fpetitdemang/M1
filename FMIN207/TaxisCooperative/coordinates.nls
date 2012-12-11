@@ -1,0 +1,33 @@
+;;; Coordinate Handling
+;;; Used when absolute coordinate are to be used. 
+to-report my-coordinates
+   report (list (round pxcor) (round pycor))
+end
+
+;;; reports the distance from specific coordinates
+to-report distance-coords [crds]
+  report distancexy-nowrap (first crds) (item 1 crds) 
+end
+
+;;; Returns true if a turtle is at the specific destination.
+;;; The destination can be either a WHO numeric value (turtle) or
+;;; coordinates on the area. In the latter case, in order to avoid 
+to-report at-dest [dest]
+if is-number? dest [
+ ifelse ([who] of one-of turtles-here = dest) 
+    [report true]
+    [report false]
+    ]
+    
+if is-list? dest [
+ ifelse (abs (xcor - first dest) < 0.4 ) and (abs (ycor - item 1 dest) < 0.4)
+    [report true]
+    [report false]
+    ]
+end  
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+to-report my-location
+  report patch-here
+end
+
