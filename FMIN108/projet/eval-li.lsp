@@ -31,9 +31,15 @@
     
     )
 
-    (:unknown (eval-li
+    (:mcall
+     (let ( (fun (get-defun-li(
     )
 )
 
 
 
+(defun get-defun-li(nom-fonction)
+  (get nom-fonction ':defun))
+
+(defun set-defun-li(nom-fonction expr)
+  (setf (get nom-fonction nom-fonction ':defun) expr))
