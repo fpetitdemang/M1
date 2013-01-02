@@ -1,0 +1,120 @@
+#LyX 2.0 created this file. For more info see http://www.lyx.org/
+\lyxformat 413
+\begin_document
+\begin_header
+\textclass report
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman times
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize 12
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_amsmath 1
+\use_esint 1
+\use_mhchem 1
+\use_mathdots 1
+\cite_engine basic
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Les formes d'abstractions en Arts et en Sciences
+\end_layout
+
+\begin_layout Author
+Petitdemange Franck
+\end_layout
+
+\begin_layout Date
+13-01-12
+\end_layout
+
+\begin_layout Standard
+Lors ce module, nous avons travaillé à définir le concept d'abstraction
+ dans le contexte des sciences (philosophie, mathématiques et physique)
+ et dans les arts (contemporain).
+ Cette synthèse est une conclusion de ce module.
+ Elle est une confrontation de l'abstration dans l'Arts et les Sciences.
+ 
+\end_layout
+
+\begin_layout Standard
+La synthèse s'articule en trois parties qui sont dans un premier temps l'analyse
+ d'une oeuvre de Sam Francis 
+\begin_inset Quotes eld
+\end_inset
+
+Around the blues
+\begin_inset Quotes erd
+\end_inset
+
+.
+ Nous allons décrire l'oeuvre, définir pourquoi elle reçoit l'appelation
+ d'oeuvre abstraite, essayer de comprendre la démarche de l'artiste et d'en
+ donner un avis subjectif.
+\end_layout
+
+\begin_layout Standard
+Dans un second temps nous allons analyser une extrait du livre de Guin sur
+ la structure de groupe.
+ Par analogie à la partie précedente, nous allons décrire de quoi il s'agit
+ (fond et forme).
+ Définir où se situe l'abstraction, essayé de comprendre la démarche du
+ mathématicien et enfin donner un avis subjectif sur ce travail.
+\end_layout
+
+\begin_layout Standard
+Pour conclure nous recenserons les formes d'abstractions dans l'Arts et
+ les Sciences pour les comparer et les confronter les démarches abstraites
+ dans les deux domaines.
+\end_layout
+
+\begin_layout Standard
+
+\end_layout
+
+\end_body
+\end_document

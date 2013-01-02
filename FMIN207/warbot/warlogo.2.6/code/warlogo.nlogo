@@ -130,7 +130,7 @@ INPUTBOX
 70
 485
 nb-explorers
-5
+0
 1
 0
 Number
@@ -155,7 +155,7 @@ food-appearance
 food-appearance
 0
 0.2
-0.07
+0
 0.01
 1
 NIL

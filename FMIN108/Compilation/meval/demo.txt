@@ -1,0 +1,577 @@
+  i i i i i i i       ooooo    o        ooooooo   ooooo   ooooo 
+  I I I I I I I      8     8   8           8     8     o  8    8
+  I  \ `+' /  I      8         8           8     8        8    8
+   \  `-+-'  /       8         8           8      ooooo   8oooo
+    `-__|__-'        8         8           8           8  8
+        |            8     o   8           8     o     8  8
+  ------+------       ooooo    8oooooo  ooo8ooo   ooooo   8
+
+Copyright (c) Bruno Haible, Michael Stoll 1992, 1993
+Copyright (c) Bruno Haible, Marcus Daniels 1994-1997
+Copyright (c) Bruno Haible, Pierpaolo Bernardi, Sam Steingold 1998
+Copyright (c) Bruno Haible, Sam Steingold 1999
+
+
+[1]> 
+;; Chargement du fichier /auto.home/b6/mait/xandrean/lisp/eval/all.lsp ...
+"***** Définition + méta-définition des environnements *****" 
+;; Chargement du fichier env.lsp ...
+;; Le fichier env.lsp est chargé.
+"***** Définition + méta-définition du méta-évaluateur *****" 
+;; Chargement du fichier eval.lsp ...
+;; Le fichier eval.lsp est chargé.
+"***** Définition + méta-définition des automates *****" 
+"***** Définition + méta-définition du générateur de code *****" 
+;; Chargement du fichier gen.lisp ...
+;; Le fichier gen.lisp est chargé.
+;; Chargement du fichier gen_env.lisp ...
+;; Le fichier gen_env.lisp est chargé.
+;; Chargement du fichier gen_utils.lisp ...
+;; Le fichier gen_utils.lisp est chargé.
+;; Chargement du fichier utils_functions.lisp ...
+;; Le fichier utils_functions.lisp est chargé.
+"***** Définition + méta-définition de la machine virtuelle *****" 
+;; Chargement du fichier power.lsp ...
+;; Le fichier power.lsp est chargé.
+;; Chargement du fichier mem.lsp ...
+;; Le fichier mem.lsp est chargé.
+;; Chargement du fichier mem-pile.lsp ...
+;; Le fichier mem-pile.lsp est chargé.
+;; Le fichier /auto.home/b6/mait/xandrean/lisp/eval/all.lsp est chargé.
+T
+[2]> 
+;; Chargement du fichier /auto.home/b6/mait/xandrean/lisp/eval/demo.lsp ...
+"************************************************************************************" 
+"*********************************** DEMO METAEVAL **********************************" 
+"************************************************************************************" 
+"** Le méta-évaluateur appliqué au LISP" 
+"* Gestion de fonctions / Capture de variables *" 
+(LET ((X 0)) (DEFUN X++ NIL (SETF X (+ 1 X))) (DEFUN X NIL X)) 
+X 
+(X) 
+0 
+(X++) 
+1 
+(X) 
+1 
+"* Gestion des fonctions / Environnements" 
+(SETF A 5) 
+5 
+(DEFUN BAR (X) (* X A)) 
+BAR 
+(LET ((A 7)) (BAR 6)) 
+30 
+"* Gestion des closures" 
+(APPLY (LET ((A 5)) #'(LAMBDA (B) (* A B))) '(9)) 
+45 
+"* Gestion des labels" 
+(DEFUN FOO (LST)
+  (LABELS ((FACT (N) (IF (< N 1) 1 (* N (FACT (- N 1))))))
+    (IF LST (CONS (FACT (CAR LST)) (FOO (CDR LST))) NIL)
+) ) 
+FOO 
+(FOO '(1 2 3 4 5)) 
+(1 2 6 24 120) 
+"* Gestion des mots-clefs" 
+(DEFUN TOTO (X &OPTIONAL Y (Z 1) &REST W &KEY U (V 2)) (LIST X Y Z W U V)) 
+TOTO 
+(TOTO 1) 
+(1 NIL 1 NIL NIL 2) 
+(TOTO 1 2) 
+(1 2 1 NIL NIL 2) 
+(TOTO 1 2 3) 
+(1 2 3 NIL NIL 2) 
+(TOTO 1 2 3 :U 4) 
+(1 2 3 (:U 4) 4 2) 
+(TOTO 1 2 3 :V 5) 
+(1 2 3 (:V 5) NIL 5) 
+(TOTO 1 2 3 :U 4 :V 5) 
+(1 2 3 (:U 4 :V 5) 4 5) 
+"* Exemple avec une belle fonction récursive" 
+(FIBO 5) 
+Real time: 0.02175 sec.
+Run time: 0.02 sec.
+Space: 25632 Bytes
+5 
+(FIBO 10) 
+Real time: 0.280387 sec.
+Run time: 0.28 sec.
+Space: 303624 Bytes
+GC: 1, GC time: 0.02 sec.
+55 
+(FIBO 15) 
+Real time: 3.032752 sec.
+Run time: 3.03 sec.
+Space: 3385560 Bytes
+GC: 6, GC time: 0.12 sec.
+610 
+"* Gestion des macros" 
+(DEFMACRO MONFUNCALL (FCT &REST ARGS) `(,FCT ,@ARGS)) 
+MONFUNCALL 
+(MONFUNCALL LIST (+ 1 2) (- 3 4) (* 5 6) (/ 7 8)) 
+(LIST (+ 1 2) (- 3 4) (* 5 6) (/ 7 8)) 
+(3 -1 30 . 7/8) 
+"** Le méta-évaluateur appliqué au méta-évaluateur" 
+(MEVAL 1) 
+Real time: 2.4E-5 sec.
+Run time: 0.0 sec.
+Space: 0 Bytes
+1 
+(MEVAL '(MEVAL 1)) 
+Real time: 0.002118 sec.
+Run time: 0.01 sec.
+Space: 1864 Bytes
+1 
+(MEVAL '(MEVAL '(MEVAL 1))) 
+Real time: 0.465198 sec.
+Run time: 0.46 sec.
+Space: 352564 Bytes
+GC: 1, GC time: 0.02 sec.
+1 
+(MEVAL '(FIBO 1)) 
+Real time: 0.001011 sec.
+Run time: 0.0 sec.
+Space: 1608 Bytes
+1 
+(MEVAL '(MEVAL '(FIBO 1))) 
+Real time: 0.23037 sec.
+Run time: 0.23 sec.
+Space: 192032 Bytes
+1 
+(MEVAL '(FIBO 5)) 
+Real time: 0.021904 sec.
+Run time: 0.02 sec.
+Space: 25632 Bytes
+5 
+(MEVAL '(MEVAL '(FIBO 5))) 
+Real time: 4.784135 sec.
+Run time: 4.6 sec.
+Space: 3676800 Bytes
+GC: 7, GC time: 0.16 sec.
+5 
+(MEVAL '(FIBO 10)) 
+Real time: 0.281321 sec.
+Run time: 0.28 sec.
+Space: 303624 Bytes
+GC: 1, GC time: 0.01 sec.
+55 
+(MEVAL '(MEVAL '(FIBO 10))) 
+Real time: 55.994865 sec.
+Run time: 55.82 sec.
+Space: 44000544 Bytes
+GC: 84, GC time: 2.44 sec.
+55 
+(MEVAL '(FIBO 15)) 
+Real time: 3.058897 sec.
+Run time: 3.06 sec.
+Space: 3385560 Bytes
+GC: 6, GC time: 0.1 sec.
+610 
+"** Le méta-évaluateur appliqué au générateur de code" 
+(MEVAL '(VM-COMPILE '(+ 1 1))) 
+((MOVEI A0 1) (PUSH A0) (MOVEI A0 1) (MOVE A1 A0) (POP A0) (ADD A0 A1)) 
+(MEVAL '(VM-COMPILE '(FIBO 5))) 
+((MOVEI A0 5) (PUSH A0) (MOVEI A0 1) (PUSH A0) (MOVEI A0 NIL) (PUSH A0)
+  (MOVE A1 FP) (MOVE FP SP) (ADD FP 1) (MOVE A2 SP) (ADD A2 3) (PUSH A2)
+  (PUSH A1) (JSR FIBO)
+) 
+"** Le méta-évaluateur appliqué à la machine virtuelle" 
+(MEVAL '(LANCE-CODE-APPEL (VM-COMPILE '(+ 1 1)))) 
+2 
+2 
+(MEVAL '(LANCE-CODE-APPEL (VM-COMPILE '(FIBO 5)))) 
+5 
+5 
+"** Interfaçage entre le métaévaluateur et le compilateur" 
+"* fibo récursive enveloppée" 
+(MEVAL '(FIBO 10)) 
+Real time: 0.282693 sec.
+Run time: 0.29 sec.
+Space: 303624 Bytes
+GC: 1, GC time: 0.02 sec.
+55 
+(VM-COMPILE-FUNCTION 'FIBO) *** enregistrement de la fonction FIBO dans la table des fonctions compilees ***
+
+(MEVAL '(FIBO 10)) 
+55 
+Real time: 0.687514 sec.
+Run time: 0.69 sec.
+Space: 3948 Bytes
+55 
+"* fibo récursive terminale" 
+(MEVAL '(FIBOTERM 10)) 
+Real time: 0.024015 sec.
+Run time: 0.02 sec.
+Space: 24320 Bytes
+55 
+(VM-COMPILE-FUNCTION 'FIBOTERM) *** enregistrement de la fonction FIBOTERM dans la table des fonctions compilees ***
+
+(MEVAL '(FIBOTERM 10)) 
+55 
+Real time: 0.121638 sec.
+Run time: 0.12 sec.
+Space: 3948 Bytes
+55 
+"* composition" 
+(MEVAL '(FIBOTERM '(FIBO 10))) 
+55 
+139583862445 
+139583862445 
+"* Compilation du méta-évaluateur" *** enregistrement de la fonction VALIDKEY dans la table des fonctions compilees ***
+*** enregistrement de la fonction FCTARGS dans la table des fonctions compilees ***
+*** enregistrement de la fonction NAPPLY dans la table des fonctions compilees ***
+*** enregistrement de la fonction QUOTELST dans la table des fonctions compilees ***
+*** enregistrement de la fonction METAQUOTEARGS dans la table des fonctions compilees ***
+*** enregistrement de la fonction METAARGS dans la table des fonctions compilees ***
+*** enregistrement de la fonction QUOTELET dans la table des fonctions compilees ***
+*** enregistrement de la fonction METASYMBOL dans la table des fonctions compilees ***
+*** enregistrement de la fonction METAFUNCTION dans la table des fonctions compilees ***
+*** enregistrement de la fonction METAMACRO dans la table des fonctions compilees ***
+*** enregistrement de la fonction METAAPPLYFUNCTION dans la table des fonctions compilees ***
+*** enregistrement de la fonction METAAPPLYMACRO dans la table des fonctions compilees ***
+*** enregistrement de la fonction METAEVALLAMBDA dans la table des fonctions compilees ***
+*** enregistrement de la fonction METAAPPLYLAMBDA dans la table des fonctions compilees ***
+*** enregistrement de la fonction METAEVALLOAD dans la table des fonctions compilees ***
+*** enregistrement de la fonction METAEVALEVAL dans la table des fonctions compilees ***
+*** enregistrement de la fonction METAEVALMAPCAR dans la table des fonctions compilees ***
+*** enregistrement de la fonction METAEVALAPPLY dans la table des fonctions compilees ***
+*** enregistrement de la fonction METAEVALFUNCALL dans la table des fonctions compilees ***
+*** enregistrement de la fonction METAEVALMEMBER dans la table des fonctions compilees ***
+*** enregistrement de la fonction METAEVALSETQ dans la table des fonctions compilees ***
+*** enregistrement de la fonction METAEVALSETF dans la table des fonctions compilees ***
+*** enregistrement de la fonction METAEVALDEFVAR dans la table des fonctions compilees ***
+*** enregistrement de la fonction METAEVALDEFCONSTANT dans la table des fonctions compilees ***
+*** enregistrement de la fonction METAEVALDEFPARAMETER dans la table des fonctions compilees ***
+*** enregistrement de la fonction METAEVALDEFUN dans la table des fonctions compilees ***
+*** enregistrement de la fonction METAEVALDEFMACRO dans la table des fonctions compilees ***
+*** enregistrement de la fonction METAEVALLOOP dans la table des fonctions compilees ***
+*** enregistrement de la fonction METAEVALPROGN dans la table des fonctions compilees ***
+*** enregistrement de la fonction METAEVALIF dans la table des fonctions compilees ***
+*** enregistrement de la fonction METAEVALQUOTE dans la table des fonctions compilees ***
+*** enregistrement de la fonction METAEVALLET dans la table des fonctions compilees ***
+*** enregistrement de la fonction METAEVALLET* dans la table des fonctions compilees ***
+*** enregistrement de la fonction METAEVALFUNCTION dans la table des fonctions compilees ***
+*** enregistrement de la fonction METAEVALLABELS dans la table des fonctions compilees ***
+*** enregistrement de la fonction METAEVALSPECIALFORM dans la table des fonctions compilees ***
+*** enregistrement de la fonction MEVAL dans la table des fonctions compilees ***
+*** enregistrement de la fonction GLOBAL dans la table des fonctions compilees ***
+*** enregistrement de la fonction LOCAL dans la table des fonctions compilees ***
+*** enregistrement de la fonction MAKEVV dans la table des fonctions compilees ***
+*** enregistrement de la fonction MACROP dans la table des fonctions compilees ***
+*** enregistrement de la fonction MAKEFV dans la table des fonctions compilees ***
+*** enregistrement de la fonction IS-COMPILED-FUNCTION dans la table des fonctions compilees ***
+*** enregistrement de la fonction IS-COMPILED-MACRO dans la table des fonctions compilees ***
+*** enregistrement de la fonction SETCOMPM dans la table des fonctions compilees ***
+*** enregistrement de la fonction SETCOMPF dans la table des fonctions compilees ***
+*** enregistrement de la fonction FCOMPILEDP dans la table des fonctions compilees ***
+*** enregistrement de la fonction FDRAP dans la table des fonctions compilees ***
+*** enregistrement de la fonction SETMACRO dans la table des fonctions compilees ***
+*** enregistrement de la fonction CSTVALEUR dans la table des fonctions compilees ***
+*** enregistrement de la fonction VARVALEUR dans la table des fonctions compilees ***
+*** enregistrement de la fonction MACROVALEUR dans la table des fonctions compilees ***
+*** enregistrement de la fonction SETCONSTANT dans la table des fonctions compilees ***
+*** enregistrement de la fonction SETGLOBALVALEUR dans la table des fonctions compilees ***
+*** enregistrement de la fonction FENSVAR dans la table des fonctions compilees ***
+*** enregistrement de la fonction FCORPS dans la table des fonctions compilees ***
+*** enregistrement de la fonction FARGS dans la table des fonctions compilees ***
+*** enregistrement de la fonction FCTVALEUR dans la table des fonctions compilees ***
+*** enregistrement de la fonction SETLOCALVALEUR dans la table des fonctions compilees ***
+*** enregistrement de la fonction VARASSOC dans la table des fonctions compilees ***
+*** enregistrement de la fonction SETGLOBALFUNCTION dans la table des fonctions compilees ***
+
+(MEVAL '(MEVAL 1)) 
+1 
+Real time: 0.297632 sec.
+Run time: 0.3 sec.
+Space: 5076 Bytes
+1 
+(MEVAL '(MEVAL '(MEVAL 1))) 
+1 
+1 
+Real time: 0.697476 sec.
+Run time: 0.7 sec.
+Space: 10648 Bytes
+1 
+(MEVAL '(MEVAL '(FIBO 5))) 
+5 
+5 
+Real time: 0.742821 sec.
+Run time: 0.74 sec.
+Space: 9520 Bytes
+5 
+(MEVAL '(MEVAL '(MEVAL '(FIBO 5)))) 
+5 
+5 
+5 
+Real time: 1.179692 sec.
+Run time: 1.18 sec.
+Space: 15364 Bytes
+5 
+"* Compilation du compilateur" *** enregistrement de la fonction GET-COMPILED-FUNCTION-PROTOTYPE dans la table des fonctions compilees ***
+*** enregistrement de la fonction GET-COMPILED-FUNCTION-BODY dans la table des fonctions compilees ***
+*** enregistrement de la fonction GET-COMPILED-FUNCTION dans la table des fonctions compilees ***
+*** enregistrement de la fonction ADD-COMPILED-FUNCTION dans la table des fonctions compilees ***
+*** enregistrement de la fonction SIMPLIFY-CAR-CDR-SEQUENCE dans la table des fonctions compilees ***
+*** enregistrement de la fonction IS-CAR-CDR-SEQUENCE dans la table des fonctions compilees ***
+*** enregistrement de la fonction GET-PROTOTYPE-VALUES dans la table des fonctions compilees ***
+*** enregistrement de la fonction GET-PROTOTYPE-VARIABLES dans la table des fonctions compilees ***
+*** enregistrement de la fonction IS-SIMPLE-PROTOTYPE dans la table des fonctions compilees ***
+*** enregistrement de la fonction ASSOC-PROTOTYPE-PARAMETERS dans la table des fonctions compilees ***
+*** enregistrement de la fonction MAKE-FUNCTION-PROTOTYPE dans la table des fonctions compilees ***
+*** enregistrement de la fonction IS-FUNCTION-PROTOTYPE dans la table des fonctions compilees ***
+*** enregistrement de la fonction SET-REST-VALUE dans la table des fonctions compilees ***
+*** enregistrement de la fonction SET-KEY-VALUE dans la table des fonctions compilees ***
+*** enregistrement de la fonction SET-OPTIONAL-VALUE dans la table des fonctions compilees ***
+*** enregistrement de la fonction SET-OTHER-VALUE dans la table des fonctions compilees ***
+*** enregistrement de la fonction FIND-VARIABLE dans la table des fonctions compilees ***
+*** enregistrement de la fonction ADD-OTHER dans la table des fonctions compilees ***
+*** enregistrement de la fonction ADD-REST dans la table des fonctions compilees ***
+*** enregistrement de la fonction ADD-KEY dans la table des fonctions compilees ***
+*** enregistrement de la fonction ADD-OPTIONAL dans la table des fonctions compilees ***
+*** enregistrement de la fonction EMPTY-FUNCTION-PROTOTYPE dans la table des fonctions compilees ***
+*** enregistrement de la fonction GET-OTHER dans la table des fonctions compilees ***
+*** enregistrement de la fonction GET-REST dans la table des fonctions compilees ***
+*** enregistrement de la fonction GET-KEY dans la table des fonctions compilees ***
+*** enregistrement de la fonction GET-OPTIONAL dans la table des fonctions compilees ***
+*** enregistrement de la fonction IS-FUNCTION-DECLARATION-LIST dans la table des fonctions compilees ***
+*** enregistrement de la fonction IS-FUNCTION-DECLARATION dans la table des fonctions compilees ***
+*** enregistrement de la fonction GET-VALUES dans la table des fonctions compilees ***
+*** enregistrement de la fonction GET-VARIABLES dans la table des fonctions compilees ***
+*** enregistrement de la fonction IS-VARIABLE-VALUE-LIST dans la table des fonctions compilees ***
+*** enregistrement de la fonction IS-VARIABLE-VALUE dans la table des fonctions compilees ***
+*** enregistrement de la fonction IS-VARIABLE-LIST dans la table des fonctions compilees ***
+*** enregistrement de la fonction IS-VARIABLE dans la table des fonctions compilees ***
+*** enregistrement de la fonction LIST*-TO-CONS dans la table des fonctions compilees ***
+*** enregistrement de la fonction MULTI-COMPILE dans la table des fonctions compilees ***
+*** enregistrement de la fonction GET-MDEFINED-MACRO dans la table des fonctions compilees ***
+*** enregistrement de la fonction GET-MDEFINED-FUNCTION dans la table des fonctions compilees ***
+*** enregistrement de la fonction EXPAND-MACRO dans la table des fonctions compilees ***
+*** enregistrement de la fonction EXPAND-COMPILED-MACRO dans la table des fonctions compilees ***
+*** enregistrement de la fonction DISPLACE dans la table des fonctions compilees ***
+*** enregistrement de la fonction GET-VIRTUAL-FUNCTION dans la table des fonctions compilees ***
+*** enregistrement de la fonction IS-BUILTIN-FUNCTION dans la table des fonctions compilees ***
+*** enregistrement de la fonction GET-BUILTIN-FUNCTIONS dans la table des fonctions compilees ***
+*** enregistrement de la fonction COPY-STATUS dans la table des fonctions compilees ***
+*** enregistrement de la fonction SET-TERMINAL-RECURSION dans la table des fonctions compilees ***
+*** enregistrement de la fonction SET-IN-LABEL dans la table des fonctions compilees ***
+*** enregistrement de la fonction SET-CURRENT-ENV dans la table des fonctions compilees ***
+*** enregistrement de la fonction SET-BASE dans la table des fonctions compilees ***
+*** enregistrement de la fonction IS-TERMINAL-RECURSION dans la table des fonctions compilees ***
+*** enregistrement de la fonction IS-IN-LABEL dans la table des fonctions compilees ***
+*** enregistrement de la fonction GET-CURRENT-ENV dans la table des fonctions compilees ***
+*** enregistrement de la fonction GET-BASE dans la table des fonctions compilees ***
+*** enregistrement de la fonction MAKE-STATUS dans la table des fonctions compilees ***
+*** enregistrement de la fonction GET-ENV-OFFSET dans la table des fonctions compilees ***
+*** enregistrement de la fonction GET-FUNCTION-LEVEL dans la table des fonctions compilees ***
+*** enregistrement de la fonction IS-FUNCTION-DEFINED-1 dans la table des fonctions compilees ***
+*** enregistrement de la fonction IS-FUNCTION-DEFINED dans la table des fonctions compilees ***
+*** enregistrement de la fonction GET-FUNCTION-PROTOTYPE dans la table des fonctions compilees ***
+*** enregistrement de la fonction GET-FUNCTION-SYMBOL dans la table des fonctions compilees ***
+*** enregistrement de la fonction ADD-CURRENT-ONE-FUNCTION dans la table des fonctions compilees ***
+*** enregistrement de la fonction ADD-ONE-FUNCTION dans la table des fonctions compilees ***
+*** enregistrement de la fonction ADD-CURRENT-FUNCTIONS dans la table des fonctions compilees ***
+*** enregistrement de la fonction ADD-FUNCTIONS dans la table des fonctions compilees ***
+*** enregistrement de la fonction GET-VARIABLE-LEVEL dans la table des fonctions compilees ***
+*** enregistrement de la fonction GET-VARIABLE-OFFSET dans la table des fonctions compilees ***
+*** enregistrement de la fonction ADD-CURRENT-PARAM-VARIABLES dans la table des fonctions compilees ***
+*** enregistrement de la fonction ADD-PARAM-VARIABLES dans la table des fonctions compilees ***
+*** enregistrement de la fonction ADD-CURRENT-LOCAL-VARIABLES dans la table des fonctions compilees ***
+*** enregistrement de la fonction ADD-LOCAL-VARIABLES dans la table des fonctions compilees ***
+*** enregistrement de la fonction FUNCTION-ENV dans la table des fonctions compilees ***
+*** enregistrement de la fonction VARIABLE-ENV dans la table des fonctions compilees ***
+*** enregistrement de la fonction DEFAULT-ENV dans la table des fonctions compilees ***
+*** enregistrement de la fonction COMPILE-CONSTANT dans la table des fonctions compilees ***
+*** enregistrement de la fonction COMPILE-SET-VARIABLE dans la table des fonctions compilees ***
+*** enregistrement de la fonction COMPILE-GET-VARIABLE dans la table des fonctions compilees ***
+*** enregistrement de la fonction COMPILE-LAMBDA dans la table des fonctions compilees ***
+*** enregistrement de la fonction COMPILE-CALL dans la table des fonctions compilees ***
+*** enregistrement de la fonction COMPILE-NOT dans la table des fonctions compilees ***
+*** enregistrement de la fonction COMPILE-NUMBER-COMPARISON dans la table des fonctions compilees ***
+*** enregistrement de la fonction COMPILE-DIV dans la table des fonctions compilees ***
+*** enregistrement de la fonction COMPILE-MUL dans la table des fonctions compilees ***
+*** enregistrement de la fonction COMPILE-DECREMENT dans la table des fonctions compilees ***
+*** enregistrement de la fonction COMPILE-SUB dans la table des fonctions compilees ***
+*** enregistrement de la fonction COMPILE-INCREMENT dans la table des fonctions compilees ***
+*** enregistrement de la fonction COMPILE-ADD dans la table des fonctions compilees ***
+*** enregistrement de la fonction COMPILE-LIST* dans la table des fonctions compilees ***
+*** enregistrement de la fonction COMPILE-LIST dans la table des fonctions compilees ***
+*** enregistrement de la fonction COMPILE-CDR dans la table des fonctions compilees ***
+*** enregistrement de la fonction COMPILE-CAR dans la table des fonctions compilees ***
+*** enregistrement de la fonction COMPILE-CONS dans la table des fonctions compilees ***
+*** enregistrement de la fonction COMPILE-FOR dans la table des fonctions compilees ***
+*** enregistrement de la fonction COMPILE-WHILE dans la table des fonctions compilees ***
+*** enregistrement de la fonction COMPILE-IF dans la table des fonctions compilees ***
+*** enregistrement de la fonction COMPILE-LET* dans la table des fonctions compilees ***
+*** enregistrement de la fonction COMPILE-LET dans la table des fonctions compilees ***
+*** enregistrement de la fonction COMPILE-PROGN dans la table des fonctions compilees ***
+*** enregistrement de la fonction COMPILE-PROG1 dans la table des fonctions compilees ***
+*** enregistrement de la fonction COMPILE-SETF dans la table des fonctions compilees ***
+*** enregistrement de la fonction COMPILE-LABELS dans la table des fonctions compilees ***
+*** enregistrement de la fonction COMPILE-DEFPARAMETER dans la table des fonctions compilees ***
+*** enregistrement de la fonction COMPILE-FUNCTION dans la table des fonctions compilees ***
+*** enregistrement de la fonction COMPILE-FUNCTION-QUOTE dans la table des fonctions compilees ***
+*** enregistrement de la fonction COMPILE-QUOTE dans la table des fonctions compilees ***
+*** enregistrement de la fonction COMPILE-APPLY dans la table des fonctions compilees ***
+*** enregistrement de la fonction COMPILE-BUILTIN-FUNCTION dans la table des fonctions compilees ***
+*** enregistrement de la fonction COMPILE-MAIN dans la table des fonctions compilees ***
+*** enregistrement de la fonction VM-COMPILE dans la table des fonctions compilees ***
+*** enregistrement de la fonction VM-COMPILE-FUNCTION dans la table des fonctions compilees ***
+*** enregistrement de la fonction VM-APPLY dans la table des fonctions compilees ***
+*** enregistrement de la fonction LOAD-FUNCTION dans la table des fonctions compilees ***
+
+(MEVAL '(VM-COMPILE '(+ 1 1))) 
+((MOVEI A0 1) (PUSH A0) (MOVEI A0 1) (MOVE A1 A0) (POP A0) (ADD A0 A1)) 
+((MOVEI A0 1) (PUSH A0) (MOVEI A0 1) (MOVE A1 A0) (POP A0) (ADD A0 A1)) 
+(MEVAL '(VM-COMPILE '(FIBO 5))) 
+((MOVEI A0 5) (PUSH A0) (MOVEI A0 1) (PUSH A0) (MOVEI A0 NIL) (PUSH A0)
+  (MOVE A1 FP) (MOVE FP SP) (ADD FP 1) (MOVE A2 SP) (ADD A2 3) (PUSH A2)
+  (PUSH A1) (JSR FIBO)
+) 
+((MOVEI A0 5) (PUSH A0) (MOVEI A0 1) (PUSH A0) (MOVEI A0 NIL) (PUSH A0)
+  (MOVE A1 FP) (MOVE FP SP) (ADD FP 1) (MOVE A2 SP) (ADD A2 3) (PUSH A2)
+  (PUSH A1) (JSR FIBO)
+) 
+"** Le méta-évaluateur et les automates" 
+(MEVAL
+  '(DEFVAR A1
+     (DEFAUTOMATE :VOCABULAIRE '(A B C) :ETATS '(0 1 2 3 4 5 6) :INITIAUX
+       '(0 4) :FINAUX '(3 6) :TRANSITIONS
+       '((0 (A 1)) (1 (B 2 4)) (2 (C 2) (A 3 5)) (4 (C 2)) (5 (B 6))
+          (6 (A 2 3))
+)  ) )  ) 
+A1 
+((A B C) (0 1 2 3 4 5 6) (0 4) (3 6)
+  ((0 (A 1)) (1 (B 2 4)) (2 (C 2) (A 3 5)) (4 (C 2)) (5 (B 6)) (6 (A 2 3)))
+) 
+(DEFVAR A2 (DETERMINISE-AUTO A1)) 
+A2 
+((A B C) (0 1 2 3 4 5 6) (0) (4 5 6)
+  ((0 (A 1) (C 2)) (1 (B 3)) (2 (C 2) (A 4)) (3 (C 2) (A 4)) (4 (B 5))
+    (5 (A 6)) (6 (C 2) (A 4))
+) ) 
+(SETF A2 (MINIMISE-AUTO A2)) 
+(MEVAL '(SETF A2 (MINIMISE-AUTO A2))) 
+A2 
+((A B C) (0 1 2 3 4 5 6) (0) (4 5 6)
+  ((0 (A 1) (C 2)) (1 (B 3)) (2 (C 2) (A 4)) (3 (C 2) (A 4)) (4 (B 5))
+    (5 (A 6)) (6 (C 2) (A 4))
+) ) 
+(MEVAL '(EVAL-AUTOMATE '(A B C) A1)) 
+NIL 
+(MEVAL '(EVAL-AUTOMATE '(A B C A) A1)) 
+(3 6) 
+(MEVAL
+  `(COMPILE-AUTO :INITIAL ,(INITIAL A2) :FINAUX ,(FINAUX A2) :TRANSITIONS
+     ,(TRANSITIONS A2)
+)  ) 
+(MEVAL '(COMP-AUTO '(A B C))) 
+NIL 
+(MEVAL '(COMP-AUTO '(A B C A))) 
+T 
+"* Compilation des automates" *** enregistrement de la fonction MINIMISE-AUTO dans la table des fonctions compilees ***
+*** enregistrement de la fonction COMPLETE-AUTO dans la table des fonctions compilees ***
+*** enregistrement de la fonction DETERMINISE-AUTO dans la table des fonctions compilees ***
+*** enregistrement de la fonction RENOMMER-ETATS-AUTO-POUR-MINIMISER dans la table des fonctions compilees ***
+*** enregistrement de la fonction RENOMMER-ETATS-AUTO-POUR-DETERMINISER dans la table des fonctions compilees ***
+*** enregistrement de la fonction DIFF dans la table des fonctions compilees ***
+*** enregistrement de la fonction CONCAT-DIFF dans la table des fonctions compilees ***
+*** enregistrement de la fonction COMPILE-AUTO dans la table des fonctions compilees ***
+*** enregistrement de la fonction COMPILE-AUTO-DET dans la table des fonctions compilees ***
+*** enregistrement de la fonction COMPTEUR dans la table des fonctions compilees ***
+*** enregistrement de la fonction MAKE-AUTOMATE dans la table des fonctions compilees ***
+*** enregistrement de la fonction EVAL-AUTOMATE dans la table des fonctions compilees ***
+*** enregistrement de la fonction EVAL-AUTOMATE-DET dans la table des fonctions compilees ***
+*** enregistrement de la fonction FINAL dans la table des fonctions compilees ***
+*** enregistrement de la fonction INITIAL dans la table des fonctions compilees ***
+*** enregistrement de la fonction TRANSITIONS dans la table des fonctions compilees ***
+*** enregistrement de la fonction FINAUX dans la table des fonctions compilees ***
+*** enregistrement de la fonction INITIAUX dans la table des fonctions compilees ***
+*** enregistrement de la fonction ETATS dans la table des fonctions compilees ***
+*** enregistrement de la fonction VOCABULAIRE dans la table des fonctions compilees ***
+*** enregistrement de la fonction DEFAUTOMATE dans la table des fonctions compilees ***
+
+(MEVAL
+  '(SETF A1
+     (DEFAUTOMATE :VOCABULAIRE '(A B C) :ETATS '(0 1 2 3 4 5 6) :INITIAUX
+       '(0 4) :FINAUX '(3 6) :TRANSITIONS
+       '((0 (A 1)) (1 (B 2 4)) (2 (C 2) (A 3 5)) (4 (C 2)) (5 (B 6))
+          (6 (A 2 3))
+)  ) )  ) 
+((A B C) (0 1 2 3 4 5 6) (0 4) (3 6)
+  ((0 (A 1)) (1 (B 2 4)) (2 (C 2) (A 3 5)) (4 (C 2)) (5 (B 6)) (6 (A 2 3)))
+) 
+A1 
+((A B C) (0 1 2 3 4 5 6) (0 4) (3 6)
+  ((0 (A 1)) (1 (B 2 4)) (2 (C 2) (A 3 5)) (4 (C 2)) (5 (B 6)) (6 (A 2 3)))
+) 
+(SETF A2 (DETERMINISE-AUTO A1)) 
+((0 4) (A 1) (C 2)) 
+A2 
+((A B C) (0 1 2 3 4 5 6) (0) (4 5 6)
+  ((0 (A 1) (C 2)) (1 (B 3)) (2 (C 2) (A 4)) (3 (C 2) (A 4)) (4 (B 5))
+    (5 (A 6)) (6 (C 2) (A 4))
+) ) 
+(SETF A2 (MINIMISE-AUTO A2)) 
+(MEVAL '(SETF A2 (MINIMISE-AUTO A2))) 
+A2 
+((A B C) (0 1 2 3 4 5 6) (0) (4 5 6)
+  ((0 (A 1) (C 2)) (1 (B 3)) (2 (C 2) (A 4)) (3 (C 2) (A 4)) (4 (B 5))
+    (5 (A 6)) (6 (C 2) (A 4))
+) ) 
+(MEVAL '(EVAL-AUTOMATE '(A B C) A1)) 
+NIL 
+NIL 
+(MEVAL '(EVAL-AUTOMATE '(A B C A) A1)) 
+(3 6) 
+(3 6) 
+(MEVAL
+  `(COMPILE-AUTO :INITIAL ,(INITIAL A2) :FINAUX ,(FINAUX A2) :TRANSITIONS
+     ,(TRANSITIONS A2)
+)  ) 
+(MEVAL '(COMP-AUTO '(A B C))) 
+NIL 
+(MEVAL '(COMP-AUTO '(A B C A))) 
+T 
+"* Compilation de la machine virtuelle" *** enregistrement de la fonction RETOURNE-DIRECT-PILE dans la table des fonctions compilees ***
+*** enregistrement de la fonction AFFECTE-DIRECT-PILE dans la table des fonctions compilees ***
+*** enregistrement de la fonction RETOURNE-VALEUR dans la table des fonctions compilees ***
+*** enregistrement de la fonction AFFECTE-REGISTRE dans la table des fonctions compilees ***
+*** enregistrement de la fonction RESET dans la table des fonctions compilees ***
+*** enregistrement de la fonction COMPILE-CHARGE dans la table des fonctions compilees ***
+*** enregistrement de la fonction RESET-MEM dans la table des fonctions compilees ***
+*** enregistrement de la fonction AFFICHE-RAM dans la table des fonctions compilees ***
+*** enregistrement de la fonction LANCE-CODE-APPEL dans la table des fonctions compilees ***
+*** enregistrement de la fonction RESOUD-ADRESSE dans la table des fonctions compilees ***
+*** enregistrement de la fonction RESOUD-ADRESSE-SETGLOBAL dans la table des fonctions compilees ***
+*** enregistrement de la fonction RESOUD-ADRESSE-GLOBAL dans la table des fonctions compilees ***
+*** enregistrement de la fonction RESOUD-ADRESSE-SAUT-CONDITIONNEL dans la table des fonctions compilees ***
+*** enregistrement de la fonction RESOUD-ADRESSE-SAUT-SIMPLE dans la table des fonctions compilees ***
+*** enregistrement de la fonction CHARGE-CODE dans la table des fonctions compilees ***
+*** enregistrement de la fonction AFFECTE-PILE dans la table des fonctions compilees ***
+*** enregistrement de la fonction RETOURNE-PILE dans la table des fonctions compilees ***
+*** enregistrement de la fonction MEM-POP dans la table des fonctions compilees ***
+*** enregistrement de la fonction MEM-PUSH dans la table des fonctions compilees ***
+*** enregistrement de la fonction ECRIS-MEMOIRE dans la table des fonctions compilees ***
+*** enregistrement de la fonction AFFPILE dans la table des fonctions compilees ***
+*** enregistrement de la fonction REG dans la table des fonctions compilees ***
+*** enregistrement de la fonction VM-EVAL dans la table des fonctions compilees ***
+*** enregistrement de la fonction TRAITEMENT-FCT-LISP dans la table des fonctions compilees ***
+*** enregistrement de la fonction RECUPERER-LISTE-PARAMETRES dans la table des fonctions compilees ***
+*** enregistrement de la fonction TEST-NB-OU-REG dans la table des fonctions compilees ***
+*** enregistrement de la fonction NOMBRE-OU-REGISTRE dans la table des fonctions compilees ***
+*** enregistrement de la fonction TEST-DES-OPERATEURS dans la table des fonctions compilees ***
+*** enregistrement de la fonction EST-REGISTRE dans la table des fonctions compilees ***
+*** enregistrement de la fonction TRAITEMENT-SAUT-OP dans la table des fonctions compilees ***
+*** enregistrement de la fonction OP3 dans la table des fonctions compilees ***
+*** enregistrement de la fonction OP2 dans la table des fonctions compilees ***
+*** enregistrement de la fonction OP1 dans la table des fonctions compilees ***
+*** enregistrement de la fonction OP0 dans la table des fonctions compilees ***
+*** enregistrement de la fonction VALEUR-OP3 dans la table des fonctions compilees ***
+*** enregistrement de la fonction VALEUR-OP2 dans la table des fonctions compilees ***
+*** enregistrement de la fonction VALEUR-OP1 dans la table des fonctions compilees ***
+*** enregistrement de la fonction SUIV dans la table des fonctions compilees ***
+*** enregistrement de la fonction LOAD-CODE dans la table des fonctions compilees ***
+*** enregistrement de la fonction RECHERCHE-ADRESSE-DANS-LE-CODE dans la table des fonctions compilees ***
+;; Le fichier /auto.home/b6/mait/xandrean/lisp/eval/demo.lsp est chargé.
+T
+[3]> 

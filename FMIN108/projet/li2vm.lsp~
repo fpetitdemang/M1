@@ -1,0 +1,22 @@
+(defun map-li2vm (lexpr env)
+  (if (atom lexpr)
+      ()
+    (cons (li2vm (car lexpr) env) (map-li2vm (cdr lexpr) env)) 
+    )
+)
+
+(defun li2vm (expr env)
+  (cond
+   ((atom expr) (print expr))
+   ((equal (car expr) :if) (li2vm-if expr))
+   )
+  )
+
+	;STRUCTURE DE CONTROLE
+	
+(defun li2vm-if (expr)
+  (li2vm(second expr))
+  (:skipnill 2)
+  (li2vm (third expr))
+  (li2vm (fourth expr))
+  )
