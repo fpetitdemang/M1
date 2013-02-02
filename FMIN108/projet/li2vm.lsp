@@ -14,21 +14,22 @@
    )
   )
 
-(defun li2vm-mcall (expr env)
-  (let ((fun (get-defun(second expr))))
+;(defun li2vm-mcall (expr env)
+  ;(let ((fun (get-defun(second expr))))
     ;taille environnement
-    (print (cons ':stack (car expr))
+   ; (print (cons ':stack (car expr))
     ;empile environnement
-    (map-li2vm (second fun) env)
+   ; (map-li2vm (second fun) env)
     ;empile instruction
-    (map-li2vm (third fun) env)
-    )
-)
+   ; (map-li2vm (third fun) env)
+  ;  )
+;))
 
 (defun li2vm-call (expr env)
   (map-li2vm (third expr) env)
    (print (cons (first expr) (second expr)))
 )
+
 (defun li2vm-if (expr env)
   (map-li2vm (second expr) env)
   (print (cons ':skipnil '2))
@@ -36,4 +37,4 @@
   (map-li2vm (fourth expr) env)
   )
 
-;(li2vm '(:if (:call <= ((:var 1)(:const 1)))(:var 1)(:const 3)) ())
+(li2vm '(:if (:call <= ((:var 1)(:const 1)))(:var 1)(:const 3)) ())
