@@ -3,6 +3,7 @@ package serveur;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import Interface.*;
 
 public class Animal extends UnicastRemoteObject implements IAnimal{
 String nom;
@@ -24,7 +25,7 @@ public String identite() throws RemoteException{
 
 @Override
 public IDossier getDossier() {
-	return monDossier;
+	return (IDossier) monDossier;
 }
 
 @Override
