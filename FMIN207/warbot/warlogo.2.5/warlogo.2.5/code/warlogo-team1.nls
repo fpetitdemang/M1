@@ -1,9 +1,11 @@
-to alist [cles valeur lst]
+to-report alist [cles valeur lst]
   let dico[]
   set dico lput cles dico
   set dico lput valeur dico
   
   set lst lput dico lst
+  
+  report lst
 end
 
 to-report lookup [cles lst]
@@ -12,6 +14,7 @@ to-report lookup [cles lst]
    if item 0 ? = cles [report item 1 ?]
    set indice indice + 1
   ]
+  report "null"
 end
 
 to alistb [cles valeur]
@@ -28,16 +31,42 @@ to-report lookupb [cles]
    if item 0 ? = cles [report item 1 ?]
    set indice indice + 1
   ]
+  report "null"
 end
 
-to-report setBeliefs [cles valeur]
+to setBeliefs [cles valeur]
   let indice 0
   foreach beliefs [
     if item 0 ? = cles [
-      set beliefs replace-item 1 beliefs valeur
+      let l []
+      set l lput cles l
+      set l lput valeur l
+      set beliefs replace-item indice beliefs l
     ]
     set indice indice + 1
   ]
+end
+
+
+;renvoi les coordonnées polaire de la cible pour le tireur
+to-report position-polaire [cible source]
+  let xA (item 1 cible) * (cos item 0 cible);r cos teta
+  let yA (item 1 cible) * (sin item 0 cible);r sin teta
+
+  let xB (item 1 source) * (cos item 0 source);r cos teta
+  let yB (item 1 source) * (sin item 0 source);r sin teta
+
+  let X (abs xA + abs xB)
+  let Y (abs yA + abs yB)
+  let res-distance sqrt ((X*X) + (Y*Y))
+  let res-angle atan  Y X
+
+  let lres []
+  set lres lput res-angle lres
+  set lres lput res-distance lres
+  
+  report lres 
+     
 end
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; EXPLORER BEHAVIOR ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -53,24 +82,120 @@ end
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ROCKET-LAUNCHER BEHAVIOR ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-to traitement-fils-message-launcher
+
+
+;evite d'entrer en collision avec troupe amis
+to-report calcule-trajectoire [destination]
+  ;recupere agent le plus proche
+  let obstacle  min-one-of percepts with [is-my-friend? self] [distance self]
+  if obstacle = nobody or distance obstacle > 8 [report destination]
   
+  ;agent trop pres -> calcule la trajectoire a suivre 
+  set-heading obstacle  
+  let vObstacle get-heading
+  set-heading destination
+  
+  ;calcule vecteur de resultat
+  let vRepulsion vecteur-repulsion vObstacle
+  ifelse destination < vRepulsion [ report vRepulsion - destination ][report destination - vRepulsion]
+  
+  
+end 
 
-    while [not empty? incoming-queue] [
-      let msg get-message
-      let performatif get-performative msg 
-      let contenu get-content msg
-      let emetteur get-sender msg ;; pour récupérer l'émetteur du message..
-      let head get-heading-to-sender msg ;; la direction dans laquelle se trouve l'émetteur du message
-      let dist get-distance-to-sender msg ;; la distance qui sépare l'émetteur du récepteur du message
-                                          ;; faire l'action que l'on désire à partir du performatif du message et son contenu
-      
-      ;candidat accepte
-      if  performatif = "propose"[ ]
-        
+to-report vecteur-repulsion [vObstacle]
+  let vRepulsion 0
+  if vObstacle > 0 and vObstacle <= 180 [ set vRepulsion abs(180 + vObstacle)]
+  if vObstacle > 180 and vObstacle <= 360 [ set vRepulsion abs(vObstacle - 180) ]
+  
+  report vRepulsion 
+end
+
+;lit les msg dans la file
+to ecouter-msg-launcher
+  let msg 0
+  let performative 0
+  let expediteur 0
+  while [not empty? incoming-queue]
+  [
+    set msg get-message
+    set expediteur get-sender msg
+    set performative get-performative msg
+    if performative = "cfp" and expediteur != self[ 
+      let emetteur lookup "emetteur" get-content msg
+      if is-agent? emetteur and expediteur != self[
+        send-message  emetteur "propose" ""
       ]
+    ] 
+    if performative ="propose" and expediteur != self  []
+    if performative = "accept-proposal" and expediteur != self [
+      traitement-proposal-launcher msg]
+  ] 
+end
 
+to traitement-propose-launcher
+  
+  let msg 0
+  let performative 0
+  let expediteur 0
+  while [not empty? incoming-queue]
+  [
+    set msg get-message
+    set expediteur get-sender msg
+    set performative get-performative msg
+    if performative = "cfp" and expediteur != self [] 
+    if performative ="propose" and expediteur != self  [
     
+      ;recupere position renfort
+      let angle-renfort get-heading-to-sender msg
+      let distance-renfort distance get-sender msg
+      let renfort []
+      set renfort lput angle-renfort renfort
+      set renfort lput  distance-renfort renfort
+      
+      let res position-polaire lookupb "cible" renfort
+      
+      let contenu alist "cible" res []
+      set contenu alist "requete" "renfort" contenu
+  
+      reply msg "accept-proposal" contenu  
+    ]
+    
+    if performative ="pos-cible" and expediteur != self  [
+    
+      ;recupere position renfort
+      let angle-renfort get-heading-to-sender msg
+      let distance-renfort distance get-sender msg
+      let renfort []
+      set renfort lput angle-renfort renfort
+      set renfort lput  distance-renfort renfort
+      
+      let res position-polaire lookupb "cible" renfort
+      
+      let contenu alist "cible" res []
+      set contenu alist "requete" "info" contenu
+  
+      reply msg "info" contenu  
+    ]
+  ]
+
+end
+
+to traitement-proposal-launcher [msg]
+  if lookup "requete" get-content msg = "renfort"[
+    setBeliefs "cible" lookup "cible" get-content msg
+    setBeliefs "chef" get-sender msg
+    show beliefs
+  ] 
+end
+
+to appel-renfort
+  
+  send-message one-of get-bases "cfp" ["renfort"]
+      
+  ;recupere coordonnées polaire de la cible
+  let enemy one-of percepts with [is-my-enemy? myself]
+  set heading towards enemy
+  
 end
 
 to-report rocket-launcher-t1-action
@@ -78,30 +203,151 @@ to-report rocket-launcher-t1-action
   if ctask = "initial-state" [ 
     alistb "chef" nobody
     alistb "cible" nobody
-    alistb "pile-afp" []
+    alistb "tick" 0
     alistb "afp" nobody
-    show lookupb "cible"
+    ;show lookupb "cible"
     set ctask "explorer-launcher"
   ];definit etat initial
   
-
+  if blocked? [ 
+    set-random-heading 
+    report "move"]
   
-
   set label ctask
-  ;set label self
   report runresult ctask
   
 end
 
-
-to-report explorer-launcher
-  let closet-launcher min-one-of get-rocket-number [distance myself]
-  if closet-launcher < 20 and lookupb "chef" != nobody [
-   ;protocole regroupement 
-    setBeliefs afp "election-chef"
-    send-message closet-launcher "election-chef" []
+to-report rejoindre-cible
+  
+  let my-tick lookupb "tick"
+  
+  ;demande nouvelle position cible
+  ifelse my-tick < 10 [
+    set my-tick my-tick + 1
+    setBeliefs "tick" my-tick
+  ][
+  
+  set my-tick 0
+  setBeliefs "tick" my-tick
+  let chef lookupb "chef"
+  
+  ifelse is-agent? chef [ 
+    send-message chef "pos-cible" []
   ]
-  report "idle"  
+  ;chef mort
+  ;move & met etat coherent
+  ;explorer-launcher
+  [
+    setBeliefs "chef" nobody
+    setBeliefs "cible" nobody 
+    set ctask "explorer-launcher"
+    report "move"
+    ]
+  ]
+  
+  ;recupere coordonnée cible
+  let msg 0
+  let performative 0
+  let expediteur 0
+  let contenu 0
+  while [not empty? incoming-queue]
+  [
+    set msg get-message
+    set expediteur get-sender msg
+    set performative get-performative msg
+    set contenu get-content msg
+
+    if performative ="info" and expediteur != self  
+    [ 
+      let cible lookup "cible" contenu
+      setBeliefs "cible" cible
+    ]   
+  ]
+  
+  let cible lookupb "cible"
+    
+  ;teste distance de la cible
+  if item 1 cible < 20 [
+    set ctask "attaquer-launcher"
+    report "idle"
+  ]
+  
+
+  ;recupere trajectoire a prendre
+  set-heading item 0 cible
+  
+      
+  report "move" 
+  
+end
+to-report explorer-launcher
+  ecouter-msg-launcher
+  
+  if lookupb "cible" != nobody [
+    set ctask "rejoindre-cible"
+    report "idle"]
+  
+  let target min-one-of percepts with [not is-rocket? self and not is-food? self and is-my-enemy? myself] [get-energy self]
+  if target != nobody[
+    set ctask "attaquer-launcher"
+    report "idle"
+  ]
+  
+  set-heading calcule-trajectoire get-heading
+  report "move"  
+end
+
+to-report attaquer-launcher
+ 
+  let target min-one-of percepts with [not is-rocket? self and not is-food? self and is-my-enemy? myself] [get-energy self]
+  let nbtarget count (percepts with [is-my-enemy? myself])
+  let nbami count (percepts with [is-my-friend? myself])
+  
+  ;maj position cible
+  if target != nobody [
+  set-heading target
+  let cible []
+  set cible lput get-heading cible
+  set cible lput distance target cible
+  setBeliefs "cible" cible]
+  
+  ifelse nbtarget > nbami and lookupb "afp" = nobody [
+    setBeliefs "afp" "renfort"
+    appel-renfort
+  ][
+  traitement-propose-launcher
+  ]
+  
+  
+  ;percoit plus ennemi
+  ;move
+  ;explorer
+  if target = nobody [ 
+    set ctask "explorer-launcher"
+    report "move"
+  ]
+  
+  ;plus de rocket et energie suffisante
+  ;build-rocket
+  ;attack
+  if (get-rocket-number = 0 and get-energy self > rocket-cost) 
+  [
+    set ctask "attaquer-launcher"
+    report "build-rocket"
+  ]
+  
+  ;perçoit enemi et rocket > 0
+  ;launch-rocket
+  ;attack
+  if (get-rocket-number > 0) 
+  [
+    set ctask "attaquer-launcher"
+    report list "launch-rocket" towards target
+  ]
+  
+  report "idle"
+  
 end
 
 
@@ -110,20 +356,53 @@ end
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; BASE BEHAVIOR ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;si attquer appeler demande autant de lauch-rocket que d'attaquant
 to-report base-t1-action
-  while [not empty? incoming-queue] 
-    [let msg get-message
-      show (sentence "received message: " msg)]
+  if ctask = "initial-state" [ 
+    alistb "chef" nobody
+    alistb "cible" nobody
+    alistb "pile-afp" []
+    alistb "afp" nobody
+    set ctask "etat-normal"
+  ];definit etat initial
+  
+  report runresult ctask
+end
+
+to-report etat-normal
+
+  ecouter-msg-base
+
   ifelse energy > 5 * rocket-launcher-cost and energy > 5 * explorer-cost [
     ifelse random 20 > 5 
     [report "build-rocket-launcher"]
     [report "build-explorer"]
   ] [
-    ifelse empty-bag? [
-      report "idle"
-    ] [
-      report "eat"
-    ]
+  ifelse empty-bag? [
+    report "idle"
+  ] [
+  report "eat"
+  ]
   ]
 end
+
+to ecouter-msg-base
+  let msg 0
+  let performative 0
+while [not empty? incoming-queue]
+  [
+   set msg get-message
+   set performative get-performative msg
+   ;if performative = "propose" [record-proposal msg]
+   if performative = "cfp" [traiter-cfp msg]
+   show msg
+   ]
+end
+
+to traiter-cfp [msg]
+  ;broacats le msg avec son emetteur
+  let contenu alist "requete" "renfort" []
+  set contenu alist "emetteur" get-sender msg contenu
+  broadcast-message get-rocket-launchers "cfp" contenu
+end
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

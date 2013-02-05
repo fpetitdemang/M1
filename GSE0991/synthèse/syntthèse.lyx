@@ -1,0 +1,441 @@
+#LyX 2.0 created this file. For more info see http://www.lyx.org/
+\lyxformat 413
+\begin_document
+\begin_header
+\textclass report
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman times
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize 12
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_amsmath 1
+\use_esint 1
+\use_mhchem 1
+\use_mathdots 1
+\cite_engine basic
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Les formes d'abstractions en Arts et en Sciences
+\end_layout
+
+\begin_layout Author
+Petitdemange Franck
+\end_layout
+
+\begin_layout Date
+13-01-12
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+paragraph{}
+\end_layout
+
+\end_inset
+
+Lors de ce module, nous avons travaillé à définir le concept d'abstraction
+ dans le contexte des sciences (philosophie, mathématiques et physique)
+ et dans les arts (contemporain).
+ Cette synthèse est une conclusion de ce module.
+ Elle est une confrontation de l’abstraction dans l’Art et les Sciences.
+ La synthèse s'articule en trois parties qui sont, dans un premier temps,
+ l'analyse d'une œuvre de Sam Francis “Around the blues”.
+ Nous allons décrire l’œuvre, définir pourquoi elle reçoit l’appellation
+ d’œuvre abstraite, essayer de comprendre la démarche de l'artiste et d'en
+ donner un avis subjectif.
+ Dans un second temps, nous allons analyser un extrait du livre de Guin
+ sur la structure de groupe.
+ Par analogie à la partie précédente, nous décrirons de quoi il s'agit (fond
+ et forme).
+ Nous expliciterons où se situe l'abstraction, essaierons de comprendre
+ la démarche du mathématicien et enfin nous donnerons un avis subjectif
+ sur ce travail.
+ Pour conclure, nous recenserons les formes d'abstractions dans l'Arts et
+ les Sciences pour les comparer et les confronter.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+paragraph{}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Commençons par une analyse de l’œuvre pour en extraire les points particuliers
+ qui nous permettrons de raisonner et de mieux cerner l'intention de l'artiste.
+ Le peintre se nomme donc Sam Francis (1923-1994), il s'agit d'une huile
+ et acrylique sur toile de dimension 275x487.
+ Tout d'abord, on remarque, dans le titre “Around the blues”, un jeu de
+ mots, avec “blue” pour bleu en anglais et “blues”, le courant de musique
+ triste des noirs Américains.
+ Du coté des couleurs, on remarque que le peintre utilise un panel de couleur
+ restreint et que le bleu est dominant, avec une dissolution des couleurs
+ sur les contours.
+ On voit que l'artiste utilise le Driping puisque l' on devine une première
+ couche de jaune, rouge, vert, violet et pour finir du bleu.
+ La composition nous laisse imaginer que l'agrégat de couleurs forme un
+ rectangle avec, en son centre, un espace de la toile qui n'est pas peint.
+ La forme composée nous donne l'impression de se continuer au hors du champs
+ du tableau, notamment par l’étalage de la couleur en haut et en bas de
+ la toile.
+ L'artiste met clairement en avant ça sa gestuelle à travers les éclaboussures
+ que l'on observe un peu partout, mais aussi des coups de pinceau.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+paragraph{}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Cette première description nous permet de dire que c'est une œuvre abstraite.
+ En effet, on remarque le rejet du figuratif, implicitement le réel, aucun
+ élément ne permet de faire référence au réel.
+ On constate à travers la dissolution des couleurs qu'il veut éliminer les
+ formes.
+ On voit bien que l'artiste se concentre sur la couleur et le geste.
+ Il met en avant son propre langage pictural, détaché de la réalité
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+paragraph{}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Pour comprendre la démarche de l'artiste dans la réalisation de l’œuvre,
+ il est pertinent de s’intéresser à son histoire.
+ Brièvement, Sam Francis est née en 1923.
+ Il étudie la médecine et la psychologie, puis s'engage dans l'armée en
+ tant que aviateur.
+ Lors d'un entraînement dans le désert, celui-ci se crash, ce qui lui vaudra
+ deux années d'hospitalisation.
+ Sam Francis se met alors à la peinture.
+ C'est pour lui un moyen thérapeutique pour guérir de son traumatisme.
+ Ces éléments nous permettent de mieux cerner l'intention de l’œuvre.
+ Tout d'abord dans le titre, “Around the blues”, qui nous met dans le contexte.
+ Le blues est un style musical chanté par les esclaves noirs américains.
+ C'est un style où le chanteur exprime sa tristesse et ses coups durs.
+ On devine ainsi le contexte de son passé d'aviateur.
+ Notre première impression est que le concept de l’infini est très présent.
+ On observe à travers les opérations plastiques de All over, que l'artiste
+ souhaite que son œuvre se prolonge autre du champ du tableau et ainsi nous
+ donne une sensation d'infini.
+ L'utilisation majoritaire du bleu qui rappelle la couleur de la mer, le
+ blanc qui se mélange et qui pourrait faire penser au ciel qui sont des
+ entités qui incarnent l’infini.
+ Nous pouvons noter aussi le coté organique des couleurs qui nous ramène
+ au vivant.
+ La forme et les couleurs font penser à une coupe organique.
+ Ce qui a peut être inspiré Sam Francis lors de son cursus de médecine.
+ Encore un fois l'infini reviens avec le thème de l'infiniment petit.
+ En somme, Sam Francis, nous transmet son impression de l'infini à travers
+ ce qu'il a pu en observer dans son passé de médecin avec l'infiniment petit
+ et son passé d'aviateur avec l'infini du ciel et de la mer.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+paragraph{}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Lors du premier regard sur l’œuvre (sur une feuille format A4), sans m'essayer
+ à une interprétation, l' esthétisme ne m'a pas vraiment plus.
+ Mais en m’intéressant à l'intention de l'artiste, en essayant d'en comprendre
+ les codes et en faisant mes déductions personnelles, je me suis approprié
+ l’œuvre par mon analyse, ce qui fait que je me suis mis à l'apprécier.
+ Je trouve sa démarche intéressante.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+paragraph{}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Continuons maintenant en étudiant l'abstraction dans les sciences.
+ Le document fournit est un extrait d'un manuel de cours de mathématique
+ (extrait du livre de Guin).
+ On voit que l'on définit une notion mathématique à l'aide d'un formalisme
+ propre aux mathématiques et du langage courant.
+ Le document est structuré en deux parties, la première pose des prédicats
+ et la deuxième exprime des déductions à partir des prédicats.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+paragraph{}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Il s'agit d'une définition de groupe dans le contexte des mathématiques.
+ Dans un formalisme du langage courant et scientifique, le document nous
+ explique qu'un groupe est un ensemble d'élément muni d'une loi de composition
+ interne, c'est à dire qu'une opération, qui à deux éléments, associe un
+ troisième élément de l’ensemble.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+paragraph{}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+On situe plusieurs formes d'abstraction.
+ Une première est le formalisme mathématique qui ne renvoie pas au réel.
+ Il nécessite de la part du lecteur tout un cheminement d'abstraction (grâce
+ à ces connaissances mathématiques) pour réaliser une représentation mentale
+ de l'objet mathématique crée à partir des prédicats.
+ Ici on connecte des propriétés mathématiques qu'on l'on nomme loi de compositio
+n interne pour créer un nouvel objet mathématique un groupe.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+paragraph{}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Une deuxième forme d'abstraction est incarnée par les math eux même.
+ D'une manière générale, les concepts définit par les mathématiques ne renvoient
+ à rien de réel directement.
+ Mais les concepts retrouvent cependant des applications directes dans le
+ monde réel.
+ La notion définie dans le document ne renvoie à rien de réel mais s'applique
+ par exemple dans l’ensemble des entiers relatifs au ensemble des entiers
+ rationnels non nuls.
+ On se retrouve dans la schéma concret/abstrait.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+paragraph{}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+“La théorie des groupes est une discipline mathématique.
+ Le développement de la théorie des groupes est issu de la théorie des nombres,
+ de la théorie des équations algébriques et de la géométrie.
+ L'une des origines de l'idée de groupe est l'étude des équations algébriques”.
+ On en comprend que l'intention de la théorie des groupes est une mise en
+ relation de plusieurs branches des mathématiques afin d' en unifier des
+ principes dans le but de trouver des méthodes génériques pour résoudre
+ des problèmes.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+paragraph{}
+\end_layout
+
+\end_inset
+
+En science, le processus d'abstraction consiste à isoler des propriétés
+ d'un objet et les regrouper pour en créer de nouveau.
+ Ainsi en répétant ce processus, on obtient les étapes d'un cheminement
+ abstrait.
+ Dans les arts ,l'abstraction est la répétition d'opérations plastiques
+ à partir de la représentation du réel afin de s'en détacher.
+ Dans les deux disciplines on retrouve donc cette notion de partir de la
+ réalité, d'effectuer un cheminement à partir de celle ci pour arriver à
+ de nouveaux résultats.
+ On note tout de même des différences majeures.
+ Une des différences dans les sciences et l'art contemporain est la vision
+ que l'on a du nouvel objet créé.
+ L' artiste tend vers une vision polysémie de son œuvre, alors que le scientifiq
+ue lui tend vers une unique interprétation de son travail.
+ Une autre réside dans le finalité.
+ En art, le retour au concret n'est pas toujours voulu, alors que en science,
+ le retour au concret est souhaité puisqu'il permet de donner un sens au
+ travaux.
+ On peut tout de même rapprocher le processus d'abstraction en science et
+ en art en disant que, d'un point de vue global, la démarche de l'artiste
+ est semblable à celle de scientifique par l'abstraction.
+ Car tout comme le scientifique, l'artiste va isoler des éléments, étudier
+ leur caractéristiques puis les combiner pour expérimenter et créer.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+paragraph{}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Pour conclure, dans ce module , nous avons beaucoup confronté l'abstrait/concret
+, recherché la frontière et les cheminements qui mènent de l'un à l'autre,
+ c'est pourquoi, je terminerai donc par une citation de Paul Langevin, qui
+ maintenant prend tout son sens pour moi : “Le concret c'est l'abstrait
+ rendu familier par l'usage”.
+\end_layout
+
+\end_body
+\end_document

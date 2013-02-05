@@ -1,0 +1,15 @@
+(defun meval (expr) (eval expr))
+(defun meval-body (le env)
+	(if (null (cdr le)) (meval (car le)) (progn (meval (car le) ) (meval-body (cdr le) env))))
+
+(defun meval-args (le env)
+	(if (atom le) '() (cons (meval (car le)) (meval-args (cdr le) env))))
+
+(defun make-env (ls lv env)
+	(cond ((and (atom ls) (atom lv)) 
+ 		env)
+ 		((atom ls) (warn "liste des symboles trop petite") env)
+		((atom lv) (warn "liste des valeurs trop petite") env)
+ 	      (t   (make-env (cdr ls) (cdr lv) (cons (cons (car ls) (car lv)) env)))))
+ 
+(defun foo(x) (let ((x (* x x))) (* 2 x)))

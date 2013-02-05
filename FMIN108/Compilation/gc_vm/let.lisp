@@ -1,0 +1,7 @@
+(let ((n 0))
+	(defun counter () n)
+	(defun counter++ () (setf n (+ 1 n)))
+	(defun counter-reset () (setf n 0)))
+;(counter)
+;(counter++)
+;(counter-reset)

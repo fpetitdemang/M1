@@ -31,6 +31,19 @@
     
     )
 
+    (:unknown 
+     (
+      ;compile :unknow en LI
+      let  (lisp2li-eval lisp2li(second expr) (thrird expr))
+       (if (= lisp2li :unknow )
+	   ;renvoi erreur si expr compilé toujours egal unknow
+	   (print "erreur")
+	 (
+	  ;sinon meta-evalue expr
+	  eval-li (lisp2li-eval env))
+	     )))
+       
+    
     (:mcall
      (let ( (fun (get-defun-li(
     )

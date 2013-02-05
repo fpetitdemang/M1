@@ -31,9 +31,32 @@
     
     )
 
+<<<<<<< HEAD
+    (:unknown 
+     (
+      ;compile :unknow en LI
+      let  (lisp2li-eval lisp2li(second expr) (thrird expr))
+       (if (= lisp2li :unknow )
+	   ;renvoi erreur si expr compilé toujours egal unknow
+	   (print "erreur")
+	 (
+	  ;sinon meta-evalue expr
+	  eval-li (lisp2li-eval env))
+	     )))
+       
+    
+))
+=======
     (:mcall
+     (let ( (fun (get-defun-li(
     )
 )
+>>>>>>> f972f3f4f664511a13eca59e2d9e0150255842e2
 
 
 
+(defun get-defun-li(nom-fonction)
+  (get nom-fonction ':defun))
+
+(defun set-defun-li(nom-fonction expr)
+  (setf (get nom-fonction nom-fonction ':defun) expr))
