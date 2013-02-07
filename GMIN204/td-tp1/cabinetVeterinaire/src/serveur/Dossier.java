@@ -3,6 +3,7 @@ package serveur;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import Interface.*;
 
 public class Dossier extends UnicastRemoteObject implements IDossier{
 	String observation;
