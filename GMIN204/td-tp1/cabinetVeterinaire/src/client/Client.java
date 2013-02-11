@@ -15,23 +15,37 @@ public class Client {
 			System.setSecurityManager(null);
 			Registry registry = LocateRegistry.getRegistry(host);
 
+			/*version-1
 			//demande stub auprès de rmiregistry
-			IAnimal stub = (IAnimal) registry.lookup("chien");
+			IAnimal animal_recup = (IAnimal) registry.lookup("chien");
 
 			//recupere stub 
-			IDossier dossier_recup = stub.getDossier();
+			IDossier dossier_recup = animal_recup.getDossier();
 			
 
 
 			// modifie le dossier sur le client
-			System.out.println("/* ajoute observation dans le dossier */");
+
 			dossier_recup.setObservation("tout vas bien");
 
-			// renvoie l'objet modifier sur le serveur
-			// stub.setDossier(dossier_recup);
+			//recupere espece par copie//
+			Espece espece_recup = animal_recup.getEspece();
+		
+			System.out.println("mon espece : "+espece_recup.getEspeceType());
+			
 
 			// affiche l'objet modifier
-			stub.afficherDossier();
+			animal_recup.afficherDossier();*/
+			
+			
+			/*version-2*/
+			ICabinet cabinet1 = (ICabinet) registry.lookup("cabinet-1");
+			cabinet1.ajoutAnimal("tintin", "milou", new Espece("Chien", 10));
+			
+			IAnimal monAnimal = cabinet1.rechecheAnimal("milou");
+			System.out.println(monAnimal.getNom());
+			
+			
 
 		} catch (Exception e) {
 			System.err.println("Client exception: " + e.toString());
