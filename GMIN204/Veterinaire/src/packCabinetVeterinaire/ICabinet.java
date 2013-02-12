@@ -1,4 +1,4 @@
-package Interface;
+package packCabinetVeterinaire;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;

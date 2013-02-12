@@ -23,6 +23,12 @@ public class Espece implements Serializable, IEspece{
 	public String getEspeceType() {
 		return nom;
 	}
+
+	public String Info() {
+		String chaine = "Type : "+nom+"\n" +
+				"Duree de vie moyenne : "+DureeVieMoyenne;
+		return chaine;
+	}
 	
 	
 }

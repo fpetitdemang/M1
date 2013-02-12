@@ -1,0 +1,6 @@
+1- mauvais nom de bdd dans script installation des base de données
+	 - senterritoire -> doit etre renommer par terridoc
+	 - thesaurusr -> doit etre renommer en  thesaurus
+
+remarque : bien modifier les trois fichiers de configuration hibernate avec les bon mdp et id + attention au numero de port spécifié. Pour ma part 
+je l'ai supprimé.

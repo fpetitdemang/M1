@@ -29,6 +29,11 @@ public class Serveur {
 			Cabinet cabinet1 = new Cabinet("cabinet-1");
 			
 			
+			/*version-3*/
+			System.setProperty("java.rmi.server.codebase","http://localhost/packCabinetVeterinaire.jar");
+			
+			
+			
 			Registry registry = LocateRegistry.getRegistry();
 			if (registry==null){
 				System.err.println("RmiRegistry not found");
@@ -39,6 +44,7 @@ public class Serveur {
 				
 				/*version-2*/
 				registry.bind("cabinet-1", cabinet1);
+				
 				
 				System.err.println("Server ready");
 			}

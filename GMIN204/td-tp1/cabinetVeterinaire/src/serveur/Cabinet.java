@@ -33,5 +33,10 @@ public class Cabinet extends UnicastRemoteObject implements ICabinet{
 		//return null;
 	}
 
+	@Override
+	public String infoEspece(Espece m_espece) throws RemoteException {
+		return m_espece.Info();
+	}
+
 	
 }
