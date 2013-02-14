@@ -1,9 +1,9 @@
 
-public class Herbe extends Aliment{
+public class Liseret extends Herbe{
 	
 	public String affiche() {
 		// TODO Auto-generated method stub
-		return "herbe";
+		return "liseret";
 	}
 
 }

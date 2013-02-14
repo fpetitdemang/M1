@@ -6,12 +6,31 @@ public class main {
 	 */
 	public static void main(String[] args) {
 		
+		//Declare aliments
 		Aliment AlimentHerbe = new Herbe();
 		Aliment AlimentViande = new Viande();
+
 		
-		Animal AnimalHerbivore = new Herbivore();
 		
-		AnimalHerbivore.manger(AlimentHerbe);
+		Aliment AlimentLiseret = new Liseret();
+		Herbe HerbeLiseret = new Liseret();
+		Liseret LiseretLiseret = new Liseret();
+		
+		Herbe HerbeHerbe = new Herbe();
+	
+		
+		//Declare animaux
+		Lapin LapinLapin = new Lapin();
+		
+		Herbivore HerbivoreHerbivore = new Herbivore();
+		Animal animalAnimal = new Animal();
+
+		
+		HerbivoreHerbivore.manger(AlimentViande);
+		//AnimalHerbivore.manger(HerbeHerbe);//test appel manger(Herbe h)
+		
+		//LapinLapin.manger(AlimentLiseret);
+		
 
 	}
 
