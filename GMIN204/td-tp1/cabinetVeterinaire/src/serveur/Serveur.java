@@ -1,10 +1,7 @@
  package serveur;
 
-import java.rmi.Remote;
 import java.rmi.registry.Registry;
 import java.rmi.registry.LocateRegistry;
-
-import Interface.Espece;
 
 public class Serveur {
 
@@ -13,6 +10,8 @@ public class Serveur {
 
 	public static void main(String args[]) {
 
+		
+		
 		try {
 			System.setSecurityManager(null);
 			/*version-1
@@ -23,18 +22,21 @@ public class Serveur {
 			
 			
 			
-			//Registry registry = LocateRegistry.createRegistry(1099);
+			//Registry registry = LocateRegistry.createRegistry(1098);
+			Registry registry = LocateRegistry.getRegistry();
+			
 			
 			/*version-2*/
 			Cabinet cabinet1 = new Cabinet("cabinet-1");
 			
 			
 			/*version-3*/
-			System.setProperty("java.rmi.server.codebase","http://localhost/packCabinetVeterinaire.jar");
+			System.setProperty("java.rmi.server.codebase","file:///home/franck/M1/GMIN204/Veterinaire/bin");
+			
+
 			
 			
 			
-			Registry registry = LocateRegistry.getRegistry();
 			if (registry==null){
 				System.err.println("RmiRegistry not found");
 			}else{
@@ -46,7 +48,7 @@ public class Serveur {
 				registry.bind("cabinet-1", cabinet1);
 				
 				
-				System.err.println("Server ready");
+				System.out.println("Server ready");
 			}
 		} catch (Exception e) {
 			System.err.println("Server exception: " + e.toString());

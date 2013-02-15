@@ -14,5 +14,5 @@ public interface ICabinet extends Remote{
 	 * @throws RemoteException
 	 */
 	public String infoEspece(Espece m_espece)throws RemoteException;
-	
+	public void inscriptionAlerte(int port)throws RemoteException;
 }

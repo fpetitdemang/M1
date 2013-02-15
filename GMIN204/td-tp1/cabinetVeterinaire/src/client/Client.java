@@ -13,7 +13,8 @@ public class Client {
 		String host = (args.length < 1) ? null : args[0];
 		try {
 			System.setSecurityManager(null);
-			Registry registry = LocateRegistry.getRegistry(host);
+			Registry registry = LocateRegistry.getRegistry(host,1098);
+			
 
 			/*version-1
 			//demande stub auprès de rmiregistry
@@ -44,6 +45,15 @@ public class Client {
 			
 			IAnimal monAnimal = cabinet1.rechecheAnimal("milou");
 			System.out.println(monAnimal.getNom());
+			
+			//distribution objet alerte du client
+			//pour recevoir msg du serveur
+			int port = 1096;
+			Registry registry2 = LocateRegistry.createRegistry(port);
+			Alerte monAlerte = new Alerte();
+			registry2.bind("mon-alerte", monAlerte);
+			
+			cabinet1.inscriptionAlerte(port);
 			
 			
 
