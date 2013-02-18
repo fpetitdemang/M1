@@ -3,6 +3,8 @@
 import java.rmi.registry.Registry;
 import java.rmi.registry.LocateRegistry;
 
+import Interface.Espece;
+
 public class Serveur {
 
 	public Serveur() {}
@@ -14,10 +16,9 @@ public class Serveur {
 		
 		try {
 			System.setSecurityManager(null);
-			/*version-1
+			/*version-1*/
 			//instancie objet a distribuer
-			Espece unChien = new Espece("chien", 15);
-			Animal chien = new Animal("tintin","milou",unChien);*/
+			Animal chien = new Animal("tintin","milou",new Espece("chien", 15));
 			
 			
 			
@@ -31,7 +32,7 @@ public class Serveur {
 			
 			
 			/*version-3*/
-			System.setProperty("java.rmi.server.codebase","file:///home/franck/M1/GMIN204/Veterinaire/bin");
+			System.setProperty("java.rmi.server.codebase","file:///home/franck/M1/GMIN204/Veterinaire/scr");
 			
 
 			
@@ -40,9 +41,9 @@ public class Serveur {
 			if (registry==null){
 				System.err.println("RmiRegistry not found");
 			}else{
-				/*vesion-1
+				/*vesion-1*/
 				//enregistre indexe les objets à distribuer dans le registre
-				registry.bind("chien", chien);*/
+				registry.bind("chien", chien);
 				
 				/*version-2*/
 				registry.bind("cabinet-1", cabinet1);

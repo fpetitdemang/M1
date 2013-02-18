@@ -6,7 +6,7 @@ import java.rmi.server.UnicastRemoteObject;
 import Interface.*;
 
 public class Animal extends UnicastRemoteObject implements IAnimal{
-String nom;
+public String nom;
 String maitre;
 Dossier monDossier;
 Espece monespece;

@@ -16,6 +16,7 @@ public class Cabinet extends UnicastRemoteObject implements ICabinet{
 	String nom;
 	Vector<IAlerte>lAlerte = new Vector<IAlerte>();
 	Vector<Animal> lAnimal = new Vector<Animal>();
+	int nbPAtient = 0;
 	
 	public Cabinet (String m_nom) throws RemoteException{
 		this.nom = m_nom;
@@ -23,6 +24,19 @@ public class Cabinet extends UnicastRemoteObject implements ICabinet{
 
 	@Override
 	public boolean ajoutAnimal(String maitre, String nom, Espece type) throws RemoteException{
+		nbPAtient++;
+		
+		for (int i = 0; i < lAlerte.size(); i++) {
+			lAlerte.get(i).EnvoyerAlerte("ajout d'un animal");
+		}
+		
+		if ((nbPAtient % 100) == 0)
+		for (int i = 0; i < lAlerte.size(); i++) {
+			lAlerte.get(i).EnvoyerAlerte("il y'a "+nbPAtient+" patients");
+		}
+		
+
+		
 		if (lAnimal.add(new Animal(maitre, nom, type)))
 				return true;
 		return false;
@@ -31,8 +45,9 @@ public class Cabinet extends UnicastRemoteObject implements ICabinet{
 	@Override
 	public IAnimal rechecheAnimal(String mNom) throws RemoteException{		
 		for (int i = 0; i < lAnimal.size(); i++) {
-			if (lAnimal.get(i).getNom() == mNom)
-				return (IAnimal)lAnimal.get(i);
+			if (lAnimal.get(i).nom == mNom){
+				//return (IAnimal)lAnimal.get(i);
+				}	
 			}	
 		return (IAnimal)lAnimal.get(0);
 		//return null;
@@ -44,11 +59,11 @@ public class Cabinet extends UnicastRemoteObject implements ICabinet{
 	}
 
 	@Override
-	public void inscriptionAlerte(int port) throws RemoteException {
-		Registry registry = LocateRegistry.getRegistry("localhost",port);
+	public void inscriptionAlerte(String host) throws RemoteException {
+		Registry registry = LocateRegistry.getRegistry(host);
 		try {
 			IAlerte monAlerte = (IAlerte) registry.lookup("mon-alerte");
-			//lAlerte.add(monAlerte);
+			lAlerte.add(monAlerte);
 			monAlerte.EnvoyerAlerte("inscription alerte : done");
 		} catch (NotBoundException e) {
 			// TODO Auto-generated catch block

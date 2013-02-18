@@ -2,7 +2,8 @@ package veterinaire;
 
 import java.rmi.RemoteException;
 
-import packCabinetVeterinaire.Espece;
+import Interface.Espece;
+
 
 
 public class EspeceProtegee extends Espece{

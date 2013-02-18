@@ -13,10 +13,10 @@ public class Client {
 		String host = (args.length < 1) ? null : args[0];
 		try {
 			System.setSecurityManager(null);
-			Registry registry = LocateRegistry.getRegistry(host,1098);
+			Registry registry = LocateRegistry.getRegistry(host);
 			
 
-			/*version-1
+			/*version-1*/
 			//demande stub auprès de rmiregistry
 			IAnimal animal_recup = (IAnimal) registry.lookup("chien");
 
@@ -26,17 +26,17 @@ public class Client {
 
 
 			// modifie le dossier sur le client
-
 			dossier_recup.setObservation("tout vas bien");
 
 			//recupere espece par copie//
 			Espece espece_recup = animal_recup.getEspece();
+			espece_recup.nom = "chat";
 		
-			System.out.println("mon espece : "+espece_recup.getEspeceType());
-			
+			System.out.println("espece (copie) : "+espece_recup.getEspeceType());
+			System.out.println("espece (distribue) : "+animal_recup.getEspece().nom);
 
 			// affiche l'objet modifier
-			animal_recup.afficherDossier();*/
+			//animal_recup.afficherDossier();
 			
 			
 			/*version-2*/
@@ -48,12 +48,17 @@ public class Client {
 			
 			//distribution objet alerte du client
 			//pour recevoir msg du serveur
-			int port = 1096;
-			Registry registry2 = LocateRegistry.createRegistry(port);
+
+
 			Alerte monAlerte = new Alerte();
-			registry2.bind("mon-alerte", monAlerte);
+			registry.bind("mon-alerte", monAlerte);
 			
-			cabinet1.inscriptionAlerte(port);
+			cabinet1.inscriptionAlerte(host);
+			
+			for (int i = 0; i < 200; i++) {
+				cabinet1.ajoutAnimal("tintin", "rintintin", new Espece("Chien", 10));
+			}
+			
 			
 			
 

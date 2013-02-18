@@ -4,7 +4,8 @@ package veterinaire;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 
-import packCabinetVeterinaire.*;
+import Interface.ICabinet;
+
 
 public class Client {
 	private Client() {
@@ -15,6 +16,7 @@ public class Client {
 		String host = (args.length < 1) ? null : args[0];
 		try {
 			System.setSecurityManager(null);
+			
 			Registry registry = LocateRegistry.getRegistry(host);
 
 			ICabinet cabinet1 = (ICabinet) registry.lookup("cabinet-1");
