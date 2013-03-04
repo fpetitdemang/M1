@@ -32,7 +32,7 @@ public class Serveur {
 			
 			
 			/*version-3*/
-			System.setProperty("java.rmi.server.codebase","file:///home/franck/M1/GMIN204/Veterinaire/scr");
+			System.setProperty("java.rmi.server.codebase","file:///auto_home/fpetitdemang/M1/GMIN204/Veterinaire/scr");
 			
 
 			
