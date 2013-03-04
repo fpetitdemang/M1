@@ -1,0 +1,149 @@
+\documentclass[12pt,twoside,english,french]{report}
+\author{Gilles Entringer, Amayas Abboute}
+\usepackage{etex}
+\usepackage{lmodern}
+\renewcommand{\familydefault}{\rmdefault}
+\usepackage[T1]{fontenc}
+\usepackage[utf8x]{inputenc}
+\usepackage[a4paper]{geometry}
+\geometry{verbose,tmargin=2cm,bmargin=2cm,lmargin=2cm,rmargin=2cm,headsep=1.75cm}
+%\setcounter{secnumdepth}{4}
+%\setcounter{tocdepth}{4}
+\usepackage[francais]{babel}
+\addto\extrasfrench{%
+   \providecommand{\og}{\leavevmode\flqq~}%
+   \providecommand{\fg}{\ifdim\lastskip>\z@\unskip\fi~\frqq}%
+}
+\usepackage[thinlines]{easymat}
+\usepackage{lscape}
+\usepackage{multicol}
+\usepackage{pslatex}
+\usepackage{txfonts}
+\usepackage{footnote}
+%\usepackage{mathptmx}
+\usepackage{setspace}
+\usepackage{natbib}
+\onehalfspacing
+\usepackage[unicode=true,
+ bookmarks=true,bookmarksnumbered=false,bookmarksopen=false,
+ breaklinks=true,pdfborder={0 0 0},backref=false,colorlinks=true, citecolor=Gray, linkcolor=blue, urlcolor=blue]
+ {hyperref}
+%\usepackage{numprint}
+\usepackage{breakurl}
+\usepackage{graphics}
+\usepackage{graphicx}
+\usepackage{natbib}
+\usepackage{here}
+\usepackage{float}
+\usepackage[french, ruled, vlined]{algorithm2e}
+\graphicspath{{Images/}}
+\usepackage{caption}
+\usepackage{subcaption}
+\captionsetup{figurewithin=none}  
+\captionsetup{tablewithin=none}
+\usepackage{lettrine}
+\renewcommand{\LettrineFontHook}{\color[gray]{0.5}}
+\usepackage[svgnames]{xcolor}
+\xdefinecolor{DarkOliveGreen}{named}{DarkOliveGreen}
+\usepackage{multirow}
+\usepackage{float}
+%\everymath{\color{DarkOliveGreen}}
+\usepackage{wrapfig}
+\usepackage[]{tocbibind}
+\usepackage{makeidx}
+\usepackage{textcomp}
+\usepackage[final]{pdfpages} 
+\usepackage[Glenn]{fncychap}
+\usepackage{titlesec}
+
+\makeatletter
+\renewcommand{\@makechapterhead}[1]{%
+  \vspace*{-20\p@}%
+  {\parindent \z@ \raggedright \normalfont
+    \hrule                                        % horizontal line
+    \vspace{5pt}%                                 % add vertical space
+    \ifnum \c@secnumdepth >\m@ne
+        \huge\scshape\@chapapp \thechapter % Chapter number
+    \fi
+    \interlinepenalty\@M
+    \space\space\Huge \scshape #1\par                         % chapter title
+    \vspace{5pt}%                                 % add vertical space
+    \hrule                                        % horizontal rule
+    \nobreak
+    \vskip 10\p@
+  }
+  \vspace*{10\p@}}
+\makeatother
+
+
+
+
+\makeatletter
+
+
+
+\makeindex
+\newenvironment{changemargin}[2]{\begin{list}{}{%
+\setlength{\topsep}{0pt}%
+\setlength{\leftmargin}{0pt}%
+\setlength{\rightmargin}{0pt}%
+\setlength{\listparindent}{\parindent}%
+\setlength{\itemindent}{\parindent}%
+\setlength{\parsep}{0pt plus 1pt}%
+\addtolength{\leftmargin}{#1}%
+\addtolength{\rightmargin}{#2}%
+}\item }{\end{list}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% LyX specific LaTeX commands.
+%% Because html converters don't know tabularnewline
+\providecommand{\tabularnewline}{\\}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Textclass specific LaTeX commands.
+\usepackage{enumitem}		% customizable list environments
+\newlength{\lyxlabelwidth}      % auxiliary length 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% User specified LaTeX commands.
+\renewcommand{\thefigure}{\ifnum \c@chapter>\z@ \thechapter.\fi
+ \@arabic\c@figure}
+\@addtoreset{figure}{chapter}
+
+\renewcommand{\thetable}{\ifnum \c@chapter>\z@ \thechapter.\fi
+ \@arabic\c@table}
+\@addtoreset{table}{chapter}
+
+
+
+\makeatother
+
+\begin{document}
+
+
+\baselineskip = 16pt
+\def\chaptername{Partie}%change l'intitulé du chapitre
+
+%\paragraph*{\pagenumbering{Roman}}
+\includepdf{page_garde.pdf}
+
+
+
+
+\pagenumbering{roman} \setcounter{page}{1} 
+
+\renewcommand{\contentsname}{Sommaire} %dans le corps du document, avant la commande \tableofcontents .
+
+\titlespacing{\chapter}{0pt}{*5}{*-10}
+\titlespacing{\section}{0pt}{*5}{*1}
+\titlespacing{\subsection}{0pt}{*2}{*1}
+
+
+
+
+\include{Chapitres/tableMatiere}
+
+\pagenumbering{arabic} \setcounter{page}{1} 
+
+\include{Chapitres/CahierCharge}
+
+
+
+\end{document}

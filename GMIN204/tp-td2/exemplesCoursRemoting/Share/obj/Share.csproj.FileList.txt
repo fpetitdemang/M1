@@ -1,0 +1,5 @@
+obj\Debug\ResolveAssemblyReference.cache
+bin\Debug\Share.dll
+bin\Debug\Share.pdb
+obj\Debug\Share.dll
+obj\Debug\Share.pdb

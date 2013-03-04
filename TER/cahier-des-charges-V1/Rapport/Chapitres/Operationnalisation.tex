@@ -1,0 +1,77 @@
+\chapter{Mise en oeuvre} \label{Mise en oeuvre}
+
+\section{Diagramme de déploiement}
+
+
+\begin{center}
+\begin{figure}[H] \centering
+\includegraphics[width=12cm]{Deploiement.png}\\
+\caption{\label{LancServeur} Diagramme de déploiement }
+\end{figure}
+\end{center}
+
+\section{Mode d'emploi}
+
+\subsection{Compilation à partir du makefile}
+
+Dans le répertoire principal se trouve un makefile. Il suffit de saisir dans un terminal la commande "make". Le "makefile" va créer les exécutables Controleur, Employe et Serveur respectivement dans les répertoires Controleur, Employe et Serveur
+
+\subsection{Lancement du serveur}
+
+\begin{center}
+\begin{figure}[H] \centering
+\includegraphics[width=10cm]{Lancement_Serveur.png}\\
+\caption{\label{LancServeur} Lancement du serveur }
+\end{figure}
+\end{center}
+
+Le serveur est lancé dans le terminal à partir de la commande "./Serveur" et se met en attente de connexion d'un client.\\
+
+
+\subsection{Lancement du contrôleur}
+
+\begin{center}
+\begin{figure}[H] \centering
+\includegraphics[width=10cm]{Lancement_Controleur.png}\\
+\caption{\label{LancControleur} Lancement du controleur }
+\end{figure}
+\end{center}
+
+Le contrôleur est lancé avec en paramètre l'adresse IP du serveur (ici en local). Il se connecte au serveur et les étapes suivantes  peuvent être exécutées : 
+
+
+\begin{itemize}
+
+\item	Pour la première connexion,  le contrôleur est directement invité à saisir la liste des employés qui doivent rédiger un rapport.
+\item	Si au moins un employé a saisi un rapport, l'option 2 qui est de visualiser un rapport est affichée (cf. figure \ref{LancControleur})
+\end{itemize}
+
+
+
+
+\subsection{Lancement de l'employé}
+
+
+\begin{center}
+\begin{figure}[H] \centering
+\includegraphics[width=10cm]{Lancement_Employe.png}\\
+\caption{\label{LancEmploye} Lancement de l'employé}
+\end{figure}
+\end{center}
+
+L'employé est également lancé avec en paramètre l'adresse IP du serveur (ici en local). L'employé  se connecte au serveur et saisit son identifiant.
+Plusieurs scénarios ont été considérés dans l'implémentation du processus "Employé" : 
+
+\begin{itemize}
+
+\item Le serveur n'est pas lancé et un message d'erreur est retourné à l'employé.
+\item La liste n'a pas encore été envoyé, l'employé se déconnecte.
+\item L'employé se déconnecte car son identifiant ne figure pas dans la liste envoyée par le contrôleur
+\item L'employé est invité à saisir son rapport (cf . \ref{LancEmploye}).
+
+\end{itemize}
+
+
+
+
+

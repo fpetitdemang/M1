@@ -1,0 +1,7 @@
+C:\Documents and Settings\nebut\Mes documents\Visual Studio 2005\Projects\exemplesCoursRemoting\ExempleSingleton\obj\Debug\ExempleSingleton.exe
+C:\Documents and Settings\nebut\Mes documents\Visual Studio 2005\Projects\exemplesCoursRemoting\ExempleSingleton\obj\Debug\ExempleSingleton.pdb
+C:\Documents and Settings\nebut\Mes documents\Visual Studio 2005\Projects\exemplesCoursRemoting\ExempleSingleton\bin\Debug\Share.dll
+C:\Documents and Settings\nebut\Mes documents\Visual Studio 2005\Projects\exemplesCoursRemoting\ExempleSingleton\bin\Debug\Share.pdb
+C:\Documents and Settings\nebut\Mes documents\Visual Studio 2005\Projects\exemplesCoursRemoting\ExempleSingleton\obj\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\nebut\Mes documents\Visual Studio 2005\Projects\exemplesCoursRemoting\ExempleSingleton\bin\Debug\ExempleSingleton.exe
+C:\Documents and Settings\nebut\Mes documents\Visual Studio 2005\Projects\exemplesCoursRemoting\ExempleSingleton\bin\Debug\ExempleSingleton.pdb

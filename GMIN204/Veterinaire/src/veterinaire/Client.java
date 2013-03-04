@@ -12,7 +12,7 @@ public class Client {
 	}
 
 	public static void main(String[] args) {
-
+		System.setProperty("java.security.policy","file:///home/franck/M1/GMIN204/td-tp1/cabinetVeterinaire/src/serveur/server.txt");
 		String host = (args.length < 1) ? null : args[0];
 		try {
 			System.setSecurityManager(null);

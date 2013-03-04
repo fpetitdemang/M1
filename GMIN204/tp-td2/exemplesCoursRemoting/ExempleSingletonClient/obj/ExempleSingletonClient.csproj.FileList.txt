@@ -1,0 +1,9 @@
+obj\Debug\ResolveAssemblyReference.cache
+bin\Debug\ExempleSingletonClient.exe
+bin\Debug\ExempleSingletonClient.pdb
+bin\Debug\ExempleSingleton.exe
+obj\Debug\ExempleSingletonClient.exe
+obj\Debug\ExempleSingletonClient.pdb
+bin\Debug\ExempleSingleton.pdb
+bin\Debug\Share.dll
+bin\Debug\Share.pdb

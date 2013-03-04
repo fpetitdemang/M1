@@ -1,0 +1,7 @@
+C:\Documents and Settings\nebut\Mes documents\Visual Studio 2005\Projects\exemplesCoursRemoting\ExemplePassageRefClient\bin\Debug\ExemplePassageRefClient.exe
+C:\Documents and Settings\nebut\Mes documents\Visual Studio 2005\Projects\exemplesCoursRemoting\ExemplePassageRefClient\bin\Debug\ExemplePassageRefClient.pdb
+C:\Documents and Settings\nebut\Mes documents\Visual Studio 2005\Projects\exemplesCoursRemoting\ExemplePassageRefClient\bin\Debug\Share.dll
+C:\Documents and Settings\nebut\Mes documents\Visual Studio 2005\Projects\exemplesCoursRemoting\ExemplePassageRefClient\bin\Debug\Share.pdb
+C:\Documents and Settings\nebut\Mes documents\Visual Studio 2005\Projects\exemplesCoursRemoting\ExemplePassageRefClient\obj\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\nebut\Mes documents\Visual Studio 2005\Projects\exemplesCoursRemoting\ExemplePassageRefClient\obj\Debug\ExemplePassageRefClient.exe
+C:\Documents and Settings\nebut\Mes documents\Visual Studio 2005\Projects\exemplesCoursRemoting\ExemplePassageRefClient\obj\Debug\ExemplePassageRefClient.pdb

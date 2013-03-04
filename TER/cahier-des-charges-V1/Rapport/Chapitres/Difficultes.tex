@@ -1,0 +1,55 @@
+\chapter{Difficultés rencontrées et solutions apportées} \label{Difficultés}
+
+Tout au long du développement de cette application client-serveur, nous avons été confrontés à de nombreuses difficultés. Dans cette partie, nous expliquerons les problèmes majeurs qui sont regroupés en trois sous-parties : Difficultés de conception, difficultés liées à l'envoi de données via la socket et difficultés diverses . De plus, nous illustrerons les solutions apportées aux difficultés.
+
+\section{Difficultés de conception}
+
+\subsubsection{Le nombre de threads à implémenter}
+
+Dans un premier temps nous nous sommes focalisés sur la conception de l'application. Une des difficultés majeures était donc de choisir le nombre de threads.
+
+Une des possibilités que nous avions envisagées était la création de trois threads : Un thread serveur, un thread contrôleur et un thread employé. Ainsi, un thread serveur serait lancé par le thread principal (main()) à chaque connexion d'un client.
+Une deuxième possibilité était l'implémentation d'un seul thread principal (main) et d'un seul thread client. En fonction de l'identifiant envoyé par le client, les actions seraient effectuées dans ce seul thread. 
+Finalement nous avons décidé d'implémenter un thread principal (le serveur), un thread pour le contrôleur et un thread par client connecté. Ces deux derniers sont lancés en fonction de l'identifiant reçu. Par exemple, le processus contrôleur envoie automatiquement l'identifiant "controleur" dès sa connexion et le thread correspondant sera lancé. Cette solution nous a garanti d'implémenter un serveur concurrent et de pouvoir gérer la synchronisation et l'accès concurrent aux données.\\ 
+
+\section{Difficultés liées à l'envoi de données via socket}
+
+%\subsection{Envoyer des structures}
+%
+%Au début de l'implémentation une des grandes difficultés était l'envoi de structures via une socket. Ainsi il nous arrivait que seulement une partie des données était reçue par le processus receveur.
+%
+%Nous avons placé les "send" et les "recv" dans des boucles "do...while" qui ne s'arrêtent seulement lorsque toutes les informations ont été reçues. 
+
+
+\subsection{Envoyer de longues chaînes de caractères}
+
+Comme il est indiqué dans le sujet, il est nécessaire d'éviter la lecture et l'écriture de longs messages sur les sockets. Dans un premier temps nous arrivions seulement à envoyer des blocs de 981  caractères.
+
+La solution finale consiste à envoyer dans un premier temps le nombre de caractères du bloc à envoyer au serveur. Par la suite, la boucle "while" s'exécute jusqu'à ce que le nombre de caractères reçus est égal au nombre de caractère envoyés. L'application est maintenant capable de gérer et de manipuler de très longues chaînes de caractères.
+
+
+\subsection{Envoyer tableau malloc}
+Il n'est pas possible d'envoyer un tableau malloc via une socket à un autre processus car le malloc est un pointeur et donc lié à un seul espace d'adressage.
+
+Le serveur va ainsi copier le tableau malloc (dans lequel sont stockés les identifiants des employés ayant rédigé un rapport) dans une structure contenant un tableau de chaînes de caractères. De plus, ce tableau contient le nombre d'employés ayant enregistrés un rapport ce qui va faciliter l'affichage du tableau au niveau du processus receveur (dans notre cas le contrôleur).
+
+\subsection{Envoyer fichier pdf}
+En local, nous arrivions sans problèmes à envoyer des fichiers pdf, voir des fichier de taille assez grande (par exemple un fichier musique de 10 Mo) sans aucun problème. Par contre, lors des essais sur un réseau local (sur les machines de l'UM2 au bâtiment 5), le processus receveur recevait seulement 1.9 Ko par envoi.
+
+Nous avons pu résoudre cette difficulté en appliquant le même principe que pour l'envoi de longues chaînes de caractères : Nous envoyons d'abord la taille en bytes du fichier à envoyer et par la suite nous bouclons sur cette donnée jusqu'à ce que toutes les données soient reçues. 
+
+\section{Difficultés diverses }
+
+\subsection{Multiclient}
+Après une première implémentation nous avons procédé à plusieurs tests. Ainsi, nous avons remarqué que notre implémentation ne gérait pas plusieurs clients simultanément. Les  chaînes de caractères envoyés par un client étaient stockées dans le rapport de l'employé qui s'était connecté en dernier. De plus il nous arrivait qu'un des employés restait bloqués ou que les blocs qu'il avait saisies n'étaient enregistrées null part.
+
+Au niveau du serveur nous avons donc codé une structure qui comprend les informations suivantes: la socket à laquelle le client est connecté, l'identifiant de l'employé et le nom du thread. Par la suite nous avons implémenté un tableau de cette structure. A chaque connexion d'un client, une nouvelle structure est insérée dans ce tableau. Lors de la création d'un thread, la structure correspondant au client est passée en argument du thread. Ainsi chaque thread connaîtra à tout moment son nom et l'identifiant du client auquel il est attribué. 
+ 
+
+
+
+
+
+
+
+

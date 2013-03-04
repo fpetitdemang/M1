@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>AsynchroneClient</name>
+    </assembly>
+    <members>
+        <member name="F:RemotingDelegates.e">
+            <summary>
+            L'evt e permet d'avertir les threads en attente qu'un événement s'est produit : ici que l'appel asynchrone s'est terminé
+            </summary>
+        </member>
+    </members>
+</doc>

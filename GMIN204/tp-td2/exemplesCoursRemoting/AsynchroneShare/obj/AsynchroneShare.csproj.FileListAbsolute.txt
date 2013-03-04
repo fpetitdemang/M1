@@ -1,0 +1,5 @@
+C:\Documents and Settings\nebut\Mes documents\Visual Studio 2005\Projects\exemplesCoursRemoting\AsynchroneShare\bin\Debug\ServiceClass.dll
+C:\Documents and Settings\nebut\Mes documents\Visual Studio 2005\Projects\exemplesCoursRemoting\AsynchroneShare\bin\Debug\ServiceClass.pdb
+C:\Documents and Settings\nebut\Mes documents\Visual Studio 2005\Projects\exemplesCoursRemoting\AsynchroneShare\obj\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\nebut\Mes documents\Visual Studio 2005\Projects\exemplesCoursRemoting\AsynchroneShare\obj\Debug\ServiceClass.dll
+C:\Documents and Settings\nebut\Mes documents\Visual Studio 2005\Projects\exemplesCoursRemoting\AsynchroneShare\obj\Debug\ServiceClass.pdb

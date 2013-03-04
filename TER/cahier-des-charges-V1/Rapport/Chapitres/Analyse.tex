@@ -1,0 +1,216 @@
+\chapter{Analyse} \label{Analyse}
+
+\section{Introduction} \label{Introduction}
+
+Afin de mettre en application ce que nous avons vu en cours du module "Réseaux et Communications", à savoir la communication entre processus en utilisant des sockets, des threads ainsi que  différents moyens de synchronisation, nous avons réalisé une application client/serveur multi-thread.
+
+Voici les caractéristiques du serveur que nous avons programmé :
+\begin{enumerate}
+\item Serveur programmé en langage C.
+\item Multi-thread : Le serveur peut accepter et gérer plusieurs clients simultanément.
+\item Gestion de la réception de longs messages et de l'envoi de fichiers au format PDF.
+\item Variables conditionnelles et mutex pour gérer les accès concurrents et la synchronisation entre threads.
+\end{enumerate}
+
+
+\section{Architecture de l'application}
+
+\subsubsection{Processus Serveur}
+
+Le serveur est structuré comme suit :
+\begin{enumerate}
+
+\item Un thread principal qui tourne à l'infini pour pouvoir accepter plusieurs clients et ceci de façon simultanée. A chaque acceptation d'un client, le thread correspondant est lancé, ce qui  permet une certaine autonomie entre les clients. Par exemple un contrôleur peut consulter un rapport pendant qu'un employé est entrain de saisir un nouveau rapport.
+ 
+\item Le thread contrôleur  est lancé dès que le processus contrôleur se connecte au serveur. Ainsi, le serveur peut recevoir une liste d'employés qui doivent rédiger un rapport ou envoyer au processus contrôleur un rapport au format PDF.
+
+\item Le thread employé est lancé dès la connexion d'un processus employé après vérification de l'identifiant. Si ce dernier ne fait pas partie de la liste des employé, le thread n'est pas lancé et le processus employé est prévenu qu'il ne doit pas rédiger de rapport.
+
+Si l'identification est réussie, le thread reçoit les blocs du rapport saisi au fur et à mesure et les sauvegarde dans un fichier .tex et envoie le rapport dès que l'employé a terminé la saisie.
+
+\textbf{Remarque} : Le fait que les threads soient lancés seulement après vérification de l'identifiant permet d'optimiser l'utilisation du processeur et de la mémoire.
+\end{enumerate}
+
+\subsubsection{Processus Contrôleur}
+Le contrôleur est un processus à part entière qui permet de déclencher le lancement du thread contrôleur se trouvant au niveau du processus serveur. Le rôle de ce thread est d'envoyer la liste des employés qui doivent rédiger un rapport ainsi que la visualisation d'un rapport stocké sur le serveur. 
+\subsubsection{Processus Employé}
+L'employé est également un processus à part entière, son rôle étant d'inviter un employé X à rédiger un rapport si ce dernier figure bien dans la liste des employés et de visualiser le rapport dès que l'employé a fini la saisie de son rapport.
+
+\section{Protocoles d'échanges}
+
+\subsubsection{Serveur - Employé}
+
+\begin{center}
+\begin{figure}[H] \centering
+\includegraphics[width=19cm]{test.png}\\
+\caption{\label{Employe_Scenario} Protocole d'échange Serveur - Employé}
+\end{figure}
+\end{center}
+
+
+\subsubsection{Serveur - Contrôleur}
+
+\begin{center}
+\begin{figure}[H] \centering
+\includegraphics[width=10cm]{Controleur_Echange.png}\\
+\caption{\label{Controleur_Echange} Protocole d'échange Serveur - Contrôleur }
+\end{figure}
+\end{center}
+
+\section{Schémas algorithmiques}
+\subsection{Serveur}
+\begin{tabbing}
+\= \textbf{Tant que} \= (vrai)\\
+	\>	\> Attente d'une connexion ;\\
+	\>  \> Réception de l'ID d'un client ;\\
+	\>	\> Lancer le thread correspondant à l'ID du client connecté    (cf Thread Employé et Thread Controleur) ;
+\end{tabbing}
+
+\subsubsection{Thread Employé}
+
+\begin{tabbing}
+
+\textbf{Faire} \= \\
+
+	\> Attente d’un bloc de données ;\\
+
+	\> Réception d’un bloc ;\\
+
+	\> Ecrire une section du rapport ;\\
+
+\textbf{Tant que} l'employé n'a pas signalé la fin de la saisie ;\\
+
+
+Enregistrement du rapport au format PDF ;\\
+
+Prendre(verrou) ;\\
+
+Sauvegarder l'employé ayant rédigé un rapport ;\\
+
+Libérer(verrou) ;\\
+
+Signaler au contrôleur la fin de saisie d'un rapport s'il souhaite envoyer une nouvelle liste ;\\
+
+Envoyer le rapport à l'employé ;\\
+
+Fermeture du thread ;
+
+\end{tabbing}
+
+\subsubsection{Thread Contrôleur}
+
+\begin{tabbing}
+
+Attente si contrôleur veut saisir une liste ou consulter un rapport ;\\
+
+Vérification s'il existe déjà une liste et envoi résultat au contrôleur;\\
+
+Vérification si au moins un rapport a été enregistré par un employé  et envoi du résultat au contrôleur ;\\
+
+\textbf{Cas} = \= Saisir une nouvelle liste \\
+
+\> Prendre(verrou) ;\\
+
+\> Attendre jusqu'à ce que tous les employés connectés aient terminé leurs saisies de rapports ;\\
+
+\> Sauvegarder la liste et le nombre d'employés qui doivent saisir un rapport ;\\
+
+\> Libérer (verrou) ; \\
+
+\textbf{Cas} = \= consulter un rapport \\
+
+\> \textbf{Faire} \= \\
+
+\> \> Envoyer liste des identifiants des employés ayant rédigé un rapport; \\
+
+\> \> Recevoir l’identifiant du rapport à consulter;\\
+
+\> \> Prévenir contrôleur si rapport est disponible;\\
+
+\> \> Envoyer rapport au contrôleur;\\
+
+\> \textbf{Tant que} le contrôleur veut consulter un autre rapport;\\
+
+Fermeture du thread ;
+
+\end{tabbing}
+
+%\begin{multicols}{2}
+
+\subsection{Contrôleur}
+
+\begin{tabbing}
+
+Connexion au serveur() ;\\
+
+Saisir la liste des employés() ;\\
+
+Envoyer la liste() ;\\
+
+Déconnexion() ;\\
+
+Connexion au serveur() ;\\
+
+\textbf{Choisir} entre :\\
+
+
+Saisir une nouvelle liste.\\
+
+Consulter un rapport.\\
+
+
+\textbf{Cas} \= choix = 1\\
+
+	\> Saisir la liste des employés() ;\\
+	
+	\> Envoyer la liste() ;\\
+	
+	\> Déconnexion() ; \\
+
+\textbf{Cas} choix = 2 \\
+
+    \> \textbf{Faire} \=	\\
+     
+	\> \> Saisir nom employé() ; \\
+	
+	\> \> Recevoir le rapport() ; \\
+	
+\> \textbf{Tant que} le controleur consulte rapports ; \\
+     
+Déconnexion() ;
+
+\\
+
+\end{tabbing}
+
+%\columnbreak
+
+\subsection{Employé}
+
+\begin{tabbing}
+
+Connexion au serveur() ; \\
+
+\textbf{Si} liste non envoyé alors déconnexion() ; \\
+
+\textbf{Si} liste envoyé mais ID ne correspond pas alors déconnexion ();  \\
+
+\textbf{Sinon} \= \\
+
+\> \textbf{Tant qu} \=’il y a des blocs de données  à saisir \\
+
+	\> \> Saisir bloc() ; \\
+
+	\> \>	Envoyer bloc() ;  \\
+
+	\> \textbf{FinTq} \\
+	
+	Réception rapport du serveur() ; \\
+
+	Ouvrir et visualiser le rapport() ; \\
+
+	Déconnexion() ;
+
+\end{tabbing}
+
+%\end{multicols}

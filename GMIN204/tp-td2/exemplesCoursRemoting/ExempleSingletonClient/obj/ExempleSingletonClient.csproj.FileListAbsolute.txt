@@ -1,0 +1,9 @@
+C:\Documents and Settings\nebut\Mes documents\Visual Studio 2005\Projects\exemplesCoursRemoting\ExempleSingletonClient\obj\Debug\ExempleSingletonClient.exe
+C:\Documents and Settings\nebut\Mes documents\Visual Studio 2005\Projects\exemplesCoursRemoting\ExempleSingletonClient\obj\Debug\ExempleSingletonClient.pdb
+C:\Documents and Settings\nebut\Mes documents\Visual Studio 2005\Projects\exemplesCoursRemoting\ExempleSingletonClient\bin\Debug\ExempleSingletonClient.exe
+C:\Documents and Settings\nebut\Mes documents\Visual Studio 2005\Projects\exemplesCoursRemoting\ExempleSingletonClient\bin\Debug\ExempleSingletonClient.pdb
+C:\Documents and Settings\nebut\Mes documents\Visual Studio 2005\Projects\exemplesCoursRemoting\ExempleSingletonClient\bin\Debug\ExempleSingleton.exe
+C:\Documents and Settings\nebut\Mes documents\Visual Studio 2005\Projects\exemplesCoursRemoting\ExempleSingletonClient\bin\Debug\Share.dll
+C:\Documents and Settings\nebut\Mes documents\Visual Studio 2005\Projects\exemplesCoursRemoting\ExempleSingletonClient\bin\Debug\ExempleSingleton.pdb
+C:\Documents and Settings\nebut\Mes documents\Visual Studio 2005\Projects\exemplesCoursRemoting\ExempleSingletonClient\bin\Debug\Share.pdb
+C:\Documents and Settings\nebut\Mes documents\Visual Studio 2005\Projects\exemplesCoursRemoting\ExempleSingletonClient\obj\Debug\ResolveAssemblyReference.cache

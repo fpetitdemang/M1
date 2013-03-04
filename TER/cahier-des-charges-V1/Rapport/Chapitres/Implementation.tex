@@ -1,0 +1,127 @@
+\chapter{Implémentation}
+
+Après avoir terminé la conception de notre application nous avons procédé à son implémentation. Dans ce chapitre nous décrivons les différents aspects techniques et la mise en œuvre du thésaurus sur le système immunitaire de l'homme.
+
+Dans un premier temps nous présentons les outils et langages de développement que nous avons utilisés.
+Par la suite nous allons présenter l'implémentation de la base de données et de l'application web.
+Pour finir, nous présentons les différentes interfaces et fonctionnalité de notre application.
+
+\section{Choix technologiques}
+
+\subsection{Langages de programmation utilisés}
+
+\subsubsection{PHP}
+
+Le PHP a été crée en 1994 par Rasmus Lerdorf. C'est un langage libre et gratuit, avec une grande communauté mondiale. PHP est un langage de programmation web côté serveur, c'est-à-dire que le serveur va interpréter le code PHP (langage de scripts) et générer du code HTML qui pourra être interprété par un navigateur.\\
+
+Le PHP nous a permis de créer une application web dynamique, c'est-à-dire qu'elle peut-être mis à jour facilement et automatiquement ce qui est indispensable pour un thésaurus. De plus, PHP nous a permis d'ajouter à notre application de nombreuses fonctionnalités (par exemple l'authentification d'un utilisateur). \\
+
+L'avantage principal du PHP est qu'il gère très bien les requêtes SQL. Nous pouvions facilement développer une application web qui  affiche des données extraites de bases de données Oracle et qui stocke les nouveaux termes saisis par les utilisateurs dans une table SQL (par exemple dans la table Concept). \\
+
+\subsubsection{CSS}
+CSS est l'acronyme de Cascading Style Sheets 2. Nous avons utilisé ce langage pour construire la mise en page de notre application web car il permet une stricte séparation entre la mise en page et le contenu HTML / PHP de l'application web. Le style défini dans un fichier ".css" est réutilisable pour toutes les pages web et facilite une éventuelle mise à jour dans le futur.\\
+
+
+\subsubsection{JavaScript}
+
+à revoir
+
+\subsection{Plateforme de développement}
+
+\subsubsection{EasyPHP}
+Comme serveur web pour le développement nous avons choisi EasyPHP qui est un package constitué du langage PHPP, du serveur web Apache ainsi que de différents outils de développement.
+EasyPHP nous a permis de disposer de tous les outils nécessaires pour le développement de l'application web. 
+
+\subsection{Système de gestion de base de données (SGBD) utilisé}
+
+\subsection{Oracle Express 11g}
+
+La société Oracle est à ce jour le leader incontesté du marché mondial de la base de données. Son SGBD Oracle Express est utilisé dans de nombreux projets professionnels et nous avons pu découvrir les fonctionnalités Objet-relationnel de ce SGBD pendant les séances de TP du module "Base de données avancées".
+
+
+\section{Création de la base de données}
+
+\subsection{Création des types abstraits de données (ADT) }
+
+Nous avons défini dans un premier temps les types objets correspondant à notre diagramme de classe.
+
+\subsubsection{Contributeur\_t}
+Le type d'objet contributeur permet de représenter les différents contributeurs au thésaurus. Un utilisateur qui souhaite insérer ou modifier un terme dans le thésaurus devra s'authentifier.
+
+\subsubsection{Concept\_t}
+Le type d'objet Concept\_t représente le/les concept(s) du thésaurus. On y trouve des attributs correspondants aux informations suivantes  : Le nom du concept, la date de création du concept, le nombre de fois que le concept a été consulté, la définition et une référence vers le type "Contributeur\_t" pour connaître le contributeur qui a créé le concept.
+
+
+\subsubsection{Descripteur\_t}
+Le type d'objet Descripteur\_t représente les informations liés aux descripteurs d'un concept. Dans ce types on retrouve les attributs suivants : Le libellé, sa date de création, le nombre de consultations, sa définition et une référence vers le type "Contributeur\_t" pour connaître le créateur du descripteur.\\
+
+Le type "Descripeur\_t" se spécialise en deux sous-types : DescripteurVedette et DescripteurSynonyme.\\
+
+Le type "DescripteurVedette" comporte en plus deux attributs représentants le concept auquel il appartient et le descritpeur qui le généralise. Deux "nested table" permettront de stocker les informations relatif à la spécialisation et aux descripteurs synonymes d'un descripteur vedette. La "nested table" ensemble\_synonymes permet de stocker tous les synonymes relatifs à un descripteur vedette dans un même table SQL et pointe sur l'objet du type "DescripteurSynonyme".\\
+
+
+A partir de ces différents types d'objets nous avons créé les différentes tables de la base de données. 
+
+
+
+\subsection{Requêtes SQL de la base de données}
+
+Nous illustrerons dans cette partie du rapport les différentes requêtes utilisées par l'application pour alimenter la base de données du thésaurus.
+
+\subsubsection{Création d'un contributeur}
+
+\begin{algorithm}[H]
+\caption{\label{Requete_Contributeur} Exemple de requête d'insertion dans la table Contributeur}
+Syntaxe:\\
+INSERT INTO Contributeur VALUES ('test@test.com', '123456', 0, '24122012', '24122012');\\
+\end{algorithm}
+
+A partir de cet exemple est créé dans la table "Contributeur" une ligne contenant l'email du contributeur, son mot de passe, le nombre de publication, sa date d'inscription et la date de sa dernière visite.
+
+\subsubsection{Insertion d'un nouveau concept}
+
+\begin{algorithm}[H]
+\caption{\label{Requete_Concept} Exemple de requête d'insertion dans la table Concept}
+Syntaxe:\\
+INSERT INTO Concept VALUES ('Système Immunitaire', '24122012', 0, 'defintion système immunitaire', (select ref(p) from Contributeur p  where email= 'test@test.com'));\\
+\end{algorithm}
+
+Cette requête enregistre un nouveau concept, sa date de création, le nombre de consultations, sa définition et le contributeur qui a créé ce terme. La commande "select ref(p)..." nous a permis de sélectionner le pointeur (la référence) vers le contributeur dont l'adresse mail est "test@test.com".
+
+
+\subsubsection{Insertion d'un descripteur vedette}
+
+\begin{algorithm}[H]
+\caption{\label{Requete_DescVedeete} Exemple de requête d'insertion dans la table DescripteurVedette}
+Syntaxe:\\
+INSERT INTO DescripteurVedette values ('Anticorps', '24122012', 0, 'définition anticorps', (select ref(p) from Contributeur p  where email= 'test@test.com'),
+'Système Immunitaire', NULL, NULL, NULL);\\
+\end{algorithm}
+
+La table descripteur vedette est sans doute la table la plus complexe de notre base de données. Dans un premier temps y sont stockés son libellé, sa date de création dans le thésaurus, le nombre de consultations, sa définition, le contributeur qui l'a créé (à l'aide de la commande "select ref(g)..." et le nom du concept auquel il appartient (sous la forme d'une clé étrangère qui fait référence à la table "concept"). Il se peut qu'un contributeur saisisse un descripteur vedette sans créer immédiatement les descripteurs synonymes et ceux qui généralisent et spécialisent ce terme. Dans ce cas-là on initialisera à "NULL" les attributs respectifs.
+
+\subsubsection{Insertion d'un descripteur synonyme pour un descripteur vedette existant}
+
+\begin{algorithm}[H]
+\caption{\label{Requete_DescSynonyme} Exemple de requête d'insertion d'un descripteur synonyme dans un descripteur vedette existant}
+Syntaxe:\\
+UPDATE DescripteurVedette set ensemble\_synonymes = (ensemble\_synonyme(DescripteurSynonyme('Système Immunitaire', '24122012', 0, 'définition système Immunitaire',(select ref(p) from Contributeur p  where p.email= 'test@test.com')))) where libelle = 'Anticorps';
+\\
+\end{algorithm}
+
+Pour une première saisie dans une nested table initialisée à "NULL", il est nécessaire d'utiliser la commande "update". Par la suite on utilisera la commande "insert into..." pour insérer des synonymes supplémentaires à un descripteur vedette.\\
+La même opération est à applique pour insérer une relation de spécialisation (nested table descritpeur\_spec).
+
+
+\subsubsection{Exemple d'insertion d'un terme vedette avec relation de spécialisation, relation de généralisation et d'un descripteur synonyme  }
+
+\begin{algorithm}[H]
+\caption{\label{Requete\_DescSynonyme} Exemple de requête d'insertion d'un descripteur synonyme dans un descripteur vedette existant}
+Syntaxe:\\
+INSERT INTO DescripteurVedette values ('Système Immunitaire', '24122012', 0, 'définition système Immunitaire', (select ref(p) from Contributeur p  where email= 'test@test.com'),'Système Immunitaire ', (select ref(p) from DescripteurVedette p  where libelle= 'Système Immunitaire'), (ensemble\_specialisation(ens\_descr('Antigène', '04122012', 0, 'Bla', (select ref(p) from Contributeur p  where email= 'test@test.com')))), (ensemble\_synonyme(DescripteurSynonyme('tutu', '04122012', 0, 'Bla', (select ref(p) from Contributeur p  where email= 'test@test.com')))));
+
+\end{algorithm}
+A revoir en fonction de ce qu'on va insérer dans le thésaurus\\
+
+\section{Présentation de l'application web}
+

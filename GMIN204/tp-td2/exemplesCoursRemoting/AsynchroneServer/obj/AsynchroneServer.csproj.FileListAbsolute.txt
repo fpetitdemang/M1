@@ -1,0 +1,7 @@
+C:\Documents and Settings\nebut\Mes documents\Visual Studio 2005\Projects\exemplesCoursRemoting\AsynchroneServer\bin\Debug\AsynchroneServer.exe
+C:\Documents and Settings\nebut\Mes documents\Visual Studio 2005\Projects\exemplesCoursRemoting\AsynchroneServer\bin\Debug\AsynchroneServer.pdb
+C:\Documents and Settings\nebut\Mes documents\Visual Studio 2005\Projects\exemplesCoursRemoting\AsynchroneServer\bin\Debug\ServiceClass.dll
+C:\Documents and Settings\nebut\Mes documents\Visual Studio 2005\Projects\exemplesCoursRemoting\AsynchroneServer\bin\Debug\ServiceClass.pdb
+C:\Documents and Settings\nebut\Mes documents\Visual Studio 2005\Projects\exemplesCoursRemoting\AsynchroneServer\obj\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\nebut\Mes documents\Visual Studio 2005\Projects\exemplesCoursRemoting\AsynchroneServer\obj\Debug\AsynchroneServer.exe
+C:\Documents and Settings\nebut\Mes documents\Visual Studio 2005\Projects\exemplesCoursRemoting\AsynchroneServer\obj\Debug\AsynchroneServer.pdb
