@@ -1,9 +1,11 @@
 package veterinaire;
 
 
+import java.rmi.RMISecurityManager;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 
+import Interface.Espece;
 import Interface.ICabinet;
 
 
@@ -12,7 +14,9 @@ public class Client {
 	}
 
 	public static void main(String[] args) {
-		System.setProperty("java.security.policy","file:///home/franck/M1/GMIN204/td-tp1/cabinetVeterinaire/src/serveur/server.txt");
+		System.setProperty("java.security.policy", "/home/franck/M1/GMIN204/Veterinaire/src/veterinaire/securite");
+		System.setSecurityManager(new RMISecurityManager());
+		
 		String host = (args.length < 1) ? null : args[0];
 		try {
 			System.setSecurityManager(null);

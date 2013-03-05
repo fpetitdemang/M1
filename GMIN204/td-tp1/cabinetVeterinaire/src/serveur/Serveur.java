@@ -1,5 +1,6 @@
  package serveur;
 
+import java.rmi.RMISecurityManager;
 import java.rmi.registry.Registry;
 import java.rmi.registry.LocateRegistry;
 
@@ -15,7 +16,9 @@ public class Serveur {
 		
 		
 		try {
-			System.setSecurityManager(null);
+			System.setProperty("java.security.policy", "/home/franck/M1/GMIN204/Veterinaire/src/veterinaire/securite");
+			System.setSecurityManager(new RMISecurityManager());
+
 			/*version-1*/
 			//instancie objet a distribuer
 			Animal chien = new Animal("tintin","milou",new Espece("chien", 15));

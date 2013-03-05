@@ -2,6 +2,8 @@ package client;
 
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
+
+import client.*;
 import Interface.*;
 
 public class Client {
@@ -53,13 +55,13 @@ public class Client {
 			Alerte monAlerte = new Alerte();
 			registry.bind("mon-alerte", monAlerte);
 			
+			
 			cabinet1.inscriptionAlerte(host);
 			
 			for (int i = 0; i < 200; i++) {
 				cabinet1.ajoutAnimal("tintin", "rintintin", new Espece("Chien", 10));
 			}
-			
-			
+
 			
 
 		} catch (Exception e) {
