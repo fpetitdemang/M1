@@ -21,9 +21,19 @@ public class Sommet {
 		}
 	}
 	
+	public void supprimer(){
+		for (int i = 0; i < laretes.size(); i++) {
+			laretes.get(i).supprimerArete(this);
+		}
+	}
 	
-	public void grefferSommet(Arete a){
+	
+	public void ajouterSommet(Arete a){
 		laretes.add(a);
+	}
+	
+	public void ajouterGraphe(Graphe m_Graphe){
+		this.monGraphe = m_Graphe;
 	}
 
 		

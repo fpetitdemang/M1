@@ -11,8 +11,8 @@ public class Arete {
 		sommet1 = smt1;
 		sommet2 = smt2;
 		nom = m_nom;
-		smt1.grefferSommet(this);
-		smt2.grefferSommet(this);
+		smt1.ajouterSommet(this);
+		smt2.ajouterSommet(this);
 	}
 	
 	public Arete(Sommet smt1, Sommet smt2, Graphe m_graphe, String m_nom){
@@ -47,6 +47,11 @@ public class Arete {
 	public void supprimerArete() {
 		monGraphe.supprimerArete(this);
 		
+	}
+
+
+	public void supprimerArete(Sommet sommet) {
+		monGraphe.supprimerArete(this);
 	}
 
 }
