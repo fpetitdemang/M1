@@ -12,7 +12,7 @@ public class Sommet {
 	
 	
 	//manipulation association
-	public void relierArete(Arete m_arete){
+	public void ajouter(Arete m_arete){
 		laretes.add(m_arete);
 	}
 	

@@ -16,7 +16,7 @@ public class Serveur {
 		
 		
 		try {
-			System.setProperty("java.security.policy", "/home/franck/M1/GMIN204/Veterinaire/src/veterinaire/securite");
+			System.setProperty("java.security.policy", "file:///home/franck/M1/GMIN204/Veterinaire/src/veterinaire/securite");
 			System.setSecurityManager(new RMISecurityManager());
 
 			/*version-1*/

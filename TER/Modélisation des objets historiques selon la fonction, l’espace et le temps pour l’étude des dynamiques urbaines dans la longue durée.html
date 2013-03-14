@@ -1,0 +1,1799 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html class="js" xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" lang="fr"><head>
+    <script src="Mod%C3%A9lisation%20des%20objets%20historiques%20selon%20la%20fonction,%20l%E2%80%99espace%20et%20le%20temps%20pour%20l%E2%80%99%C3%A9tude%20des%20dynamiques%20urbaines%20dans%20la%20longue%20dur%C3%A9e_fichiers/ga.js" async="" type="text/javascript"></script><script type="text/javascript">document.documentElement.className = 'js';</script>
+    <meta http-equiv="Content-type" content="text/html; charset=UTF-8">
+    <meta http-equiv="Content-language" content="fr">
+    <title>Modélisation des objets historiques selon la fonction, 
+l’espace et le temps pour l’étude des dynamiques urbaines dans la longue
+ durée</title>
+    <link rel="alternate" href="http://cybergeo.revues.org/pdf/23175" type="application/pdf" title="Modélisation des objets historiques selon la fonction, l’espace et le temps pour l’étude des dynamiques urbaines dans la longue durée">
+    <meta name="url" content="http://cybergeo.revues.org/23175">
+    <meta name="generator" content="Lodel 1.0">
+    <link rel="schema.DC" href="http://purl.org/dc/elements/1.1/">
+    <link rel="schema.MARCREL" href="http://www.loc.gov/loc.terms/relators/">
+    <meta name="DC.type" content="Text">
+    <meta name="DC.format" content="text/html">
+    <meta name="DC.identifier" scheme="URI" content="http://cybergeo.revues.org/23175">
+    <meta name="DC.identifier" scheme="ISSN" content="1278-3366">
+    <meta name="DC.title" content="Modélisation des objets historiques selon la fonction, l’espace et le temps pour l’étude des dynamiques urbaines dans la longue durée">
+    <meta name="DC.publisher" content="CNRS-UMR Géographie-cités 8504">
+    <meta name="DC.language" scheme="RFC3066" content="fr">
+    <meta name="DC.type" content="journalArticle">
+    <meta name="DC.identifier" scheme="DOI" content="Unknown plateform
+">
+    <meta name="author" content="Rodier, Xavier">
+    <meta name="DC.creator" content="Rodier, Xavier">
+    <meta name="author" content="Saligny, Laure">
+    <meta name="DC.creator" content="Saligny, Laure">
+    <meta name="keywords" content="espace-temps, fonctions urbaines, ville, modélisation, espace, temps, temporalité, sciences historiques, Système d’information géographique, dynamiques spatiales, space-time, space, city, urban function, modelling, time, geographical information system, historical sciences, spatial dynamics">
+    <meta name="description" xml:lang="fr" content="Le principe de compréhension de l’espace urbain proposé consiste à aborder la ville comme un ensemble d’objets complexes selon une approche systémique. Le système ville considéré pour étudier la fabrique de la ville dans la longue durée est constitué de trois dimensions dont relèvent les objets historiques de l’échelle de la fouille à celle de l’espace urbanisé ancien&nbsp;: fonctionnelle (usage social), spatiale (localisation, étendue et morphologie) et temporelle (datation, durée et chronologie). L’objet historique constitue l’unité analytique de l’espace étudié. Il est le produit cartésien des trois ensembles Fonction, Espace, Temps dont il est issu. Partant de ce processus, l’Objet Historique (OH) est déstructuré en trois types d’objets simples, l’entité fonctionnelle (EF), l’entité spatiale (ES) et l’entité temporelle (ET). - L’approche thématique de l’OH en milieu urbain est fonctionnelle, organisée selon un thésaurus hiérarchisé.- L’espace, ensemble le plus formalisé des trois, est structuré sur le modèle d’un graphe planaire topologique sans isthme. - Le temps, toujours considéré comme continu et linéaire, sera modélisé par analogie à l’espace en utilisant la topologie temporelle définie en intelligence artificielle. Les associations entre les trois ensembles caractérisent chacune une interaction (fonction-espace, fonction-temps, espace-temps ou encore fonction-espace-temps). Elles permettent, au-delà de la reconstruction de l’OH, l’observation des transformations urbaines par l’analyse des distributions et de la cartographie de chacune des entités seule ou deux à deux.L’originalité de la démarche réside dans une approche qui permet de ne pas partir de la cartographie d’un phénomène à un temps t1 et de la comparer à celle d’un temps t2, mais de l’aborder indifféremment selon une entrée fonctionnelle, spatiale ou temporelle. La valeur heuristique de cette modélisation réside dans le passage de la description (quoi, où, quand) à la compréhension des phénomènes de transformation (comment, pourquoi). " lang="fr">
+    <meta name="DC.description" xml:lang="fr" content="Le principe de compréhension de l’espace urbain proposé consiste à aborder la ville comme un ensemble d’objets complexes selon une approche systémique. Le système ville considéré pour étudier la fabrique de la ville dans la longue durée est constitué de trois dimensions dont relèvent les objets historiques de l’échelle de la fouille à celle de l’espace urbanisé ancien&nbsp;: fonctionnelle (usage social), spatiale (localisation, étendue et morphologie) et temporelle (datation, durée et chronologie). L’objet historique constitue l’unité analytique de l’espace étudié. Il est le produit cartésien des trois ensembles Fonction, Espace, Temps dont il est issu. Partant de ce processus, l’Objet Historique (OH) est déstructuré en trois types d’objets simples, l’entité fonctionnelle (EF), l’entité spatiale (ES) et l’entité temporelle (ET). - L’approche thématique de l’OH en milieu urbain est fonctionnelle, organisée selon un thésaurus hiérarchisé.- L’espace, ensemble le plus formalisé des trois, est structuré sur le modèle d’un graphe planaire topologique sans isthme. - Le temps, toujours considéré comme continu et linéaire, sera modélisé par analogie à l’espace en utilisant la topologie temporelle définie en intelligence artificielle. Les associations entre les trois ensembles caractérisent chacune une interaction (fonction-espace, fonction-temps, espace-temps ou encore fonction-espace-temps). Elles permettent, au-delà de la reconstruction de l’OH, l’observation des transformations urbaines par l’analyse des distributions et de la cartographie de chacune des entités seule ou deux à deux.L’originalité de la démarche réside dans une approche qui permet de ne pas partir de la cartographie d’un phénomène à un temps t1 et de la comparer à celle d’un temps t2, mais de l’aborder indifféremment selon une entrée fonctionnelle, spatiale ou temporelle. La valeur heuristique de cette modélisation réside dans le passage de la description (quoi, où, quand) à la compréhension des phénomènes de transformation (comment, pourquoi). " lang="fr">
+    <meta name="keywords" xml:lang="fr" content="espace-temps, fonctions urbaines, ville, modélisation, espace, temps, temporalité, sciences historiques, Système d’information géographique, dynamiques spatiales" lang="fr">
+    <meta name="description" xml:lang="en" content="The proposed principle for understanding the urban fabric is based on considering the town as a set of complex objects, taking a systemic approach. The town system used to study the urban fabric over large time spans is composed of three sub-systems relating to historical objects from the level of the excavation to that of the former urban space: function (social use), space (location, surface area and morphology) and time (dating, duration and chronology). The historical object is the analytical unit of the space studied. It is the Cartesian product of the three sets, Social use, Space and Time, from which it stems.On the basis of this process, the Historical Object (OH) is broken down into three types of simple object, functional (EF), spatial (ES) and temporal (ET).- The thematic approach to the OH in an urban environment is based on social use, organized according to a hierarchical thesaurus.- Space, the most formalized of the three sets, is structured on the model of a planar topological graph without isthmi.- Time, always considered as continuous and linear, will be modelled by analogy with space using temporal topology defined in the field of artificial intelligence.The relationships between these three sets each characterize an interaction (social use-space, social use-time, time-space, or function-space-time). In addition to reconstructing the OH, they allow urban changes to be observed by analyzing the distributions and mapping of each of the entities singly or two-by-two. The originality of this procedure lies in its approach whereby it is possible to start not from the mapping of a phenomenon at a time t1 and comparing it to that at a time t2, but to look at it in the same way whether its input is social use, space or time. The heuristic value of this modelling lies in the shift from description (what, where, when) to understanding the phenomena of change (how, why).  " lang="en">
+    <meta name="DC.description" xml:lang="en" content="The proposed principle for understanding the urban fabric is based on considering the town as a set of complex objects, taking a systemic approach. The town system used to study the urban fabric over large time spans is composed of three sub-systems relating to historical objects from the level of the excavation to that of the former urban space: function (social use), space (location, surface area and morphology) and time (dating, duration and chronology). The historical object is the analytical unit of the space studied. It is the Cartesian product of the three sets, Social use, Space and Time, from which it stems.On the basis of this process, the Historical Object (OH) is broken down into three types of simple object, functional (EF), spatial (ES) and temporal (ET).- The thematic approach to the OH in an urban environment is based on social use, organized according to a hierarchical thesaurus.- Space, the most formalized of the three sets, is structured on the model of a planar topological graph without isthmi.- Time, always considered as continuous and linear, will be modelled by analogy with space using temporal topology defined in the field of artificial intelligence.The relationships between these three sets each characterize an interaction (social use-space, social use-time, time-space, or function-space-time). In addition to reconstructing the OH, they allow urban changes to be observed by analyzing the distributions and mapping of each of the entities singly or two-by-two. The originality of this procedure lies in its approach whereby it is possible to start not from the mapping of a phenomenon at a time t1 and comparing it to that at a time t2, but to look at it in the same way whether its input is social use, space or time. The heuristic value of this modelling lies in the shift from description (what, where, when) to understanding the phenomena of change (how, why).  " lang="en">
+    <meta name="keywords" xml:lang="en" content="space-time, space, city, urban function, modelling, time, geographical information system, historical sciences, spatial dynamics" lang="en">
+    <meta name="DC.subject" xml:lang="fr" content="
+espace-temps, fonctions urbaines, ville, modélisation, espace, temps, temporalité, sciences historiques, Système d’information géographique, dynamiques spatiales" lang="fr">
+    <meta name="DC.subject" xml:lang="en" content="
+space-time, space, city, urban function, modelling, time, geographical information system, historical sciences, spatial dynamics" lang="en">
+    <meta name="DC.date" scheme="W3CDTF" content="2010-06-17">
+    <meta name="DC.rights" content="© CNRS-UMR Géographie-cités 8504">
+    <meta name="DC.relation.isPartOf" content="Cybergeo : European Journal of Geography, Systèmes, Modélisation, Géostatistiques ">
+    <meta name="DC.source" content="http://cybergeo.revues.org">
+    <meta name="citation_journal_title" content="Cybergeo : European Journal of Geography">
+    <meta name="citation_publisher" content="CNRS-UMR Géographie-cités 8504">
+    <meta name="citation_authors" content="Rodier, Xavier; Saligny, Laure">
+    <meta name="citation_title" content="Modélisation des objets historiques selon la fonction, l’espace et le temps pour l’étude des dynamiques urbaines dans la longue durée">
+    <meta name="citation_date" content="2010/06/17">
+    <meta name="citation_year" content="2010">
+    <meta name="citation_issn" content="1278-3366">
+    <meta name="citation_language" content="fr">
+    <meta name="citation_keywords" content="espace-temps; fonctions urbaines; ville; modélisation; espace; temps; temporalité; sciences historiques; Système d’information géographique; dynamiques spatiales; space-time; space; city; urban function; modelling; time; geographical information system; historical sciences; spatial dynamics">
+    <meta name="citation_abstract" xml:lang="fr" content="Le principe de compréhension de l’espace urbain proposé consiste à aborder la ville comme un ensemble d’objets complexes selon une approche systémique. Le système ville considéré pour étudier la fabrique de la ville dans la longue durée est constitué de trois dimensions dont relèvent les objets historiques de l’échelle de la fouille à celle de l’espace urbanisé ancien&nbsp;: fonctionnelle (usage social), spatiale (localisation, étendue et morphologie) et temporelle (datation, durée et chronologie). L’objet historique constitue l’unité analytique de l’espace étudié. Il est le produit cartésien des trois ensembles Fonction, Espace, Temps dont il est issu. Partant de ce processus, l’Objet Historique (OH) est déstructuré en trois types d’objets simples, l’entité fonctionnelle (EF), l’entité spatiale (ES) et l’entité temporelle (ET). - L’approche thématique de l’OH en milieu urbain est fonctionnelle, organisée selon un thésaurus hiérarchisé.- L’espace, ensemble le plus formalisé des trois, est structuré sur le modèle d’un graphe planaire topologique sans isthme. - Le temps, toujours considéré comme continu et linéaire, sera modélisé par analogie à l’espace en utilisant la topologie temporelle définie en intelligence artificielle. Les associations entre les trois ensembles caractérisent chacune une interaction (fonction-espace, fonction-temps, espace-temps ou encore fonction-espace-temps). Elles permettent, au-delà de la reconstruction de l’OH, l’observation des transformations urbaines par l’analyse des distributions et de la cartographie de chacune des entités seule ou deux à deux.L’originalité de la démarche réside dans une approche qui permet de ne pas partir de la cartographie d’un phénomène à un temps t1 et de la comparer à celle d’un temps t2, mais de l’aborder indifféremment selon une entrée fonctionnelle, spatiale ou temporelle. La valeur heuristique de cette modélisation réside dans le passage de la description (quoi, où, quand) à la compréhension des phénomènes de transformation (comment, pourquoi)." lang="fr">
+    <meta name="citation_abstract" xml:lang="en" content="The proposed principle for understanding the urban fabric is based on considering the town as a set of complex objects, taking a systemic approach. The town system used to study the urban fabric over large time spans is composed of three sub-systems relating to historical objects from the level of the excavation to that of the former urban space: function (social use), space (location, surface area and morphology) and time (dating, duration and chronology). The historical object is the analytical unit of the space studied. It is the Cartesian product of the three sets, Social use, Space and Time, from which it stems.On the basis of this process, the Historical Object (OH) is broken down into three types of simple object, functional (EF), spatial (ES) and temporal (ET).- The thematic approach to the OH in an urban environment is based on social use, organized according to a hierarchical thesaurus.- Space, the most formalized of the three sets, is structured on the model of a planar topological graph without isthmi.- Time, always considered as continuous and linear, will be modelled by analogy with space using temporal topology defined in the field of artificial intelligence.The relationships between these three sets each characterize an interaction (social use-space, social use-time, time-space, or function-space-time). In addition to reconstructing the OH, they allow urban changes to be observed by analyzing the distributions and mapping of each of the entities singly or two-by-two. The originality of this procedure lies in its approach whereby it is possible to start not from the mapping of a phenomenon at a time t1 and comparing it to that at a time t2, but to look at it in the same way whether its input is social use, space or time. The heuristic value of this modelling lies in the shift from description (what, where, when) to understanding the phenomena of change (how, why)." lang="en">
+    <meta name="citation_abstract_html_url" content="http://cybergeo.revues.org/23175">
+    <meta name="citation_fulltext_html_url" content="http://cybergeo.revues.org/23175">
+    <meta name="citation_pdf_url" content="http://cybergeo.revues.org/pdf/23175">
+    <meta name="DC.description.tableOfContents" content="&lt;h1&gt;Plan&lt;/h1&gt;&lt;h1&gt;Introduction &lt;/h1&gt;&lt;h1&gt;La question spécifique du temps &lt;/h1&gt;&lt;h1&gt;L’objet historique dans trois dimensions&nbsp;: Fonction, Espace, Temps&lt;/h1&gt;&lt;h2&gt;Le système «&nbsp;espace urbanisé ancien&nbsp;» &lt;/h2&gt;&lt;h2&gt;L’échelle d’analyse&lt;/h2&gt;&lt;h2&gt;L’objet historique produit cartésien des ensembles fonction, espace et temps &lt;/h2&gt;&lt;h2&gt;Entrées et sorties du modèle OH_FET (Objet Historique – Fonction, Espace, Temps)&lt;/h2&gt;&lt;h1&gt;La modélisation conceptuelle&lt;/h1&gt;&lt;h2&gt;Méthode&lt;/h2&gt;&lt;h2&gt;L’entité fonctionnelle (EF), inscrite dans un thésaurus hiérarchique &lt;/h2&gt;&lt;h2&gt;L’entité spatiale (ES), élément du graphe planaire topologique &lt;/h2&gt;&lt;h2&gt;L’entité temporelle (ET), élément du temps&lt;/h2&gt;&lt;h2&gt;Le schéma conceptuel de données global &lt;/h2&gt;&lt;h1&gt;Conclusion&nbsp;: du modèle à l’analyse&lt;/h1&gt;">
+    <link title="schema(PRISM)" rel="schema.prism" href="http://prismstandard.org/namespaces/basic/2.0/">
+    <meta name="prism.url" content="http://cybergeo.revues.org/23175">
+    <meta name="prism.publicationName" content="Cybergeo : European Journal of Geography">
+    <meta name="prism.publicationDate" content="2010-06-17T00:00:00+02:00">
+    <meta name="prism.elssn" content="1278-3366">
+    <meta name="prism.teaser" content="Introduction  Notre objectif est la compréhension d’un système complexe dans la longue durée&nbsp;: l’espace urbanisé ancien. Il se définit archéologiquement par l’addition ou la soustraction de zones d’occupation dense d’une ville, des origines au milieu du xixe&nbsp;siècle. Il forme une figure irrégulière en taille et en épaisseur où la concentration des vestiges est élevée (Laurent 2007).  Le recours aux systèmes d’information pour l’étude des villes dans la longue durée doit autoriser&nbsp;: le croiseme...">
+    <meta name="prism.section" content="Systèmes, Modélisation, Géostatistiques">
+    <link rel="alternate" type="application/rss+xml" title="Cybergeo : European Journal of Geography, Numéros" href="http://cybergeo.revues.org/backend?format=rssnumeros">
+    <link rel="alternate" type="application/rss+xml" title="Cybergeo : European Journal of Geography, Documents" href="http://cybergeo.revues.org/backend?format=rssdocuments">
+    <link rel="stylesheet" type="text/css" href="Mod%C3%A9lisation%20des%20objets%20historiques%20selon%20la%20fonction,%20l%E2%80%99espace%20et%20le%20temps%20pour%20l%E2%80%99%C3%A9tude%20des%20dynamiques%20urbaines%20dans%20la%20longue%20dur%C3%A9e_fichiers/screen.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="Mod%C3%A9lisation%20des%20objets%20historiques%20selon%20la%20fonction,%20l%E2%80%99espace%20et%20le%20temps%20pour%20l%E2%80%99%C3%A9tude%20des%20dynamiques%20urbaines%20dans%20la%20longue%20dur%C3%A9e_fichiers/cleo.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="Mod%C3%A9lisation%20des%20objets%20historiques%20selon%20la%20fonction,%20l%E2%80%99espace%20et%20le%20temps%20pour%20l%E2%80%99%C3%A9tude%20des%20dynamiques%20urbaines%20dans%20la%20longue%20dur%C3%A9e_fichiers/print.css" media="print">
+    <!--[if IE]>
+    <link rel="stylesheet" type="text/css" href="css/ie.css" media="screen" />
+    <![endif]-->
+    <link rel="stylesheet" type="text/css" href="Mod%C3%A9lisation%20des%20objets%20historiques%20selon%20la%20fonction,%20l%E2%80%99espace%20et%20le%20temps%20pour%20l%E2%80%99%C3%A9tude%20des%20dynamiques%20urbaines%20dans%20la%20longue%20dur%C3%A9e_fichiers/jquery.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="Mod%C3%A9lisation%20des%20objets%20historiques%20selon%20la%20fonction,%20l%E2%80%99espace%20et%20le%20temps%20pour%20l%E2%80%99%C3%A9tude%20des%20dynamiques%20urbaines%20dans%20la%20longue%20dur%C3%A9e_fichiers/image.css" media="screen">
+  <script src="Mod%C3%A9lisation%20des%20objets%20historiques%20selon%20la%20fonction,%20l%E2%80%99espace%20et%20le%20temps%20pour%20l%E2%80%99%C3%A9tude%20des%20dynamiques%20urbaines%20dans%20la%20longue%20dur%C3%A9e_fichiers/checkOAuth.esi" type="text/javascript"></script><link href="Mod%C3%A9lisation%20des%20objets%20historiques%20selon%20la%20fonction,%20l%E2%80%99espace%20et%20le%20temps%20pour%20l%E2%80%99%C3%A9tude%20des%20dynamiques%20urbaines%20dans%20la%20longue%20dur%C3%A9e_fichiers/buttons.css" type="text/css" rel="stylesheet"></head>
+  <body onclick="if(stWidget.buttonClicked==false){stWidget.stopClosing=false;stWidget.openDuration=0;stWidget.stClose(100);}" id="article-23175" class="textes article">
+    <div id="access"><a href="#nav">Navigation</a>&nbsp;– <a href="http://cybergeo.revues.org/?page=map">Plan du site</a></div><!-- #access -->
+    <div id="header">
+      <h1 id="siteName"><a title="Accueil" href="http://cybergeo.revues.org/">Cybergeo : European Journal of Geography</a></h1>
+    </div><!-- #header -->
+    <div id="breadcrumb">
+      <div id="siteLang">
+        <ul>
+          <li><span class="selected">fr</span></li>
+          <li><a href="http://cybergeo.revues.org/23175?lang=en" alt="English" title="English">en</a></li>
+        </ul>
+      </div>
+      <p id="crumbs"><a class="home" href="http://cybergeo.revues.org/index.html">Accueil</a><span class="separator"> &gt; </span><a href="http://cybergeo.revues.org/52">Rubriques</a><span class="separator"> &gt; </span><a href="http://cybergeo.revues.org/54">Systèmes, Modélisation, Géostatis...</a><span class="separator"> &gt; </span><a href="http://cybergeo.revues.org/23898">2010</a><span class="separator"> &gt; </span><strong class="current">Modélisation des objets historiqu...</strong></p>
+    </div><!-- #breadcrumb -->
+    <div id="outerWrapper">
+      <div id="wrapper">
+        <div id="toolbox">
+          <form id="search" action="http://search.revues.org" method="get">
+            <p>
+              <input id="q" name="q" value="Recherche" type="text">
+              <input name="ul" value="http://cybergeo.revues.org" type="hidden">
+              <button type="submit" title="Chercher">Chercher</button>
+            </p>
+          </form>
+        </div>
+        <div id="content">
+          <div id="main">
+            <div class="navEntities top"><a rev="contents" class="goContents" href="http://cybergeo.revues.org/54" title="Systèmes, Modélisation, Géostatistiques">Sommaire</a><span class="separator"> - </span><a rev="prev" class="goPrev" href="http://cybergeo.revues.org/23183" title="Performances des modélisations déterministes d’ozone à méso-échelle et à micro-échelle dans les Alpes-Maritimes">Document précédent</a><span class="separator"> - </span><a rel="next" class="goNext" href="http://cybergeo.revues.org/23131" title="Make them walk ! Simulating pedestrian movement in dynamic environments">Document suivant</a></div><!-- .navEntities top -->
+            <div id="docHeader">
+              <div id="docTopParent" class="rubrique parent-2"><a href="http://cybergeo.revues.org/54"><span class="title">Systèmes, Modélisation, Géostatistiques</span></a></div>
+              <div id="docSubParent" class="compat-08">
+                <div class="rubriqueannuelle parent-1"><span class="title">2010</span></div>
+              </div>
+              <div id="docNumber">502</div>
+              <h1 id="docTitle"><span class="text">Modélisation des 
+objets historiques selon la fonction, l’espace et le temps pour l’étude 
+des dynamiques urbaines dans la longue durée</span></h1>
+              <div id="docAltertitle">
+                <div lang="en">Modeling historical objects based on social use, space and time in order to study urban dynamics in large time span</div>
+              </div>
+              <div id="docAuthor"> <strong>Xavier <span class="familyName">Rodier</span> et Laure <span class="familyName">Saligny</span></strong></div>
+            </div><!-- #docHeader -->
+            <div id="docBody">
+              <div id="shortcuts"><a href="#abstract">Résumé</a>&nbsp;| <a href="#entries">Index</a>&nbsp;| <a href="#toc">Plan</a>&nbsp;| <a href="#text">Texte</a>&nbsp;| <a href="#bibliography">Bibliographie</a>&nbsp;| <a href="#notes">Notes</a>&nbsp;| <a href="#illustrations">Illustrations</a>&nbsp;| <a href="#quotation">Citation</a>&nbsp;| <a href="#authors">Auteurs</a></div>
+              <div id="abstract" class="section">
+                <h2 class="section"><span class="text">Résumés</span></h2>
+                <div class="tabMenu"><a href="#abstract-23175-fr" hreflang="fr" class="active">Français</a> <a href="#abstract-23175-en" hreflang="en">English</a> </div>
+                <div id="abstract-23175-fr" class="tabContent" xml:lang="fr" lang="fr">
+                  <p class="resume" dir="ltr">Le principe de 
+compréhension de l’espace urbain proposé consiste à aborder la ville 
+comme un ensemble d’objets complexes selon une approche systémique. Le 
+système ville considéré pour étudier la fabrique de la ville dans la 
+longue durée est constitué de trois dimensions dont relèvent les objets 
+historiques de l’échelle de la fouille à celle de l’espace urbanisé 
+ancien&nbsp;: fonctionnelle (usage social), spatiale (localisation, 
+étendue et morphologie) et temporelle (datation, durée et chronologie). 
+L’objet historique constitue l’unité analytique de l’espace étudié. Il 
+est le produit cartésien des trois ensembles Fonction, Espace, Temps 
+dont il est issu. Partant de ce processus, l’Objet Historique (OH) est 
+déstructuré en trois types d’objets simples, l’entité fonctionnelle 
+(EF), l’entité spatiale (ES) et l’entité temporelle (ET). <br>- L’approche thématique de l’OH en milieu urbain est fonctionnelle, organisée selon un thésaurus hiérarchisé.<br>- L’espace, ensemble le plus formalisé des trois, est structuré sur le modèle d’un graphe planaire topologique sans isthme. <br>-
+ Le temps, toujours considéré comme continu et linéaire, sera modélisé 
+par analogie à l’espace en utilisant la topologie temporelle définie en 
+intelligence artificielle. <br>Les associations entre les trois 
+ensembles caractérisent chacune une interaction (fonction-espace, 
+fonction-temps, espace-temps ou encore fonction-espace-temps). Elles 
+permettent, au-delà de la reconstruction de l’OH, l’observation des 
+transformations urbaines par l’analyse des distributions et de la 
+cartographie de chacune des entités seule ou deux à deux.<br>L’originalité de la démarche réside dans une approche qui permet de ne pas partir de la cartographie d’un phénomène à un temps t<sub>1</sub> et de la comparer à celle d’un temps t<sub>2,</sub>
+ mais de l’aborder indifféremment selon une entrée fonctionnelle, 
+spatiale ou temporelle. La valeur heuristique de cette modélisation 
+réside dans le passage de la description (quoi, où, quand) à la 
+compréhension des phénomènes de transformation (comment, pourquoi).</p>
+                </div>
+                <div id="abstract-23175-en" class="tabContent hidden" xml:lang="en" lang="en">
+                  <p class="abstract" dir="ltr">The proposed principle 
+for understanding the urban fabric is based on considering the town as a
+ set of complex objects, taking a systemic approach. The town system 
+used to study the urban fabric over large time spans is composed of 
+three sub-systems relating to historical objects from the level of the 
+excavation to that of the former urban space: function (social use), 
+space (location, surface area and morphology) and time (dating, duration
+ and chronology). The historical object is the analytical unit of the 
+space studied. It is the Cartesian product of the three sets, Social 
+use, Space and Time, from which it stems.<br>On the basis of this 
+process, the Historical Object (OH) is broken down into three types of 
+simple object, functional (EF), spatial (ES) and temporal (ET).<br>- The
+ thematic approach to the OH in an urban environment is based on social 
+use, organized according to a hierarchical thesaurus.<br>- Space, the most formalized of the three sets, is structured on the model of a planar topological graph without isthmi.<br>-
+ Time, always considered as continuous and linear, will be modelled by 
+analogy with space using temporal topology defined in the field of 
+artificial intelligence.<br>The relationships between these three sets 
+each characterize an interaction (social use-space, social use-time, 
+time-space, or function-space-time). In addition to reconstructing the 
+OH, they allow urban changes to be observed by analyzing the 
+distributions and mapping of each of the entities singly or two-by-two. <br>The
+ originality of this procedure lies in its approach whereby it is 
+possible to start not from the mapping of a phenomenon at a time t<sub>1</sub> and comparing it to that at a time t<sub>2</sub>,
+ but to look at it in the same way whether its input is social use, 
+space or time. The heuristic value of this modelling lies in the shift 
+from description (what, where, when) to understanding the phenomena of 
+change (how, why). </p>
+                </div><a class="go-top" href="#article-23175">Haut de page</a></div><!-- #abstract -->
+              <div id="entries" class="section">
+                <h2 class="section"><span class="text">Entrées d’index</span></h2>
+                <div class="index">
+                  <h3>Mots-clés&nbsp;:</h3><a href="http://cybergeo.revues.org/573">espace-temps</a>, <a href="http://cybergeo.revues.org/1091">fonctions urbaines</a>, <a href="http://cybergeo.revues.org/1197">ville</a>, <a href="http://cybergeo.revues.org/1228">modélisation</a>, <a href="http://cybergeo.revues.org/3818">espace</a>, <a href="http://cybergeo.revues.org/3819">temps</a>, <a href="http://cybergeo.revues.org/4701">temporalité</a>, <a href="http://cybergeo.revues.org/23176">sciences historiques</a>, <a href="http://cybergeo.revues.org/23177">Système d’information géographique</a>, <a href="http://cybergeo.revues.org/23178">dynamiques spatiales</a></div>
+                <div class="index">
+                  <h3>Keywords&nbsp;:</h3><a href="http://cybergeo.revues.org/387">space-time</a>, <a href="http://cybergeo.revues.org/828">space</a>, <a href="http://cybergeo.revues.org/1166">city</a>, <a href="http://cybergeo.revues.org/1763">urban function</a>, <a href="http://cybergeo.revues.org/2439">modelling</a>, <a href="http://cybergeo.revues.org/3824">time</a>, <a href="http://cybergeo.revues.org/7086">geographical information system</a>, <a href="http://cybergeo.revues.org/23179">historical sciences</a>, <a href="http://cybergeo.revues.org/23180">spatial dynamics</a></div><a class="go-top" href="#article-23175">Haut de page</a></div><!-- #entries -->
+              <div id="toc" class="section">
+                <h2 class="section"><span class="text">Plan</span></h2>
+                <div class="tocSection1"><a href="#tocto1n1" id="tocfrom1n1">Introduction </a></div>
+                <div class="tocSection1"><a href="#tocto1n2" id="tocfrom1n2">La question spécifique du temps </a></div>
+                <div class="tocSection1"><a href="#tocto1n3" id="tocfrom1n3">L’objet historique dans trois dimensions&nbsp;: Fonction, Espace, Temps</a></div>
+                <div class="tocSection2"><a href="#tocto2n1" id="tocfrom2n1">Le système «&nbsp;espace urbanisé ancien&nbsp;» </a></div>
+                <div class="tocSection2"><a href="#tocto2n2" id="tocfrom2n2">L’échelle d’analyse</a></div>
+                <div class="tocSection2"><a href="#tocto2n3" id="tocfrom2n3">L’objet historique produit cartésien des ensembles fonction, espace et temps </a></div>
+                <div class="tocSection2"><a href="#tocto2n4" id="tocfrom2n4">Entrées et sorties du modèle OH_FET (Objet Historique – Fonction, Espace, Temps)</a></div>
+                <div class="tocSection1"><a href="#tocto1n4" id="tocfrom1n4">La modélisation conceptuelle</a></div>
+                <div class="tocSection2"><a href="#tocto2n5" id="tocfrom2n5">Méthode</a></div>
+                <div class="tocSection2"><a href="#tocto2n6" id="tocfrom2n6">L’entité fonctionnelle (EF), inscrite dans un thésaurus hiérarchique </a></div>
+                <div class="tocSection2"><a href="#tocto2n7" id="tocfrom2n7">L’entité spatiale (ES), élément du graphe planaire topologique </a></div>
+                <div class="tocSection2"><a href="#tocto2n8" id="tocfrom2n8">L’entité temporelle (ET), élément du temps</a></div>
+                <div class="tocSection2"><a href="#tocto2n9" id="tocfrom2n9">Le schéma conceptuel de données global </a></div>
+                <div class="tocSection1"><a href="#tocto1n5" id="tocfrom1n5">Conclusion&nbsp;: du modèle à l’analyse</a></div><a class="go-top" href="#article-23175">Haut de page</a></div><!-- #toc -->
+              <div id="docAddendum" class="section">
+                <div id="remerciements">
+                  <h2 class="section"><span class="text">Remerciements</span></h2>Les
+ auteurs remercient Henri Galinié initiateur de ce travail, Bastien 
+Lefèvre et Françoise Pirot pour leurs commentaires sur les versions 
+antérieures de cet article, Pascal Chareille et Lahouari Kaddouri pour 
+leurs critiques constructives. Ce travail a bénéficié de la richesse des
+ échanges au sein du réseau thématique pluridisciplinaire Modélisation 
+des dynamiques spatiales (RTP MoDyS, http://modys.univ-tours.fr).</div>
+              </div><!-- #docAddendum -->
+              <div id="text" class="section">
+                <h2 class="section"><span class="text">Texte intégral</span></h2>
+                <div id="widgets" class="withTextSize"><a id="wDownload" href="http://cybergeo.revues.org/pdf/23175" title="Télécharger cet article au format PDF" class="pdf"><span class="fileinfo">PDF</span></a> <a id="wSend" href="http://cybergeo.revues.org/signaler23175" title="Signaler ce document">Signaler ce document</a><a title="Imprimer ce document" href="http://cybergeo.revues.org/23175" id="wPrint"></a><a title="Taille du texte : très grande" href="http://cybergeo.revues.org/23175" id="wTextSize-largest"></a><a title="Taille du texte : grande" href="http://cybergeo.revues.org/23175" id="wTextSize-large"></a><a class="current" title="Taille du texte : normale" href="http://cybergeo.revues.org/23175" id="wTextSize-medium"></a></div><!-- #widgets -->
+                <div class="text wResizable  medium">
+                  <h1 dir="ltr" id="heading1"><a href="#tocfrom1n1" id="tocto1n1">Introduction </a></h1>
+                  <p class="texte" dir="ltr"><span class="paranumber">1</span>Notre
+ objectif est la compréhension d’un système complexe dans la longue 
+durée&nbsp;: l’espace urbanisé ancien. Il se définit archéologiquement 
+par l’addition ou la soustraction de zones d’occupation dense d’une 
+ville, des origines au milieu du <span style="font-variant:small-caps;">xix</span><sup>e</sup>&nbsp;siècle.
+ Il forme une figure irrégulière en taille et en épaisseur où la 
+concentration des vestiges est élevée (Laurent 2007). </p>
+                  <p class="texte" dir="ltr"><span class="paranumber">2</span>Le recours aux systèmes d’information pour l’étude des villes dans la longue durée doit autoriser&nbsp;:</p>
+                  <ul class="listlevel1WW8Num14">
+                    <li>
+                      <p class="puces" style="margin-left:0.0in; margin-right:0.0in; text-indent:0.0in;" dir="ltr">le croisement d’informations et de sources qui sont par définition lacunaires et hétérogènes,</p>
+                    </li>
+                    <li>
+                      <p class="puces" style="margin-left:0.0in; margin-right:0.0in; text-indent:0.0in;" dir="ltr">l’évaluation de la documentation disponible,</p>
+                    </li>
+                    <li>
+                      <p class="puces" style="margin-left:0.0in; margin-right:0.0in; text-indent:0.0in;" dir="ltr">la représentation multiple d’une même réalité (Ruas 2002).</p>
+                    </li>
+                  </ul>
+                  <p class="texte" dir="ltr"><span class="paranumber">3</span>Pour
+ atteindre cet objectif, la première étape consiste à identifier et 
+formaliser l’Objet Historique (OH) que nous retenons comme élément de 
+base pour appréhender l’espace urbanisé ancien. Ensuite, nous 
+caractérisons et modélisons cet OH en tenant compte de son inscription 
+dans trois dimensions&nbsp;: la fonction, l’espace et le temps (long). 
+Enfin, nous proposons une modélisation conceptuelle des objets 
+historiques (le Schéma Conceptuel de Données OH-FET) qui sera utile à la
+ constitution de systèmes d’information géo-historique devant 
+permettre&nbsp;: </p>
+                  <ul class="listlevel1WW8Num44">
+                    <li>
+                      <p class="puces" style="margin-left:0.0in; margin-right:0.0in; text-indent:0.0in;" dir="ltr">une
+ lecture verticale et horizontale des phénomènes&nbsp;(que se passe-t-il
+ à telle époque&nbsp;? quelle sont les transformations de tel 
+lieu&nbsp;?),</p>
+                    </li>
+                    <li>
+                      <p class="puces" style="margin-left:0.0in; margin-right:0.0in; text-indent:0.0in;" dir="ltr">la conservation de la nature propre de chaque lieu, à savoir leurs mutations fonctionnelles, temporelles et spatiales,</p>
+                    </li>
+                    <li>
+                      <p class="puces" style="margin-left:0.0in; margin-right:0.0in; text-indent:0.0in;" dir="ltr">une non-redondance des informations pour faciliter les analyses et la gestion des données.</p>
+                    </li>
+                  </ul>
+                  <p class="texte" dir="ltr"><span class="paranumber">4</span>La modélisation proposée est le résultat de trois étapes clefs qui ont rythmé notre démarche.</p>
+                  <p class="texte" dir="ltr"><span class="paranumber">5</span>La
+ première est celle de la formalisation des objets de la topographie 
+historique (Rodier 2000&nbsp;; Galinié, Rodier 2002). Il s’agit d’une 
+approche résolument fonctionnelle de la ville (Heighway 1972&nbsp;; 
+Biddle, Hudson 1973&nbsp;; Lepetit 1988&nbsp;; Galinié 2000). La 
+priorité est la caractérisation des objets constituant le paysage urbain
+ dans un espace support (Pumain 1993, p.&nbsp;137-139). La méthodologie 
+mise en œuvre est liée aux modes de classification archéologique et à la
+ culture des bases de données relationnelles.</p>
+                  <p class="texte" dir="ltr"><span class="paranumber">6</span>La
+ deuxième est la prise en compte des propriétés spatiales des objets 
+historiques. Il s’agit d’une modélisation géographique des entités 
+archéologiques (Saligny 2004&nbsp;; Galinié, Rodier, Saligny 2004). Elle
+ est fondée sur une approche géographique de l’espace urbain (Galinié 
+2000) dans la perspective d’une analyse des dynamiques spatiales. Elle 
+correspond à l’appropriation par les archéologues de certains concepts 
+de la géographie et de l’utilisation des systèmes d’information 
+géographique (SIG).</p>
+                  <p class="texte" dir="ltr"><span class="paranumber">7</span>La
+ troisième est l’isolation du temps dans les processus spatio-temporels 
+afin de ne plus l’assujettir à l’espace (Rodier, Saligny 2007, 2008, 
+Rodier <em>et al.</em> 2010). Il s’agit en quelque sorte de la 
+réappropriation du temps par les archéologues/historiens dans l’analyse 
+des dynamiques spatiales. L’objectif est de permettre une analyse 
+distincte du temps et de l’espace. L’approche repose sur une analogie 
+entre la modélisation et le traitement de l’espace et du temps avec 
+comme référence la formalisation de la topologie des intervalles 
+temporels en intelligence artificielle (Allen 1984).</p>
+                  <p class="texte" dir="ltr"><span class="paranumber">8</span>Ainsi,
+ nous exposerons la spécificité de la dimension temporelle en préalable à
+ la formalisation et la modélisation des objets historiques.</p>
+                  <h1 dir="ltr" id="heading2"><a href="#tocfrom1n2" id="tocto1n2">La question spécifique du temps </a></h1>
+                  <p class="texte" dir="ltr"><span class="paranumber">9</span>La
+ prise en compte du temps dans les systèmes d’information géographique 
+se traduit par de nombreux travaux en géomatique selon deux approches, 
+une première mathématique et informatique (Le Ber , Ligozat, Papini 
+2007), une seconde issue des sciences sociales (Frank, Raper, Cheylan 
+2001&nbsp;; Raper 2001, p.&nbsp;13-20&nbsp;; Frank 2001, p.&nbsp;21-34).
+ Dans les deux cas, l’objectif est de proposer des modélisations de 
+processus spatio-temporels. Toujours selon ces deux approches, le temps 
+est associé au mouvement ou au changement d’état, le plus souvent pour 
+des durées courtes. Ces travaux sont utilisés pour gérer l’historique de
+ tracés, de mouvements ou de phénomènes de manière à pouvoir restituer 
+des états successifs ou encore pour proposer des représentations 
+dynamiques sous forme de cartes animées (Johnson 2004&nbsp;; Cheylan 
+2007). </p>
+                  <p class="texte" dir="ltr"><span class="paranumber">10</span>Dans
+ le meilleur des cas, le temps constitue un élément d’explication des 
+phénomènes spatiaux étudiés malgré la nécessité bien identifiée 
+d’envisager une conception relative de l’espace intégrant le temps 
+(Pumain 1993, p.&nbsp;155-156). L’objectif des géographes de passer d’un
+ espace support aux interactions spatiales puis à l’étude des dynamiques
+ spatiales (Pumain 1993, p.&nbsp;155-156) a très largement contribué à 
+la formalisation des processus spatio-temporels et à leur méthode 
+d’analyse. Quand les phénomènes sont abordés sous un aspect 
+spatio-temporel, le temps est un des éléments qui structurent l’espace. 
+C’est cette démarche qui est mise en œuvre pour l’explication des 
+processus, des trajectoires, des dynamiques, le plus souvent dans des 
+études portant sur un temps court. La prise en compte du temps est alors
+ tellement liée à l’espace que la question de sa propre modélisation ne 
+se pose pas. Comme pour l’espace auparavant, on peut alors parler de 
+temps support dans lequel s’inscrivent les objets spatiaux complexes en 
+interaction.</p>
+                  <p class="texte" dir="ltr"><span class="paranumber">11</span>Comme
+ archéologues, notre ambition est de travailler sur les processus de 
+transformations par l’observation des héritages, des inerties, des 
+trajectoires et des dynamiques. Notre démarche s’inscrit dans l’approche
+ des sciences sociales à laquelle s’ajoute la spécificité du temps long.
+ Proche des unités spatio-temporelles définies par différents auteurs, 
+l’Objet Historique (OH) qui nous intéresse se distingue par les 
+temporalités dans lesquelles il s’inscrit. Par exemple, les auteurs de <em>Life and Motion of Socio-economic Units</em>
+ (Frank, Raper, Cheylan 2001), définissent une unité spatiale abstraite 
+décrivant un phénomène social ou économique (socio-spatial economic 
+unit) dont ils étudient le cycle de vie et les mouvements. Par 
+définition, ils ne prennent pas en compte les changements d’usage de 
+l’espace qui s’inscrivent dans un temps plus long.</p>
+                  <p class="texte" dir="ltr"><span class="paranumber">12</span>Les
+ archéologues qui ont fondé leur appréhension de l’espace sur les 
+travaux des géographes, ont très naturellement abordé la question des 
+dynamiques spatiales de la même manière. Les résultats obtenus 
+constituent des avancées considérables tant du point de vue 
+méthodologique que de celui de la compréhension des phénomènes 
+archéologiques. Néanmoins, en subordonnant systématiquement le temps à 
+l’espace, il n’est pas possible de rendre compte des multiples 
+temporalités des phénomènes. En sciences historiques, l’omniprésence du 
+temps dans les phénomènes étudiés constitue même un frein à sa 
+formalisation et à sa modélisation. Dans son ouvrage récent <em>Le sombre abîme du temps. Mémoire et archéologie</em>,
+ Laurent Olivier (2008) montre de manière introspective les ambiguïtés 
+de la notion de temps dans la démarche archéologique, mais il n’envisage
+ pas pour autant de structure plus systématique du temps. Les 
+archéologues ont peu formalisé leur approche temporelle au-delà de 
+l’échelle de la fouille avec l’analyse stratigraphique et des questions 
+de datation des artéfacts. En revanche, les formalismes de 
+représentation et de raisonnement sur l’espace et le temps développés 
+dans le domaine de l’intelligence artificielle (Le Ber, Ligozat, Papini 
+2007) n’ont pas eu d’écho en archéologie.</p>
+                  <p class="texte" dir="ltr"><span class="paranumber">13</span>Il
+ nous semble nécessaire d’avoir une approche indépendante de l’espace et
+ du temps afin d’observer les processus autant spatio-temporels que 
+temporo-spatiaux. Le principe que nous retenons est donc de modéliser le
+ temps selon les mêmes règles que l’espace afin, toujours par analogie, 
+de passer du temps support qui est le temps linéaire et figé dans lequel
+ nous inscrivons les objets historiques comme on les localise dans 
+l’espace, aux dynamiques traduisant les temporalités observées 
+empiriquement pour l’essentiel. Les outils d’analyse de ces temporalités
+ sont encore à développer mais il convient, au préalable, de formaliser 
+l’approche indépendante de l’espace et du temps. Ce changement de 
+perspective nous semble être une étape nécessaire pour fonder l’étude 
+des dynamiques sur des analyses dans lesquelles le temps et l’espace ont
+ la même valeur.</p>
+                  <h1 dir="ltr" id="heading3"><a href="#tocfrom1n3" id="tocto1n3">L’objet historique dans trois dimensions&nbsp;: Fonction, Espace, Temps</a></h1>
+                  <p class="texte" dir="ltr"><span class="paranumber">14</span>L’Objet
+ Historique (OH) est défini comme une unité, distincte des autres de 
+manière univoque selon les mêmes critères que l’objet 
+géographique&nbsp;: «&nbsp;Un objet est dit géographique s’il est 
+localisé, fixe, de préférence indéformable, délimité et identifié pour 
+être différencié des autres. Un objet est relatif à une échelle, une 
+temporalité et une matérialité des données, trois propriétés qui peuvent
+ se réunir dans la notion de granularité spatio-temporelle&nbsp;» 
+(Langlois 2005, p.&nbsp;311). Si nous réduisons la portée de l’objet 
+historique au champ urbain, c’est, d’une part, parce que notre 
+proposition de modélisation spatiale (Galinié, Rodier&nbsp;, Saligny 
+2004&nbsp;; Saligny 2004) a été construite pour l’étude des villes et, 
+d’autre part, parce que la description sémantique est plus systématique 
+que pour le milieu rural. En effet, la définition des objets d’étude en 
+milieu rural est moins stricte qu’en ville pour plusieurs raisons. 
+L’individualisation univoque d’un objet renseigné par des sources 
+différentes est plus difficile à établir sans doute parce que les 
+repères topographiques sont plus diffus, l’amplitude de variation 
+d’échelles de perception des phénomènes est plus vaste et la 
+«&nbsp;granularité spatio-temporelle&nbsp;» se différencie davantage 
+selon l’origine des données. Malgré cela, si les questions du temps et 
+de l’espace sont transférables de l’urbain au rural, l’interprétation ne
+ l’est pas. Les choix inhérents à l’établissement d’un thésaurus posent 
+plus de problèmes pour le milieu rural que pour la ville. L’approche 
+fonctionnelle que nous appliquons (infra) aux questions actuelles 
+d’archéologie urbaine n’est pas adaptée au monde rural.</p>
+                  <h2 dir="ltr" id="heading4"><a href="#tocfrom2n1" id="tocto2n1">Le système «&nbsp;espace urbanisé ancien&nbsp;» </a></h2>
+                  <p class="texte" dir="ltr"><span class="paranumber">15</span>Pour
+ l’étude de la fabrique de la ville dans la longue durée (Galinié 2000),
+ l’objet historique (OH) constitue l’unité analytique de l’espace 
+urbanisé ancien, une église, un cimetière, un marché, etc. Il est ainsi 
+déterminé par son interprétation, sa localisation et son emprise, sa 
+datation et sa durée. Pour chaque OH, il faut procéder à&nbsp;: </p>
+                  <ul class="listlevel1WW8Num19">
+                    <li>
+                      <p class="puces" style="margin-left:0.0in; margin-right:0.0in; text-indent:0.0in;" dir="ltr">son
+ individualisation à l’échelle pertinente répondant à la fois aux 
+objectifs fixés et au degré de précision que permet l’état des 
+connaissances&nbsp;;</p>
+                    </li>
+                    <li>
+                      <p class="puces" style="margin-left:0.0in; margin-right:0.0in; text-indent:0.0in;" dir="ltr">la critique des différentes sources le renseignant&nbsp;; </p>
+                    </li>
+                    <li>
+                      <p class="puces" style="margin-left:0.0in; margin-right:0.0in; text-indent:0.0in;" dir="ltr">la détermination de sa fonction&nbsp;; </p>
+                    </li>
+                    <li>
+                      <p class="puces" style="margin-left:0.0in; margin-right:0.0in; text-indent:0.0in;" dir="ltr">l’établissement de sa localisation et de son emprise&nbsp;;</p>
+                    </li>
+                    <li>
+                      <p class="puces" style="margin-left:0.0in; margin-right:0.0in; text-indent:0.0in;" dir="ltr">l’établissement de sa durée d’usage. </p>
+                    </li>
+                  </ul>
+                  <p class="texte" dir="ltr"><span class="paranumber">16</span>L’individualisation
+ de l’OH comme entité robuste est fondée sur des systèmes documentaires 
+permettant, par leur confrontation, la transformation des données issues
+ des sources en informations de référence pertinente et interprétée. </p>
+                  <p class="texte" dir="ltr"><span class="paranumber">17</span>La
+ compréhension de l’espace urbain consiste à l’aborder comme un système 
+complexe (figure&nbsp;1) composé de trois dimensions&nbsp;: 
+fonctionnelle (usage social), spatiale (localisation, étendue et 
+morphologie) et temporelle (datation et chronologie), dont relèvent tous
+ les objets historiques quelle que soit l’échelle considérée (de la 
+fouille à l’espace urbanisé ancien). Chacune de ces dimensions est un 
+objet complexe composé d’objets simples (les entités fonctionnelles, 
+spatiales ou temporelles) qui sont employés pour constituer les objets 
+historiques.</p>
+                  <div class="textIcon"><a href="http://cybergeo.revues.org/docannexe/image/23175/img-1-small580.jpg" rel="iconSet"><img src="Mod%C3%A9lisation%20des%20objets%20historiques%20selon%20la%20fonction,%20l%E2%80%99espace%20et%20le%20temps%20pour%20l%E2%80%99%C3%A9tude%20des%20dynamiques%20urbaines%20dans%20la%20longue%20dur%C3%A9e_fichiers/img-1-small480.jpg" alt=""></a><div class="textIconAccess"><a class="iconZoom" rel="nofollow" href="http://cybergeo.revues.org/docannexe/image/23175/img-1-small580.jpg">Agrandir</a> <a class="iconOrig" rel="nofollow" href="http://cybergeo.revues.org/docannexe/image/23175/img-1.jpg">Original (jpeg, 132k)</a></div>
+                  </div>
+                  <p class="titreillustration" dir="ltr"><strong>Figure&nbsp;1.</strong>
+ Le système «&nbsp;espace urbanisé ancien&nbsp;» (schéma construit selon
+ la méthode HBDS, Hypergraph Based Data Structure&nbsp;: cf. §46)</p>
+                  <p class="texte" dir="ltr"><span class="paranumber">18</span>La
+ première étape est toujours la définition d’un cadre d’étude et 
+d’analyse spatio-temporelle à partir duquel on fondera la résolution 
+temporelle, spatiale et fonctionnelle. C’est le choix de l’échelle de 
+perception du phénomène étudié (Saint-Gérand 2005) ou encore, la notion 
+de granularité spatio-temporelle (Langlois 2005, p.&nbsp;311). Ensuite, 
+dans ce cadre, les interactions entre chaque dimension et l’OH modifient
+ et/ou enrichissent la définition de l’OH lui-même (Figure&nbsp;1).</p>
+                  <ul class="listlevel1WW8Num21">
+                    <li>
+                      <p class="puces" style="margin-left:0.0in; margin-right:0.0in; text-indent:0.0in;" dir="ltr">-
+ La Fonction est définie comme pérenne, stable et robuste. Elle est 
+composée d’entités fonctionnelles (EF) qui serviront à identifier et 
+interpréter les OH. Inversement, la reconnaissance de nouveaux OH 
+permettra de rajouter de nouvelles EF (cf.&nbsp;§48 à 53).</p>
+                    </li>
+                    <li>
+                      <p class="puces" style="margin-left:0.0in; margin-right:0.0in; text-indent:0.0in;" dir="ltr">-
+ L’Espace est défini comme non préétabli, planaire, multiple et 
+recomposable car il dépend de la déconstruction géométrique des objets 
+historiques en entités spatiales (ES). Ces ES sont nos unités 
+élémentaires constitutives de l’Espace qui, par défaut, reste vacant 
+(cf.&nbsp;§54 à 64).</p>
+                    </li>
+                    <li>
+                      <p class="puces" style="margin-left:0.0in; margin-right:0.0in; text-indent:0.0in;" dir="ltr">-
+ Le Temps est défini comme non préétabli, linéaire, multiple et 
+recomposable car il dépend de déconstruction chronométrique des objets 
+historiques en entités temporelles (ET). Les ET sont nos unités 
+élémentaires constitutives du Temps. Elles datent les objets historiques
+ (apparition – disparition&nbsp;; cf. §65 à 70).</p>
+                    </li>
+                  </ul>
+                  <p class="texte" dir="ltr"><span class="paranumber">19</span>Il
+ existe un processus de réitération, interne à chaque ensemble et 
+répondant à sa logique propre, lié au processus d’interprétation de la 
+donnée archéologique à la fois inductif et hypothético-déductif (Rodier,
+ Galinié 2006). Cela se traduit par la rétroaction des EF sur 
+elles-mêmes (spécialisation fonctionnelle), des ES sur elles-mêmes 
+(interaction spatiale) et des ET sur elles-mêmes (héritages). En outre, 
+chaque OH constitue un élément de rétroaction à la fois dans chacune des
+ dimensions (identification de nouvelle fonction et déconstruction de 
+l’espace et du temps) ainsi que sur le système “espace urbanisé ancien” 
+par la fabrique de la ville (Galinié 2000).</p>
+                  <p class="texte" dir="ltr"><span class="paranumber">20</span>Cette
+ définition s’inscrit dans la logique de la triade des trois W (What, 
+Where, When) de Peuquet (1994, p.&nbsp;447-451) fréquemment utilisée 
+(Egenhofer, Golledge 1998&nbsp;; Lardon, Libourel, Cheylan 1999&nbsp;; 
+Thériault, Claramunt 1999&nbsp;; Ott, Swiaczny 2001&nbsp;; Panopoulos, 
+Stamatopoulos, Kavouras 2003). Ainsi l’objet historique est fondé sur 
+ces trois ensembles, Fonction, Espace et Temps, dont il est le produit 
+cartésien (Figure&nbsp;2).</p>
+                  <div class="textIcon"><a href="http://cybergeo.revues.org/docannexe/image/23175/img-2-small580.jpg" rel="iconSet"><img src="Mod%C3%A9lisation%20des%20objets%20historiques%20selon%20la%20fonction,%20l%E2%80%99espace%20et%20le%20temps%20pour%20l%E2%80%99%C3%A9tude%20des%20dynamiques%20urbaines%20dans%20la%20longue%20dur%C3%A9e_fichiers/img-2-small480.jpg" alt=""></a><div class="textIconAccess"><a class="iconZoom" rel="nofollow" href="http://cybergeo.revues.org/docannexe/image/23175/img-2-small580.jpg">Agrandir</a> <a class="iconOrig" rel="nofollow" href="http://cybergeo.revues.org/docannexe/image/23175/img-2.jpg">Original (jpeg, 128k)</a></div>
+                  </div>
+                  <p class="titreillustration" dir="ltr"><strong>Figure&nbsp;2.</strong>Le modèle OH-FET dans les trois dimensions</p>
+                  <p class="texte" dir="ltr"><span class="paranumber">21</span>L’association
+ des trois ensembles implique que chacun des processus est conditionné 
+par les deux autres comme l’explique Donna Peuquet (1994, 
+p.&nbsp;448)&nbsp;: </p>
+                  <blockquote>
+                    <p class="citation" dir="ltr">“The triad framework permits the user to pose three basic kinds of questions:</p>
+                    <p class="citation" dir="ltr">– when&nbsp;+ 
+where&nbsp;→ what: Describe the objects or set of objects (what) that 
+are present at a given location or set of locations (where) at a given 
+time or set of times (when).</p>
+                    <p class="citation" dir="ltr">– when&nbsp;+ 
+what&nbsp;→ where: Describe the location or set of locations (where) 
+occupied by a given object or set of objects (what) at a given at a 
+given time or set of times (when).</p>
+                    <p class="citation" dir="ltr">– where&nbsp;+ 
+what&nbsp;→ when: Describe the times or set of times (when) that a given
+ object or set of objects (what) occupied a given location or set of 
+locations (where).”</p>
+                  </blockquote>
+                  <p class="texte" dir="ltr"><span class="paranumber">22</span>–
+ L’interprétation fonctionnelle d’un objet historique se fait par le 
+choix d’une fonction dans un thésaurus. Son inscription à la fois dans 
+une temporalité (par la datation) et dans l’espace (par sa localisation 
+et sa forme) influe directement sur ce choix. Certaines occurrences du 
+thésaurus sont des fonctions déterminées par un espace particulier 
+(cloître canonial, aire funéraire…) et/ou par la chronologie (<em>domus</em>, églises paroissiales). </p>
+                  <p class="texte" dir="ltr"><span class="paranumber">23</span>–
+ La localisation et la forme d’un objet historique sont déterminées par 
+la fonction (nécropoles, édifices de spectacle) et la chronologie 
+(cimetières, systèmes défensifs). En outre, le découpage de l’espace en 
+ES est déterminé par la construction successive des objets historiques 
+en fonction de leur définition temporelle et fonctionnelle (il n’y a pas
+ de découpage matriciel préalable de l’espace d’étude).</p>
+                  <p class="texte" dir="ltr"><span class="paranumber">24</span>–
+ La datation d’un objet historique est caractérisée par ses dates 
+d’apparition et de disparition. Même quand la continuité temporelle 
+d’une fonction est assurée, un changement de lieux (déplacement) ou une 
+modification morphologique significative impliquent le passage d’un 
+objet historique à un autre.</p>
+                  <h2 dir="ltr" id="heading5"><a href="#tocfrom2n2" id="tocto2n2">L’échelle d’analyse</a></h2>
+                  <p class="texte" dir="ltr"><span class="paranumber">25</span>La
+ rétroaction de l’OH sur l’espace urbanisé ancien (Figure&nbsp;1) 
+correspond à une focale donnée à laquelle on observe la fabrique 
+urbaine. Cependant, les échelles d’analyse peuvent s’emboîter formant à 
+chaque fois un système similaire mais à un niveau supra ou infra, 
+englobant ou englobées par un autre. La répétition de ces emboîtements 
+d’échelle se traduit par la définition d’objet spécifique à chacune 
+d’entre elles (Tableau 1). Le passage de l’une à l’autre correspond 
+systématiquement à un changement de résolution dans chacun des trois 
+ensembles, fonction, espace et temps. A chacune de ces échelles 
+imbriquées telles des poupées gigognes, correspond des descripteurs 
+adaptés pour chacun de ces systèmes.</p>
+                  <p class="texte" dir="ltr"><span class="paranumber">26</span>Le
+ passage de la caractérisation des objets d’étude à l’analyse des 
+dynamiques urbaines ne consiste pas uniquement en un changement de 
+niveau. La généralisation et l’agrégation spatiale d’entités identifiées
+ dans le sol à l’échelle de la ville sont insuffisantes pour aborder les
+ dynamiques urbaines. L’analyse de l’espace urbain tel que nous 
+l’envisageons consiste en un changement d’échelle auquel correspond un 
+changement d’objet. Il faut transformer les objets issus des sources en 
+objets historiques dans la ville. L’hétérogénéité des données et la 
+multiplicité des sources mises en œuvre varient selon l’échelle 
+considérée et induisent un changement des descripteurs dans les trois 
+dimensions que sont la fonction, l’espace et le temps.</p>
+                  <p class="texte" dir="ltr"><span class="paranumber">27</span>L’interprétation thématique passe de la description à l’identification de l’usage puis à la détermination de fonctions urbaines.</p>
+                  <p class="texte" dir="ltr"><span class="paranumber">28</span>Spatialement,
+ la transformation de points en surfaces et inversement fait appel à des
+ processus de recomposition plus complexes que la généralisation ou 
+l’agrégation. </p>
+                  <p class="texte" dir="ltr"><span class="paranumber">29</span>Pour
+ le temps, Le traitement chronologique va de l’antéro-postériorité 
+(établissement d’une chronologie relative) à la datation. Les objets 
+considérés s’inscrivent dans des temporalités différentes selon la 
+focale d’analyse.</p>
+                  <div class="textIcon"><a href="http://cybergeo.revues.org/docannexe/image/23175/img-3-small580.png" rel="iconSet"><img src="Mod%C3%A9lisation%20des%20objets%20historiques%20selon%20la%20fonction,%20l%E2%80%99espace%20et%20le%20temps%20pour%20l%E2%80%99%C3%A9tude%20des%20dynamiques%20urbaines%20dans%20la%20longue%20dur%C3%A9e_fichiers/img-3-small480.png" alt=""></a><div class="textIconAccess"><a class="iconZoom" rel="nofollow" href="http://cybergeo.revues.org/docannexe/image/23175/img-3-small580.png">Agrandir</a> <a class="iconOrig" rel="nofollow" href="http://cybergeo.revues.org/docannexe/image/23175/img-3.png">Original (png, 42k)</a></div>
+                  </div>
+                  <p class="titreillustration" dir="ltr"><strong>Tableau 1.</strong> Exemple archéologique de changement d’échelle dans les trois dimensions</p>
+                  <h2 dir="ltr" id="heading6"><a href="#tocfrom2n3" id="tocto2n3">L’objet historique produit cartésien des ensembles fonction, espace et temps </a></h2>
+                  <p class="texte" dir="ltr"><span class="paranumber">30</span>Soit <em>F</em> l’ensemble des entités fonctionnelles, <em>E</em> l’ensemble des entités spatiales et <em>T</em> l’ensemble des entités temporelles.</p>
+                  <div class="textIcon"><a href="http://cybergeo.revues.org/docannexe/image/23175/img-4.png" rel="iconSet"><img src="Mod%C3%A9lisation%20des%20objets%20historiques%20selon%20la%20fonction,%20l%E2%80%99espace%20et%20le%20temps%20pour%20l%E2%80%99%C3%A9tude%20des%20dynamiques%20urbaines%20dans%20la%20longue%20dur%C3%A9e_fichiers/img-4.png" alt=""></a><div class="textIconAccess"><a class="iconZoom" rel="nofollow" href="http://cybergeo.revues.org/docannexe/image/23175/img-4.png">Agrandir</a> <a class="iconOrig" rel="nofollow" href="http://cybergeo.revues.org/docannexe/image/23175/img-4.png">Original (png, 1,5k)</a></div>
+                  </div><em>OH</em><em>F</em><em>E</em><em>T</em><em>(f,e,t)</em><p class="paragraphesansretrait" dir="ltr">La
+ trajectoire des phénomènes étudiés est déterminée par les changements 
+dans chacun de ces ensembles qui se traduisent par un changement d’<em>OH</em>. </p>
+                  <div class="textIcon"><a href="http://cybergeo.revues.org/docannexe/image/23175/img-5.png" rel="iconSet"><img src="Mod%C3%A9lisation%20des%20objets%20historiques%20selon%20la%20fonction,%20l%E2%80%99espace%20et%20le%20temps%20pour%20l%E2%80%99%C3%A9tude%20des%20dynamiques%20urbaines%20dans%20la%20longue%20dur%C3%A9e_fichiers/img-5.png" alt=""></a><div class="textIconAccess"><a class="iconZoom" rel="nofollow" href="http://cybergeo.revues.org/docannexe/image/23175/img-5.png">Agrandir</a> <a class="iconOrig" rel="nofollow" href="http://cybergeo.revues.org/docannexe/image/23175/img-5.png">Original (png, 1,8k)</a></div>
+                  </div>
+                  <div class="textIcon"><a href="http://cybergeo.revues.org/docannexe/image/23175/img-6.png" rel="iconSet"><img src="Mod%C3%A9lisation%20des%20objets%20historiques%20selon%20la%20fonction,%20l%E2%80%99espace%20et%20le%20temps%20pour%20l%E2%80%99%C3%A9tude%20des%20dynamiques%20urbaines%20dans%20la%20longue%20dur%C3%A9e_fichiers/img-6.png" alt=""></a><div class="textIconAccess"><a class="iconZoom" rel="nofollow" href="http://cybergeo.revues.org/docannexe/image/23175/img-6.png">Agrandir</a> <a class="iconOrig" rel="nofollow" href="http://cybergeo.revues.org/docannexe/image/23175/img-6.png">Original (png, 508 octets)</a></div>
+                  </div><em>OH</em><em>OH</em><em>t</em><em><sub>0</sub></em><em>t</em><em><sub>1</sub></em><em>&nbsp;;t</em><em><sub>2</sub></em><em>F</em><span style="font-variant:small-caps;">×</span><em>E</em><span style="font-variant:small-caps;">×</span><em>T</em><div class="textIcon"><a href="http://cybergeo.revues.org/docannexe/image/23175/img-7.png" rel="iconSet"><img src="Mod%C3%A9lisation%20des%20objets%20historiques%20selon%20la%20fonction,%20l%E2%80%99espace%20et%20le%20temps%20pour%20l%E2%80%99%C3%A9tude%20des%20dynamiques%20urbaines%20dans%20la%20longue%20dur%C3%A9e_fichiers/img-7.png" alt=""></a><div class="textIconAccess"><a class="iconZoom" rel="nofollow" href="http://cybergeo.revues.org/docannexe/image/23175/img-7.png">Agrandir</a> <a class="iconOrig" rel="nofollow" href="http://cybergeo.revues.org/docannexe/image/23175/img-7.png">Original (png, 2,2k)</a></div>
+                  </div>
+                  <p class="paragraphesansretrait" dir="ltr">ou,</p>
+                  <div class="textIcon"><a href="http://cybergeo.revues.org/docannexe/image/23175/img-8.png" rel="iconSet"><img src="Mod%C3%A9lisation%20des%20objets%20historiques%20selon%20la%20fonction,%20l%E2%80%99espace%20et%20le%20temps%20pour%20l%E2%80%99%C3%A9tude%20des%20dynamiques%20urbaines%20dans%20la%20longue%20dur%C3%A9e_fichiers/img-8.png" alt=""></a><div class="textIconAccess"><a class="iconZoom" rel="nofollow" href="http://cybergeo.revues.org/docannexe/image/23175/img-8.png">Agrandir</a> <a class="iconOrig" rel="nofollow" href="http://cybergeo.revues.org/docannexe/image/23175/img-8.png">Original (png, 2,7k)</a></div>
+                  </div>
+                  <p class="texte" dir="ltr"><span class="paranumber">31</span>Par commodité, on écrira&nbsp;:</p>
+                  <div class="textIcon"><a href="http://cybergeo.revues.org/docannexe/image/23175/img-9.png" rel="iconSet"><img src="Mod%C3%A9lisation%20des%20objets%20historiques%20selon%20la%20fonction,%20l%E2%80%99espace%20et%20le%20temps%20pour%20l%E2%80%99%C3%A9tude%20des%20dynamiques%20urbaines%20dans%20la%20longue%20dur%C3%A9e_fichiers/img-9.png" alt=""></a><div class="textIconAccess"><a class="iconZoom" rel="nofollow" href="http://cybergeo.revues.org/docannexe/image/23175/img-9.png">Agrandir</a> <a class="iconOrig" rel="nofollow" href="http://cybergeo.revues.org/docannexe/image/23175/img-9.png">Original (png, 1,7k)</a></div>
+                  </div>
+                  <p class="paragraphesansretrait" dir="ltr">ou </p>
+                  <div class="textIcon"><a href="http://cybergeo.revues.org/docannexe/image/23175/img-10.png" rel="iconSet"><img src="Mod%C3%A9lisation%20des%20objets%20historiques%20selon%20la%20fonction,%20l%E2%80%99espace%20et%20le%20temps%20pour%20l%E2%80%99%C3%A9tude%20des%20dynamiques%20urbaines%20dans%20la%20longue%20dur%C3%A9e_fichiers/img-10.png" alt=""></a><div class="textIconAccess"><a class="iconZoom" rel="nofollow" href="http://cybergeo.revues.org/docannexe/image/23175/img-10.png">Agrandir</a> <a class="iconOrig" rel="nofollow" href="http://cybergeo.revues.org/docannexe/image/23175/img-10.png">Original (png, 1,6k)</a></div>
+                  </div>
+                  <p class="texte" dir="ltr"><span class="paranumber">32</span>Si <em>n</em> est le nombre d’éléments du produit cartésien <em>F&nbsp;×&nbsp;E&nbsp;×&nbsp;T</em></p>
+                  <p class="paragraphesansretrait" dir="ltr"><em>n=&nbsp;Card(F)&nbsp;×&nbsp;Card(E)&nbsp;×&nbsp;Card(T)</em></p>
+                  <p class="paragraphesansretrait" dir="ltr">où <em>Card(E)</em> est le nombre d’éléments de <em>E</em>, </p>
+                  <div class="textIcon"><a href="http://cybergeo.revues.org/docannexe/image/23175/img-11.png" rel="iconSet"><img src="Mod%C3%A9lisation%20des%20objets%20historiques%20selon%20la%20fonction,%20l%E2%80%99espace%20et%20le%20temps%20pour%20l%E2%80%99%C3%A9tude%20des%20dynamiques%20urbaines%20dans%20la%20longue%20dur%C3%A9e_fichiers/img-11.png" alt=""></a><div class="textIconAccess"><a class="iconZoom" rel="nofollow" href="http://cybergeo.revues.org/docannexe/image/23175/img-11.png">Agrandir</a> <a class="iconOrig" rel="nofollow" href="http://cybergeo.revues.org/docannexe/image/23175/img-11.png">Original (png, 2,3k)</a></div>
+                  </div>
+                  <div class="textandnotes">
+                    <ul class="sidenotes">
+                      <li dir="ltr"><span class="num">1</span>  &nbsp;<em>Documents d’évaluation du patrimoine archéologique des villes de France</em>, 21 documents publiés depu <a href="#ftn1">(...)</a></li>
+                    </ul>
+                    <p class="texte" dir="ltr"><span class="paranumber">33</span>L’observation
+ de la dynamique relève de la compréhension du processus de changement 
+d’état plutôt que de la comparaison d’états successifs (Frank 2001, 
+p.&nbsp;51). En règle générale, l’étude des dynamiques à partir des 
+diverses sources historiques est fondée sur la réalisation d’états à 
+plusieurs temps t<sub>n</sub> donnés, puis sur la comparaison de ces 
+états. Plusieurs méthodes sont alors utilisées comme la comparaison 
+visuelle (par exemple les DEPAVF du Cnau<a class="footnotecall" id="bodyftn1" href="#ftn1">1</a>)
+ ou l’algèbre de carte après généralisation de l’information (Nuninger, 
+Sanders 2006, Nuninger, Tourneux, Favory 2008, Gauthier 2008&nbsp;; 
+Frank 2001, p.&nbsp;21). Dans tous les cas, il s’agit de la différence 
+entre un état à <em>t</em><em><sub>1</sub></em> et un état à <em>t</em><em><sub>2</sub></em>
+ (Frank 2001, p.&nbsp;22). Le résultat prend la forme d’une cartographie
+ des changements qui représente la disparition, la stabilité et 
+l’apparition. Par commodité on écrit&nbsp;:</p>
+                  </div>
+                  <div class="textIcon"><a href="http://cybergeo.revues.org/docannexe/image/23175/img-12.png" rel="iconSet"><img src="Mod%C3%A9lisation%20des%20objets%20historiques%20selon%20la%20fonction,%20l%E2%80%99espace%20et%20le%20temps%20pour%20l%E2%80%99%C3%A9tude%20des%20dynamiques%20urbaines%20dans%20la%20longue%20dur%C3%A9e_fichiers/img-12.png" alt=""></a><div class="textIconAccess"><a class="iconZoom" rel="nofollow" href="http://cybergeo.revues.org/docannexe/image/23175/img-12.png">Agrandir</a> <a class="iconOrig" rel="nofollow" href="http://cybergeo.revues.org/docannexe/image/23175/img-12.png">Original (png, 2,7k)</a></div>
+                  </div>
+                  <p class="texte" dir="ltr"><span class="paranumber">34</span>Le
+ modèle que nous proposons a pour objectif de permettre d’analyser les 
+transformations que révèlent les produits cartésiens des ensembles deux à
+ deux.</p>
+                  <p class="paragraphesansretrait" dir="ltr"><em>F&nbsp;×&nbsp;E&nbsp;=&nbsp;transformations fonctionno&nbsp;– spatiale ou spatio&nbsp;–&nbsp;fonctionnelle</em></p>
+                  <p class="paragraphesansretrait" dir="ltr"><em>F&nbsp;×&nbsp;T&nbsp;=&nbsp;transformations fonctionno&nbsp;–temporelle ou temporo&nbsp;–&nbsp;fon</em>ctionnelle</p>
+                  <p class="paragraphesansretrait" dir="ltr"><em>E&nbsp;×&nbsp;T&nbsp;=&nbsp;transformations spatio&nbsp;– temporelle ou temporo&nbsp;–&nbsp;spatiale</em></p>
+                  <p class="paragraphesansretrait" dir="ltr">Ces 
+produits deux à deux caractérisent des interactions auxquelles sont 
+associés un ou plusieurs thèmes de l’étude des dynamiques urbaines dans 
+la longue durée (Tableau 2). </p>
+                  <table id="Tableau17Ctable" dir="ltr" style="margin-left:0mm;margin-right:0mm;margin-top:0mm;margin-bottom:0mm;border-collapse:separate;border-spacing:0pt" cellspacing="0">
+                    <tbody>
+                      <tr>
+                        <td style="margin-left:0mm;margin-right:0mm;margin-top:0mm;margin-bottom:0mm;padding-top:0in;padding-bottom:0in;padding-left:0.075in;padding-right:0.075in;border-top:0.014in solid #000000;border-bottom:0.014in solid #000000;border-left:0.014in solid #000000;border-right:none;vertical-align:top">
+                          <p class="texte" dir="ltr"><strong>Produits</strong></p>
+                        </td>
+                        <td style="margin-left:0mm;margin-right:0mm;margin-top:0mm;margin-bottom:0mm;padding-top:0in;padding-bottom:0in;padding-left:0.075in;padding-right:0.075in;border:0.014in solid #000000;vertical-align:top">
+                          <p class="texte" dir="ltr"><strong>Thèmes d’étude</strong></p>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="margin-left:0mm;margin-right:0mm;margin-top:0mm;margin-bottom:0mm;padding-top:0in;padding-bottom:0in;padding-left:0.075in;padding-right:0.075in;border-top:none;border-bottom:0.014in solid #000000;border-left:0.014in solid #000000;border-right:none;vertical-align:middle">
+                          <p class="texte" dir="ltr"><strong>F </strong><span style="font-variant:small-caps;"><strong>x E</strong></span></p>
+                        </td>
+                        <td style="margin-left:0mm;margin-right:0mm;margin-top:0mm;margin-bottom:0mm;padding-top:0in;padding-bottom:0in;padding-left:0.075in;padding-right:0.075in;border-top:none;border-bottom:0.014in solid #000000;border-left:0.014in solid #000000;border-right:0.014in solid #000000;vertical-align:top">
+                          <p class="texte" dir="ltr">Espace spécialisé déterminé par un usage&nbsp;: cloître canonial, aire funéraire, zone de production, port…</p>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="margin-left:0mm;margin-right:0mm;margin-top:0mm;margin-bottom:0mm;padding-top:0in;padding-bottom:0in;padding-left:0.075in;padding-right:0.075in;border-top:none;border-bottom:0.014in solid #000000;border-left:0.014in solid #000000;border-right:none;vertical-align:middle">
+                          <p class="texte" dir="ltr"><strong>F </strong><span style="font-variant:small-caps;"><strong>x </strong></span><strong>T</strong></p>
+                        </td>
+                        <td style="margin-left:0mm;margin-right:0mm;margin-top:0mm;margin-bottom:0mm;padding-top:0in;padding-bottom:0in;padding-left:0.075in;padding-right:0.075in;border-top:none;border-bottom:0.014in solid #000000;border-left:0.014in solid #000000;border-right:0.014in solid #000000;vertical-align:top">
+                          <p class="texte" dir="ltr">Fonction appartenant à une seule phase chronologique&nbsp;: domus, église paroissiale… </p>
+                          <p class="texte" dir="ltr">Changement de fonction&nbsp;: remploi/réutilisation d’un édifice</p>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="margin-left:0mm;margin-right:0mm;margin-top:0mm;margin-bottom:0mm;padding-top:0in;padding-bottom:0in;padding-left:0.075in;padding-right:0.075in;border-top:none;border-bottom:0.014in solid #000000;border-left:0.014in solid #000000;border-right:none;vertical-align:middle">
+                          <p class="texte" dir="ltr"><strong>E </strong><span style="font-variant:small-caps;"><strong>x </strong></span><strong>T</strong></p>
+                        </td>
+                        <td style="margin-left:0mm;margin-right:0mm;margin-top:0mm;margin-bottom:0mm;padding-top:0in;padding-bottom:0in;padding-left:0.075in;padding-right:0.075in;border-top:none;border-bottom:0.014in solid #000000;border-left:0.014in solid #000000;border-right:0.014in solid #000000;vertical-align:top">
+                          <p class="texte" dir="ltr">Localisation caractéristique d’une phase chronologique&nbsp;: nécropole, système défensif…</p>
+                          <p class="texte" dir="ltr">Mouvement&nbsp;: déplacement d’une fonction (baptistère, atelier monétaire…) </p>
+                          <p class="texte" dir="ltr">Morphologie&nbsp;: 
+changement de forme (passage d’une chapelle à une basilique funéraire…) 
+ou&nbsp;redistribution spatiale (réorganisation des bâtiments d’un 
+couvent...).</p>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <p class="titreillustration" dir="ltr"><strong>Tableau 2. </strong>Thèmes d’étude associés aux produits des dimensions deux à deux</p>
+                  <h2 dir="ltr" id="heading7"><a href="#tocfrom2n4" id="tocto2n4">Entrées et sorties du modèle OH_FET (Objet Historique – Fonction, Espace, Temps)</a></h2>
+                  <p class="texte" dir="ltr"><span class="paranumber">35</span>Le modèle OH_FET (Figure&nbsp;3) offre trois entrées autonomes, F, E et T et six sorties F, E, T, F&nbsp;<span style="font-variant:small-caps;">x&nbsp;</span>E, F&nbsp;<span style="font-variant:small-caps;">x&nbsp;</span>T et E&nbsp;<span style="font-variant:small-caps;">x&nbsp;</span>T plus une F&nbsp;<span style="font-variant:small-caps;">x&nbsp;</span>E&nbsp;<span style="font-variant:small-caps;">x&nbsp;</span>T.
+ Parmi les six sorties, trois permettent d’observer les distributions de
+ la fonction, de l’espace ou du temps et les trois autres, des 
+variabilités fonctionno-spatiale ou spatio-fonctionnelle (F&nbsp;<span style="font-variant:small-caps;">x&nbsp;</span>E), fonctionno-temporelle ou temporo-spatiale (F <span style="font-variant:small-caps;">x&nbsp;</span>T), spatio-temporelle ou temporo-spatiale (E&nbsp;<span style="font-variant:small-caps;">x&nbsp;</span>T). La sortie supplémentaire, F&nbsp;<span style="font-variant:small-caps;">x&nbsp;</span>E&nbsp;<span style="font-variant:small-caps;">x&nbsp;</span>T,
+ au cœur du système, ne reflète aucun processus de changement, mais 
+l’état des OH et de la topographie historique à un moment donné. </p>
+                  <div class="textIcon"><a href="http://cybergeo.revues.org/docannexe/image/23175/img-13-small580.jpg" rel="iconSet"><img src="Mod%C3%A9lisation%20des%20objets%20historiques%20selon%20la%20fonction,%20l%E2%80%99espace%20et%20le%20temps%20pour%20l%E2%80%99%C3%A9tude%20des%20dynamiques%20urbaines%20dans%20la%20longue%20dur%C3%A9e_fichiers/img-13-small480.jpg" alt=""></a><div class="textIconAccess"><a class="iconZoom" rel="nofollow" href="http://cybergeo.revues.org/docannexe/image/23175/img-13-small580.jpg">Agrandir</a> <a class="iconOrig" rel="nofollow" href="http://cybergeo.revues.org/docannexe/image/23175/img-13.jpg">Original (jpeg, 228k)</a></div>
+                  </div>
+                  <p class="titreillustration" dir="ltr"><strong>Figure&nbsp;3.</strong> Entrées et sorties du modèle OH_FET</p>
+                  <p class="texte" dir="ltr"><span class="paranumber">36</span>Cette approche permet&nbsp;:</p>
+                  <ul class="listlevel1WW8Num16">
+                    <li>
+                      <p class="puces" style="margin-left:0.0in; margin-right:0.0in; text-indent:0.0in;" dir="ltr">De restituer <em><strong>tous les états possibles</strong></em>,
+ c’est-à-dire toutes les cartographies à toutes les dates ou intervalles
+ possibles, au lieu d’avoir des états prédéfinis, “des clichés” 
+induisant un biais dans la vision des phénomènes.</p>
+                    </li>
+                    <li>
+                      <p class="puces" style="margin-left:0.0in; margin-right:0.0in; text-indent:0.0in;" dir="ltr">D’analyser et observer <em><strong>tous les changements d’état possibles</strong></em>.
+ Il s’agit de procéder à une différence entre 2 états mais comme tous 
+les états sont possibles, l’observation des changements peut se faire 
+avec des pas de temps très variés et non induits par défaut.</p>
+                    </li>
+                    <li>
+                      <p class="puces" style="margin-left:0.0in; margin-right:0.0in; text-indent:0.0in;" dir="ltr">De comprendre <em><strong>les transformations</strong></em>
+ c’est-à-dire le processus de changement d’état. C’est la recherche de 
+cette finalité qui fonde le modèle OH_FET. Le principe d’autonomie de la
+ fonction, de l’espace et du temps permet de les regrouper en produit 
+deux à deux afin d’observer les facteurs influant sur le changement et 
+d’estimer le rôle ou la prépondérance de l’un par rapport à l’autre.</p>
+                    </li>
+                  </ul>
+                  <p class="texte" dir="ltr"><span class="paranumber">37</span>Au delà de la restitution de l’état des OH (F&nbsp;<span style="font-variant:small-caps;">x&nbsp;</span>E&nbsp;<span style="font-variant:small-caps;">x&nbsp;</span>T), chaque sortie du modèle OH_FET offre la production de nouveaux éléments d’analyse permettant d’observer&nbsp;:</p>
+                  <ul class="listlevel1WW8Num23">
+                    <li>
+                      <p class="puces" style="margin-left:0.0in; margin-right:0.0in; text-indent:0.0in;" dir="ltr">La distribution fonctionnelle (F)&nbsp;: le nombre de fois qu’est employée chaque EF pour former les OH</p>
+                    </li>
+                    <li>
+                      <p class="puces" style="margin-left:0.0in; margin-right:0.0in; text-indent:0.0in;" dir="ltr">La
+ distribution spatiale ou la sollicitation de l’espace (E)&nbsp;: le 
+nombre de fois qu’est employée chaque ES pour former les OH</p>
+                    </li>
+                    <li>
+                      <p class="puces" style="margin-left:0.0in; margin-right:0.0in; text-indent:0.0in;" dir="ltr">La
+ distribution temporelle ou la sollicitation du temps (T)&nbsp;: le 
+nombre de fois qu’est employée chaque ET pour former les OH</p>
+                    </li>
+                    <li>
+                      <p class="puces" style="margin-left:0.0in; margin-right:0.0in; text-indent:0.0in;" dir="ltr">La variabilité fonctionnelle dans l’espace (F<span style="font-variant:small-caps;">x</span>E) fondée sur la fréquence de sollicitation des fonctions par ES et le nombre de fonction différentes par ES</p>
+                    </li>
+                    <li>
+                      <p class="puces" style="margin-left:0.0in; margin-right:0.0in; text-indent:0.0in;" dir="ltr">La variabilité fonctionnelle dans le temps (F<span style="font-variant:small-caps;">x</span>T) fondée sur la sollicitation des fonctions par ET et le nombre de fonction différente par ET</p>
+                    </li>
+                    <li>
+                      <p class="puces" style="margin-left:0.0in; margin-right:0.0in; text-indent:0.0in;" dir="ltr">La variabilité spatiale dans le temps (E<span style="font-variant:small-caps;">x</span>T) fondée sur la sollicitation de ET par ES ainsi que la variabilité temporelle dans l’espace (E<span style="font-variant:small-caps;">x</span>T) fondée sur la sollicitation des ES par ET.</p>
+                    </li>
+                  </ul>
+                  <p class="texte" dir="ltr"><span class="paranumber">38</span>Aucune
+ des sorties ne permet d’étudier une partie du système indépendamment du
+ reste&nbsp;: chaque résultat représente un aspect participant à la 
+compréhension de l’ensemble. Chacun de ces traitements permet de fournir
+ des informations différentes et complémentaires pour appréhender les 
+dynamiques du système.</p>
+                  <h1 dir="ltr" id="heading8"><a href="#tocfrom1n4" id="tocto1n4">La modélisation conceptuelle</a></h1>
+                  <p class="texte" dir="ltr"><span class="paranumber">39</span>Partant
+ du modèle OH_FET, la démarche consiste à définir un schéma conceptuel 
+de données (SCD) d’abord pour chacune des dimensions, puis global. </p>
+                  <p class="texte" dir="ltr"><span class="paranumber">40</span>Une
+ courte description de la méthode HBDS, Hypergraph Based Data Structure,
+ utilisée fournit les clefs de lecture des schémas suivants. La 
+modélisation conceptuelle respecte les spécificités de chacune des 
+dimensions et les objectifs fixés.</p>
+                  <p class="texte" dir="ltr"><span class="paranumber">41</span>La
+ fonction est donc organisée selon un modèle arborescent le plus souvent
+ utilisé pour la description des objets archéologiques, quelle que soit 
+l’échelle d’analyse (typologies organisées selon des thésaurus 
+hiérarchisés).</p>
+                  <div class="textandnotes">
+                    <ul class="sidenotes">
+                      <li dir="ltr"><span class="num">2</span>  &nbsp;<em>Graphe planaire topologique sans isthme</em>&nbsp;: Un graphe&nbsp;G est planaire s’il est possible de le représe <a href="#ftn2">(...)</a></li>
+                    </ul>
+                    <p class="texte" dir="ltr"><span class="paranumber">42</span>L’espace,
+ dimension la plus formalisée des trois, est structuré, dans ce cas, sur
+ le modèle d’un graphe planaire topologique sans isthme<a class="footnotecall" id="bodyftn2" href="#ftn2">2</a> (Berge 1958, p.&nbsp;206-217) fréquemment utilisé par les SIG.</p>
+                  </div>
+                  <p class="texte" dir="ltr"><span class="paranumber">43</span>Le
+ temps, toujours considéré comme continu et linéaire, n’a pas fait 
+l’objet, pour les systèmes d’information, de modélisation spécifique. 
+Nous proposons de le modéliser par analogie à l’espace. </p>
+                  <p class="texte" dir="ltr"><span class="paranumber">44</span>Afin
+ de permettre d’effectuer les analyses proposées (cf.&nbsp;§36 à 39), la
+ modélisation conceptuelle doit respecter la règle de non-redondance de 
+l’information.</p>
+                  <h2 dir="ltr" id="heading9"><a href="#tocfrom2n5" id="tocto2n5">Méthode</a></h2>
+                  <p class="texte" dir="ltr"><span class="paranumber">45</span>La
+ méthode HBDS utilisée est élaborée à partir de la théorie des graphes 
+et la théorie des ensembles (Bouillé 1977&nbsp;; Saint-Gérand 2005). 
+Elle se réfère à deux notions&nbsp;: les objets simples et les objets 
+complexes formés à partir des objets simples. Elle regroupe quatre 
+éléments fondamentaux utiles à la lecture des figures suivantes&nbsp;: </p>
+                  <ul class="listlevel1WW8Num18">
+                    <li>
+                      <p class="puces" style="margin-left:0.0in; margin-right:0.0in; text-indent:0.0in;" dir="ltr">La
+ classe&nbsp;: c’est un ensemble d’objets ayant les mêmes 
+caractéristiques (valuations). Ces objets seront dits 
+«&nbsp;simples&nbsp;». Elle est représentée par un rectangle. </p>
+                    </li>
+                    <li>
+                      <p class="puces" style="margin-left:0.0in; margin-right:0.0in; text-indent:0.0in;" dir="ltr">L’hyperclasse&nbsp;:
+ c’est un ensemble d’une ou plusieurs classes. Ses objets sont dits 
+«&nbsp;complexes&nbsp;». Sa figuration correspond également à un 
+rectangle englobant les rectangles figurant les objets simples composant
+ l’hyperclasse. </p>
+                    </li>
+                    <li>
+                      <p class="puces" style="margin-left:0.0in; margin-right:0.0in; text-indent:0.0in;" dir="ltr">Les
+ liens&nbsp;: ils matérialisent les relations topologiques entre les 
+classes d’objets et/ou les hyperclasses. Ils sont représentés par une ou
+ plusieurs flèches.</p>
+                    </li>
+                    <li>
+                      <p class="puces" style="margin-left:0.0in; margin-right:0.0in; text-indent:0.0in;" dir="ltr">Les hyperliens&nbsp;: c’est un ensemble de liens de nature similaire. Chaque lien ou hyperlien est porteur de valuations.</p>
+                    </li>
+                    <li>
+                      <p class="puces" style="margin-left:0.0in; margin-right:0.0in; text-indent:0.0in;" dir="ltr">Les valuations&nbsp;: elles caractérisent la classe ou ensemble d’objets. Elles sont figurées par des carrés reliés à la classe.</p>
+                    </li>
+                  </ul>
+                  <p class="texte" dir="ltr"><span class="paranumber">46</span>L’objet
+ simple possède une géométrie propre alors que l’objet complexe n’en 
+possède pas, il est composé d’un ou plusieurs objets simples. Selon 
+cette modélisation, plusieurs objets complexes peuvent former d’autres 
+objets complexes.</p>
+                  <h2 dir="ltr" id="heading10"><a href="#tocfrom2n6" id="tocto2n6">L’entité fonctionnelle (EF), inscrite dans un thésaurus hiérarchique </a></h2>
+                  <p class="texte" dir="ltr"><span class="paranumber">47</span>Les
+ EF, éléments composant la fonction (cf. §18), sont construites lors de 
+la première étape d’élaboration de la documentation de référence 
+consacrée à la définition et à la formalisation des données historiques.</p>
+                  <p class="texte" dir="ltr"><span class="paranumber">48</span>Dans
+ le domaine de la topographie urbaine étudiée dans la longue durée, les 
+renseignements utiles, pour leur potentiel documentaire, proviennent de 
+trois types de sources (Galinié 2000, p.&nbsp;18-24&nbsp;; Galinié, 
+Rodier 2002)&nbsp;:</p>
+                  <ul class="listlevel1WW8Num17">
+                    <li>
+                      <p class="puces" style="margin-left:0.0in; margin-right:0.0in; text-indent:0.0in;" dir="ltr">les éléments matériels dans le sol ou en élévation, </p>
+                    </li>
+                    <li>
+                      <p class="puces" style="margin-left:0.0in; margin-right:0.0in; text-indent:0.0in;" dir="ltr">les mentions écrites, </p>
+                    </li>
+                    <li>
+                      <p class="puces" style="margin-left:0.0in; margin-right:0.0in; text-indent:0.0in;" dir="ltr">les représentations iconographiques. </p>
+                    </li>
+                  </ul>
+                  <div class="textandnotes">
+                    <ul class="sidenotes">
+                      <li dir="ltr"><span class="num">3</span>  &nbsp;Voir l’annuaire des opérations de terrain en milieu urbain 2005, en ligne sur le site du Cnau http <a href="#ftn3">(...)</a></li>
+                    </ul>
+                    <p class="texte" dir="ltr"><span class="paranumber">49</span>De
+ nombreux exemples de regroupements fonctionnels existent dans la 
+bibliographie archéologique ou historique contemporaine, issue de la 
+géographie urbaine (Heighway 1972&nbsp;; Van Es <em>et al,</em> 
+1982&nbsp;; Lepetit 1988). Nous utilisons celui élaboré et testé par le 
+Centre national d’archéologie urbaine du ministère de la Culture (Cnau) 
+qui a fait ses preuves depuis 1990, pour le traitement des données 
+topographiques des villes préindustrielles<a class="footnotecall" id="bodyftn3" href="#ftn3">3</a>.</p>
+                  </div>
+                  <table id="Tableau27Ctable" dir="ltr" style="margin-left:0mm;margin-right:0mm;margin-top:0mm;margin-bottom:0mm;border-collapse:separate;border-spacing:0pt" cellspacing="0">
+                    <tbody>
+                      <tr>
+                        <td style="margin-left:0mm;margin-right:0mm;margin-top:0mm;margin-bottom:0mm;padding-top:0in;padding-bottom:0in;padding-left:0.075in;padding-right:0.075in;border:none;vertical-align:top">
+                          <p class="texte" dir="ltr"><strong>1. Voirie, aménagements</strong><br>11. voies, rues <br>12. espaces libres <br>13. aménagement des berges <br>14. aménagements du relief <br>15. franchissements <br>16. adductions d’eau <br>17. collecteurs, évacuations <br>18. monuments, vestiges <br>19. édifice monumental indéterminé <br><strong>2. Structures défensives et militaires</strong> <br>21. système défensif urbain <br>22. structures fortifiées <br>23. garnisons, casernements <br><strong>3. Constructions civiles</strong> <br>31. espaces publics <br>32. pouvoir civil, justice <br>33. éducation, culture <br>34. santé <br>35. spectacles, sports <br>36. bains, thermes <br>37. habitat privé <br><strong>4. Édifices religieux</strong> <br>41. cultes païens <br>42. édifices cultuels catholiques <br>43. bâtiments conventuels ou<br>monastiques <br>44. bâtiments ecclésiastiques <br>45. cultes autres que catholiques <br>46. églises paroissiales</p>
+                        </td>
+                        <td style="margin-left:0mm;margin-right:0mm;margin-top:0mm;margin-bottom:0mm;padding-top:0in;padding-bottom:0in;padding-left:0.075in;padding-right:0.075in;border:none;vertical-align:top">
+                          <p class="texte" dir="ltr"><strong>5. Lieux d’inhumation</strong> <br>51. aire funéraire <br>52. cimetière paroissial <br>53. lieu d’inhumation particulier <br><strong>6. Lieux de commerce, artisanat, production</strong> <br>61. commerce, échanges, boutiques <br>62. artisanat, ateliers <br>63. agriculture, élevage <br>64. manufacture, établissement industriel <br>65. extraction, carrières <br><strong>7. Formations naturelles</strong> <br>71. littoral <br>72. cours d’eau (alluvions) <br>73. marécage <br>74. colluvionnements <br><strong>8. Autres</strong> <br>81. indéterminé <br>82. absence d’occupation attestée <br>83. abandon <br><strong>9. Hors urbain</strong> <br>91. établissement complexe sans caractère urbain <br>92. structure périphérique</p>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <p class="titreillustration" dir="ltr"><strong>Tableau 3.</strong> Valeurs urbaines (1 à 9) et valeurs d’usages (11 à 92) d’après le thésaurus du Cnau</p>
+                  <p class="texte" dir="ltr"><span class="paranumber">50</span>L’interprétation
+ fonctionnelle de chaque élément matériel est établie à trois 
+niveaux&nbsp;: celui de la description, celui de la valeur d’usage et 
+celui de la valeur urbaine. Le niveau des descripteurs spécifiques n’est
+ pas présenté dans le thésaurus du Cnau (Tableau 3). Par exemple, les 
+structures archéologiques décrites comme une construction avec un four 
+de potier sont interprétées comme un atelier (valeur d’usage)&nbsp;; on 
+en suppose l’existence d’un secteur artisanal et celle d’activités de 
+production ou de transformation (valeur urbaine). Cette interprétation à
+ deux niveaux correspond à un changement d’échelle (Boffet 2002, 
+p.&nbsp;229).</p>
+                  <p class="texte" dir="ltr"><span class="paranumber">51</span>Le
+ SCD retenu pour la fonction (figure&nbsp;4) est celui du thésaurus 
+hiérarchisé. Sa résolution par une hiérarchisation à trois niveaux 
+(description, valeur d’usage, valeur urbaine) est fondée sur l’échelle 
+de perception envisagée. L’EF est une occurrence du thésaurus. La 
+fonction de l’OH est définie par une seule EF. Une EF peut-être 
+sollicitée par plusieurs OH. Le thésaurus est limité à l’aire 
+chrono-culturelle étudiée. Toutes les occurrences ne sont pas 
+nécessairement sollicitées. La création d’un nouvel OH peut amener à 
+augmenter le thésaurus.</p>
+                  <p class="texte" dir="ltr"><strong><a href="http://cybergeo.revues.org/docannexe/image/23175/img-14.jpg" rel="iconSet"><img src="Mod%C3%A9lisation%20des%20objets%20historiques%20selon%20la%20fonction,%20l%E2%80%99espace%20et%20le%20temps%20pour%20l%E2%80%99%C3%A9tude%20des%20dynamiques%20urbaines%20dans%20la%20longue%20dur%C3%A9e_fichiers/img-14.jpg" alt=""></a><a class="iconZoom" rel="nofollow" href="http://cybergeo.revues.org/docannexe/image/23175/img-14.jpg">Agrandir</a> <a class="iconOrig" rel="nofollow" href="http://cybergeo.revues.org/docannexe/image/23175/img-14.jpg">Original (jpeg, 48k)</a></strong></p>
+                  <p class="titreillustration" dir="ltr"><strong>Figure&nbsp;4.</strong> Schéma conceptuel de données de la Fonction</p>
+                  <h2 dir="ltr" id="heading11"><a href="#tocfrom2n7" id="tocto2n7">L’entité spatiale (ES), élément du graphe planaire topologique </a></h2>
+                  <p class="texte" dir="ltr"><span class="paranumber">52</span>La
+ modélisation spatiale proposée (Galinié, Rodier, Saligny 2004&nbsp;; 
+Saligny 2004) est fondée sur le principe de la non redondance des 
+entités. Les ES sont des objets simples limités à une géométrie 
+localisée&nbsp;; un objet simple formant une partie ou le tout d’un 
+objet complexe, ici l’objet historique. Nous postulons que l’espace est 
+continu, limité par la définition d’une zone d’étude et qu’en l’absence 
+d’ES, il contient des vides, c’est-à-dire des espaces vacants.</p>
+                  <p class="texte" dir="ltr"><span class="paranumber">53</span>La
+ création des ES dépend de la définition préalable des OH, il n’y a pas 
+de découpage de l’espace a priori. Le principe retenu est qu’en un lieu 
+donné, il ne peut y avoir qu’une et une seule ES mais elle peut être 
+utile à autant d’OH que nécessaire. C’est le découpage de l’espace par 
+la superposition des OH entre eux et avec l’espace qui définit les ES. 
+La forme de l’ES n’a pas de sens fonctionnel ou interprétatif, elle 
+résulte uniquement des changements spatiaux observés en un lieu.</p>
+                  <p class="texte" dir="ltr"><span class="paranumber">54</span>La
+ modélisation consiste à déconstruire l’information, quitte à aller à 
+l’encontre de la perception synthétique que nous avons d’un lieu. </p>
+                  <p class="texte" dir="ltr"><span class="paranumber">55</span>La
+ Figure&nbsp;5détaille cette démonstration à partir d’un exemple 
+représentant une succession de transformations telle qu’il en existe 
+dans de nombreuses villes de France selon des modalités variées. </p>
+                  <p class="texte" dir="ltr"><strong><a href="http://cybergeo.revues.org/docannexe/image/23175/img-15-small580.jpg" rel="iconSet"><img src="Mod%C3%A9lisation%20des%20objets%20historiques%20selon%20la%20fonction,%20l%E2%80%99espace%20et%20le%20temps%20pour%20l%E2%80%99%C3%A9tude%20des%20dynamiques%20urbaines%20dans%20la%20longue%20dur%C3%A9e_fichiers/img-15-small480.jpg" alt=""></a><a class="iconZoom" rel="nofollow" href="http://cybergeo.revues.org/docannexe/image/23175/img-15-small580.jpg">Agrandir</a> <a class="iconOrig" rel="nofollow" href="http://cybergeo.revues.org/docannexe/image/23175/img-15.jpg">Original (jpeg, 212k)</a></strong></p>
+                  <p class="titreillustration" dir="ltr"><strong>Figure&nbsp;5.</strong> Exemple de conversion d’OH en ES (Galinié, Rodier, Saligny 2004)</p>
+                  <p class="texte" dir="ltr"><span class="paranumber">56</span>Le
+ changement de perspective opéré en déstructurant l’espace en ES 
+s’appuie sur une définition du lieu dont la fonction et le temps sont 
+des attributs. L’espace est alors au cœur du modèle proposé et, de fait,
+ au centre des problématiques. Le raisonnement est fondé sur les types 
+de modifications d’un lieu dans le temps (Figure&nbsp;6) regroupés en 
+trois catégories, modifications thématiques, spatiales et temporelles, 
+inspirées de Lardon, Libourel et Cheylan (1999, p.&nbsp;51-52). </p>
+                  <div class="textIcon"><a href="http://cybergeo.revues.org/docannexe/image/23175/img-16-small580.jpg" rel="iconSet"><img src="Mod%C3%A9lisation%20des%20objets%20historiques%20selon%20la%20fonction,%20l%E2%80%99espace%20et%20le%20temps%20pour%20l%E2%80%99%C3%A9tude%20des%20dynamiques%20urbaines%20dans%20la%20longue%20dur%C3%A9e_fichiers/img-16-small480.jpg" alt=""></a><div class="textIconAccess"><a class="iconZoom" rel="nofollow" href="http://cybergeo.revues.org/docannexe/image/23175/img-16-small580.jpg">Agrandir</a> <a class="iconOrig" rel="nofollow" href="http://cybergeo.revues.org/docannexe/image/23175/img-16.jpg">Original (jpeg, 184k)</a></div>
+                  </div>
+                  <p class="titreillustration" dir="ltr"><strong>Figure&nbsp;6.</strong> Types de modifications que peut subir un lieu dans le temps (Galinié, Rodier, Saligny 2004)</p>
+                  <p class="texte" dir="ltr"><span class="paranumber">57</span>L’objectif
+ du SCD proposé (Figure&nbsp;7) est de créer des entités spatiales selon
+ les transformations morphologiques subies par un lieu, et non selon une
+ définition fonctionnelle. Ceci oblige à découper le lieu en objets (ES)
+ qui ne sont pas définis par une datation et/ou une fonction. Dans notre
+ exemple, les ES créées correspondent à des réalités physiques, à des 
+formes bien matérialisées et bien localisées qui prendront une 
+signification historique détaillée grâce à leurs associations 
+spatio-temporelles successives pour composer des OH. </p>
+                  <p class="texte" dir="ltr"><span class="paranumber">58</span>Une
+ ES ou une addition d’ES définira un objet historique (OH) à un moment 
+donné. Un objet historique pourra être composé d’une ou plusieurs ES. 
+Une ES pourra appartenir à un ou plusieurs OH. De même, grâce aux 
+emboîtements possibles, un lieu pourra être composé d’un ou plusieurs OH
+ et un OH appartiendra à un lieu et un seul. </p>
+                  <p class="texte" dir="ltr"><span class="paranumber">59</span>Ainsi,
+ on constate que la création d’une ES relève de l’aspect temporel des 
+éléments caractérisant un lieu&nbsp;: ce dernier est scindé en autant 
+d’ES que de «&nbsp;structures&nbsp;» identifiables qui apparaissent ou 
+disparaissent. </p>
+                  <p class="texte" dir="ltr"><span class="paranumber">60</span>Ce
+ découpage reflète une réalité spatiale (apparition, stabilité, 
+disparition) dans le temps et non pas une réalité fonctionnelle. 
+Celle-ci est obtenue grâce aux combinaisons des relations et des 
+attributs entre chacune des ES qui vont former des objets 
+complexes&nbsp;: les OH.</p>
+                  <p class="texte" dir="ltr"><span class="paranumber">61</span>La
+ difficulté liée à cette déstructuration de l’espace est de s’affranchir
+ de la valeur interprétative historique au moment de définir les ES. </p>
+                  <div class="textIcon"><a href="http://cybergeo.revues.org/docannexe/image/23175/img-17.jpg" rel="iconSet"><img src="Mod%C3%A9lisation%20des%20objets%20historiques%20selon%20la%20fonction,%20l%E2%80%99espace%20et%20le%20temps%20pour%20l%E2%80%99%C3%A9tude%20des%20dynamiques%20urbaines%20dans%20la%20longue%20dur%C3%A9e_fichiers/img-17.jpg" alt=""></a><div class="textIconAccess"><a class="iconZoom" rel="nofollow" href="http://cybergeo.revues.org/docannexe/image/23175/img-17.jpg">Agrandir</a> <a class="iconOrig" rel="nofollow" href="http://cybergeo.revues.org/docannexe/image/23175/img-17.jpg">Original (jpeg, 60k)</a></div>
+                  </div>
+                  <p class="titreillustration" dir="ltr"><strong>Figure&nbsp;7.</strong> Schéma conceptuel de données pour l’Espace</p>
+                  <h2 dir="ltr" id="heading12"><a href="#tocfrom2n8" id="tocto2n8">L’entité temporelle (ET), élément du temps</a></h2>
+                  <p class="texte" dir="ltr"><span class="paranumber">62</span>Afin
+ de tenter de s’affranchir du temps support (cf.&nbsp;§13) nous 
+proposons de modéliser le temps par analogie à l’espace. Quels que 
+soient les objectifs de la modélisation et l’échelle d’analyse 
+considérée, dès lors qu’il s’agit de données historiques, le temps est 
+le paramètre essentiel. Or, tant qu’il est cantonné au rôle d’attribut, 
+il ne peut pas être mobilisé globalement mais seulement pour chaque 
+classe d’entités et il est répété pour chacune d’entre elles. Il 
+convient donc de considérer le temps comme une classe d’entités à part 
+entière. Pour cela, il faut définir une entité temporelle (ET) neutre 
+comme la plus petite partie de temps utile à la datation du phénomène 
+étudié.</p>
+                  <p class="texte" dir="ltr"><span class="paranumber">63</span>Les
+ relations topologiques entre les intervalles temporels ont été 
+formalisées en intelligence artificielle par Allen (1984). Cet algèbre 
+est le plus utilisé (Peuquet 1994, p.&nbsp;454-455&nbsp;; Lardon, 
+Libourel, Cheylan 1999, p.&nbsp;48-49&nbsp;; Muller, Dugat 2007, 
+p.&nbsp;39). Nous ne retenons que quatre des treize relations d’Allen 
+(Figure&nbsp;8) mentionnées par Muller et Dugat (2007, p.&nbsp;39) en 
+bornant les intervalles par des dates comme ils le proposent également 
+(Muller Dugat 2007, p.&nbsp;43).</p>
+                  <div class="textIcon"><a href="http://cybergeo.revues.org/docannexe/image/23175/img-18-small580.jpg" rel="iconSet"><img src="Mod%C3%A9lisation%20des%20objets%20historiques%20selon%20la%20fonction,%20l%E2%80%99espace%20et%20le%20temps%20pour%20l%E2%80%99%C3%A9tude%20des%20dynamiques%20urbaines%20dans%20la%20longue%20dur%C3%A9e_fichiers/img-18-small480.jpg" alt=""></a><div class="textIconAccess"><a class="iconZoom" rel="nofollow" href="http://cybergeo.revues.org/docannexe/image/23175/img-18-small580.jpg">Agrandir</a> <a class="iconOrig" rel="nofollow" href="http://cybergeo.revues.org/docannexe/image/23175/img-18.jpg">Original (jpeg, 128k)</a></div>
+                  </div>
+                  <p class="titreillustration" dir="ltr"><strong>Figure&nbsp;8.</strong> Les relations d’Allen pour le temps</p>
+                  <p class="texte" dir="ltr"><span class="paranumber">64</span>Nous
+ éliminons toutes les formes d’intersection entre deux intervalles afin 
+de ne retenir pour nos ET que les relations non redondantes&nbsp;: </p>
+                  <ul class="listlevel1WW8Num33">
+                    <li>
+                      <p class="puces" style="margin-left:0.0in; margin-right:0.0in; text-indent:0.0in;" dir="ltr">&lt;(X,Y)&nbsp;: X before Y (X est avant Y)</p>
+                    </li>
+                    <li>
+                      <p class="puces" style="margin-left:0.0in; margin-right:0.0in; text-indent:0.0in;" dir="ltr">&gt;(Y,X)&nbsp;: Y after X (Y est après à X)</p>
+                    </li>
+                    <li>
+                      <p class="puces" style="margin-left:0.0in; margin-right:0.0in; text-indent:0.0in;" dir="ltr">m(X,Y)&nbsp;: X meets Y (X joint Y)</p>
+                    </li>
+                    <li>
+                      <p class="puces" style="margin-left:0.0in; margin-right:0.0in; text-indent:0.0in;" dir="ltr">mi(Y,X)&nbsp;: Y met by X (Y est joint par X)</p>
+                    </li>
+                  </ul>
+                  <p class="texte" dir="ltr"><span class="paranumber">65</span>Dès
+ lors que les redondances sont éliminées, toutes les notions de durée, 
+siècle, période peuvent être recomposées à partir de ce modèle. A 
+l’instar des ES, les ET sont déconnectées de l’interprétation 
+fonctionnelle et spatiale. La durée et le nombre d’ET pour une période 
+de temps déterminent une fréquence. L’observation de cette distribution 
+doit permettre l’analyse des rythmes.</p>
+                  <p class="texte" dir="ltr"><span class="paranumber">66</span>Comme
+ l’espace, le temps est continu, limité par les bornes chronologiques de
+ l’objet d’étude. La résolution temporelle choisie pour les ET détermine
+ la datation des objets historiques. Il peut en l’absence d’ET ne pas 
+être utilisé c’est-à dire contenir des vides temporels. La création des 
+ET dépend de la définition préalable des OH, il n’y a pas de découpage 
+du temps a priori. A un instant donné, il ne peut y avoir qu’une et une 
+seule ET mais elle peut être utile à autant d’objets historiques que 
+nécessaire. C’est le découpage du temps par l’accumulation des OH entre 
+eux et avec le temps qui définit les ET (Figure&nbsp;9). La durée de 
+l’ET n’a pas de sens fonctionnel ou interprétatif, elle résulte 
+uniquement des changements temporels observés.</p>
+                  <div class="textIcon"><a href="http://cybergeo.revues.org/docannexe/image/23175/img-19-small580.jpg" rel="iconSet"><img src="Mod%C3%A9lisation%20des%20objets%20historiques%20selon%20la%20fonction,%20l%E2%80%99espace%20et%20le%20temps%20pour%20l%E2%80%99%C3%A9tude%20des%20dynamiques%20urbaines%20dans%20la%20longue%20dur%C3%A9e_fichiers/img-19-small480.jpg" alt=""></a><div class="textIconAccess"><a class="iconZoom" rel="nofollow" href="http://cybergeo.revues.org/docannexe/image/23175/img-19-small580.jpg">Agrandir</a> <a class="iconOrig" rel="nofollow" href="http://cybergeo.revues.org/docannexe/image/23175/img-19.jpg">Original (jpeg, 220k)</a></div>
+                  </div>
+                  <p class="titreillustration" dir="ltr"><strong>Figure&nbsp;9.</strong> Conversion des OH en ET</p>
+                  <p class="texte" dir="ltr"><span class="paranumber">67</span>Le
+ SCD (Figure&nbsp;10) est construit de manière théorique en distinguant 
+les objets simples et les objets complexes par analogie avec les ES. 
+Dans sa plus simple expression, l’ET est assimilable à la notion de 
+«&nbsp;date&nbsp;». Le modèle du temps est linéaire et, comme pour 
+l’espace, topologique. Ici, le temps est assimilé à un espace à une 
+dimension. L’hyperclasse «&nbsp;temps&nbsp;» est composée des entités 
+temporelles, objets simples, représentées par des dates et des 
+intervalles. Cette formalisation du temps en instants et intervalles est
+ celle que décrivent Philippe Muller et Vincent Dugat (2007, 
+p.&nbsp;34-35). En revanche, nous proposons ici de déconstruire le temps
+ en autant d’ET que nécessaire pour la constitution des objets 
+historiques (Figure&nbsp;9).</p>
+                  <div class="textIcon"><a href="http://cybergeo.revues.org/docannexe/image/23175/img-20.jpg" rel="iconSet"><img src="Mod%C3%A9lisation%20des%20objets%20historiques%20selon%20la%20fonction,%20l%E2%80%99espace%20et%20le%20temps%20pour%20l%E2%80%99%C3%A9tude%20des%20dynamiques%20urbaines%20dans%20la%20longue%20dur%C3%A9e_fichiers/img-20.jpg" alt=""></a><div class="textIconAccess"><a class="iconZoom" rel="nofollow" href="http://cybergeo.revues.org/docannexe/image/23175/img-20.jpg">Agrandir</a> <a class="iconOrig" rel="nofollow" href="http://cybergeo.revues.org/docannexe/image/23175/img-20.jpg">Original (jpeg, 52k)</a></div>
+                  </div>
+                  <p class="titreillustration" dir="ltr"><strong>Figure&nbsp;10.</strong> Schéma conceptuel de données pour le Temps</p>
+                  <h2 dir="ltr" id="heading13"><a href="#tocfrom2n9" id="tocto2n9">Le schéma conceptuel de données global </a></h2>
+                  <p class="texte" dir="ltr"><span class="paranumber">68</span>L’organisation
+ de ces trois propositions autour de l’OH constitue le SCD global du 
+modèle OH_FET de l’espace urbanisé ancien pour l’étude de la ville dans 
+la longue durée (Figure&nbsp;11).</p>
+                  <p class="texte" dir="ltr"><span class="paranumber">69</span>Les
+ relations entre les hyperclasses fonction, espace et temps avec celle 
+de l’objet historique déterminent respectivement son interprétation, sa 
+localisation et sa datation. Les attributs de ces relations permettent 
+de les qualifier&nbsp;: fiabilité de l’interprétation, précision de la 
+localisation, origine et précision de la datation. </p>
+                  <p class="texte" dir="ltr"><span class="paranumber">70</span>Même
+ s’il n’y a pas de résolution prédéfinie pour l’espace comme pour le 
+temps et si l’ensemble des fonctions n’est pas fini (le thésaurus peut 
+toujours être augmenté), l’échelle de perception choisie pour les 
+phénomènes étudiés fixe malgré tout une échelle pour chacun des 
+ensembles. </p>
+                  <p class="texte" dir="ltr"><span class="paranumber">71</span>Cette
+ organisation permet, d’une part, de placer l’objet historique au centre
+ du modèle en interaction avec ses trois composantes et, d’autre part, 
+de rendre indépendant (dans leur construction) la fonction, l’espace et 
+le temps.</p>
+                  <div class="textIcon"><a href="http://cybergeo.revues.org/docannexe/image/23175/img-21-small580.jpg" rel="iconSet"><img src="Mod%C3%A9lisation%20des%20objets%20historiques%20selon%20la%20fonction,%20l%E2%80%99espace%20et%20le%20temps%20pour%20l%E2%80%99%C3%A9tude%20des%20dynamiques%20urbaines%20dans%20la%20longue%20dur%C3%A9e_fichiers/img-21-small480.jpg" alt=""></a><div class="textIconAccess"><a class="iconZoom" rel="nofollow" href="http://cybergeo.revues.org/docannexe/image/23175/img-21-small580.jpg">Agrandir</a> <a class="iconOrig" rel="nofollow" href="http://cybergeo.revues.org/docannexe/image/23175/img-21.jpg">Original (jpeg, 284k)</a></div>
+                  </div>
+                  <p class="titreillustration" dir="ltr"><strong>Figure&nbsp;11.</strong> Schéma conceptuel de données du modèle OH_FET</p>
+                  <h1 dir="ltr" id="heading14"><a href="#tocfrom1n5" id="tocto1n5">Conclusion&nbsp;: du modèle à l’analyse</a></h1>
+                  <p class="texte" dir="ltr"><span class="paranumber">72</span>L’objectif
+ de la modélisation conceptuelle est de permettre la mise en œuvre d’un 
+système d’information pour analyser les données afin de faire progresser
+ la compréhension des phénomènes observés, ici l’espace urbanisé ancien.
+ En construisant la modélisation temporelle par analogie avec la 
+modélisation spatiale, nous sous-entendons que l’analyse temporelle 
+s’appuie sur des concepts semblables à ceux de l’analyse spatiale selon 
+les équivalences suivantes&nbsp;: </p>
+                  <table id="Tableau37Ctable" dir="ltr" style="margin-left:0mm;margin-right:0mm;margin-top:0mm;margin-bottom:0mm;border-collapse:separate;border-spacing:0pt" cellspacing="0">
+                    <tbody>
+                      <tr>
+                        <td style="margin-left:0mm;margin-right:0mm;margin-top:0mm;margin-bottom:0mm;padding-top:0in;padding-bottom:0in;padding-left:0.075in;padding-right:0.075in;border-top:0.014in solid #000000;border-bottom:0.014in solid #000000;border-left:0.014in solid #000000;border-right:none;vertical-align:middle">
+                          <p class="texte" dir="ltr"><strong>Concepts de l’analyse spatiale</strong></p>
+                        </td>
+                        <td style="margin-left:0mm;margin-right:0mm;margin-top:0mm;margin-bottom:0mm;padding-top:0in;padding-bottom:0in;padding-left:0.075in;padding-right:0.075in;border:0.014in solid #000000;vertical-align:middle">
+                          <p class="texte" dir="ltr"><strong>Concepts de l’analyse temporelle</strong></p>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="margin-left:0mm;margin-right:0mm;margin-top:0mm;margin-bottom:0mm;padding-top:0in;padding-bottom:0in;padding-left:0.075in;padding-right:0.075in;border-top:none;border-bottom:0.014in solid #000000;border-left:0.014in solid #000000;border-right:none;vertical-align:top">
+                          <p class="texte" dir="ltr">Localisation </p>
+                        </td>
+                        <td style="margin-left:0mm;margin-right:0mm;margin-top:0mm;margin-bottom:0mm;padding-top:0in;padding-bottom:0in;padding-left:0.075in;padding-right:0.075in;border-top:none;border-bottom:0.014in solid #000000;border-left:0.014in solid #000000;border-right:0.014in solid #000000;vertical-align:top">
+                          <p class="texte" dir="ltr">Datation </p>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="margin-left:0mm;margin-right:0mm;margin-top:0mm;margin-bottom:0mm;padding-top:0in;padding-bottom:0in;padding-left:0.075in;padding-right:0.075in;border-top:none;border-bottom:0.014in solid #000000;border-left:0.014in solid #000000;border-right:none;vertical-align:top">
+                          <p class="texte" dir="ltr">Distance </p>
+                        </td>
+                        <td style="margin-left:0mm;margin-right:0mm;margin-top:0mm;margin-bottom:0mm;padding-top:0in;padding-bottom:0in;padding-left:0.075in;padding-right:0.075in;border-top:none;border-bottom:0.014in solid #000000;border-left:0.014in solid #000000;border-right:0.014in solid #000000;vertical-align:top">
+                          <p class="texte" dir="ltr">Durée</p>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="margin-left:0mm;margin-right:0mm;margin-top:0mm;margin-bottom:0mm;padding-top:0in;padding-bottom:0in;padding-left:0.075in;padding-right:0.075in;border-top:none;border-bottom:0.014in solid #000000;border-left:0.014in solid #000000;border-right:none;vertical-align:top">
+                          <p class="texte" dir="ltr">Position relative </p>
+                        </td>
+                        <td style="margin-left:0mm;margin-right:0mm;margin-top:0mm;margin-bottom:0mm;padding-top:0in;padding-bottom:0in;padding-left:0.075in;padding-right:0.075in;border-top:none;border-bottom:0.014in solid #000000;border-left:0.014in solid #000000;border-right:0.014in solid #000000;vertical-align:top">
+                          <p class="texte" dir="ltr">Chronologie relative </p>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="margin-left:0mm;margin-right:0mm;margin-top:0mm;margin-bottom:0mm;padding-top:0in;padding-bottom:0in;padding-left:0.075in;padding-right:0.075in;border-top:none;border-bottom:0.014in solid #000000;border-left:0.014in solid #000000;border-right:none;vertical-align:top">
+                          <p class="texte" dir="ltr">Interaction spatiale </p>
+                        </td>
+                        <td style="margin-left:0mm;margin-right:0mm;margin-top:0mm;margin-bottom:0mm;padding-top:0in;padding-bottom:0in;padding-left:0.075in;padding-right:0.075in;border-top:none;border-bottom:0.014in solid #000000;border-left:0.014in solid #000000;border-right:0.014in solid #000000;vertical-align:top">
+                          <p class="texte" dir="ltr">Interaction temporelle </p>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <p class="texte" dir="ltr"><span class="paranumber">73</span>Par
+ interaction temporelle, nous entendons l’analyse des rythmes et des 
+fréquences. Si des modèles géographiques d’interactions spatiales ont 
+été utilisés pour traiter des données archéologiques (Nuninger, Sanders 
+2006), il n’y a pas d’équivalent pour les analyses temporelles. Or, 
+l’analyse de ces interactions offre une lecture des rythmes et permet de
+ mettre en évidence les accélérations et les décélérations, contractions
+ et dilatations temporelles, observées empiriquement par les 
+archéologues et les historiens. L’identification de ces rythmes traduit 
+vraisemblablement l’état des connaissances en mettant en exergue les 
+effets de sources. Cependant, cela offre également la possibilité de 
+focaliser les observations sur la transition d’un état à un autre, 
+c’est-à-dire de s’intéresser au changement d’état, les transformations, 
+plutôt qu’aux états eux-mêmes (Lefebvre, Rodier, Saligny 2008&nbsp;; 
+Rodier <em>et al.</em> 2010). </p>
+                  <p class="texte" dir="ltr"><span class="paranumber">74</span>L’interrogation
+ des données structurées selon le modèle OH_FET permet d’identifier les 
+états, d’observer indépendamment la distribution des entités 
+fonctionnelles, spatiales et temporelles, de mesurer les changements 
+d’état, de quantifier et de représenter les transformations. Il faut 
+néanmoins examiner avec vigilance la transcription de l’effet de source 
+dans les résultats obtenus.</p>
+                  <p class="texte" dir="ltr"><span class="paranumber">75</span>Le
+ modèle OH_FET est extrêmement contraignant, d’une part pour la 
+constitution du corpus de données et sa mise en œuvre, d’autre part pour
+ l’élaboration d’un discours historique. Il est cependant le seul qui, 
+fondé sur une analyse systématique des données, autorise en entrée une 
+approche selon laquelle aucune des trois dimensions ne prévaut sur les 
+autres et en sortie la possibilité d’aborder les transformations de 
+manière analytique.</p>
+                  <p class="texte" dir="ltr"><span class="paranumber">76</span>Bastien Lefebvre a appliqué le modèle OH_FET pour le traitement des données dans le cadre de sa thèse <em>La formation d’un tissu urbain dans la Cité de Tours&nbsp;: du site de l’amphithéâtre antique au quartier canonial (5</em><em><sup>e</sup></em><em>-18</em><em><sup>e</sup></em><em> s.)</em> (Université de Tours 2008, <a href="http://tel.archives-ouvertes.fr/tel-00349580/fr/">http://tel.archives-ouvertes.fr/​tel-00349580/​fr/​</a>).
+ Il montre dans sa thèse la robustesse du modèle et son apport à la 
+compréhension de la fabrique de la ville (Lefebvre 2010). Néanmoins, 
+cette application met aussi en évidence les difficultés de structuration
+ et de manipulation des données.</p>
+                  <p class="texte" dir="ltr"><span class="paranumber">77</span>La
+ valeur heuristique de cette modélisation réside dans le passage de la 
+description à la compréhension des phénomènes (Peuquet 1994&nbsp;; Frank
+ 2001, p.&nbsp;51). L’originalité de notre démarche réside dans une 
+approche sans a priori qui permet de ne pas partir de la cartographie 
+d’un phénomène mais de l’appréhender indifféremment selon une entrée 
+fonctionnelle, spatiale ou temporelle (figure&nbsp;3). </p>
+                </div><!-- .text wResizable --><a class="go-top" href="#article-23175">Haut de page</a></div><!-- #text -->
+              <div id="bibliography" class="section">
+                <h2 class="section"><span class="text">Bibliographie</span></h2>
+                <div class="text">
+                  <p class="bibliographie" dir="ltr">Allen J. F., 1984, “Towards a General Theory of Action and Time”, <em>Artificial Intelligence</em>, vol.&nbsp;23, No.2, 123-154.</p>
+                  <p class="bibliographie" dir="ltr">Berge C., 1958, <em>Théorie des graphes et ces applications</em>, collection universitaire de mathématiques, Paris, Dunod.</p>
+                  <p class="bibliographie" dir="ltr">Berge C., 1970, <em>Graphes et hypergraphes</em>, Monographie universitaire de mathématiques, Paris, Dunod.</p>
+                  <p class="bibliographie" dir="ltr">Biddle M., Hudson D., 1973, <em>The Future of London’s Past: a survey of the archaeological implications of planning and development in the nation’s capital</em>, Rescue publication No. 4.</p>
+                  <p class="bibliographie" dir="ltr">Boffet A., 2002, “L’analyse des villes”, <em>in</em> Ruas A. (dir.), <em>Généralisation et représentation multiple</em>, Paris, Hermès, 225-240.</p>
+                  <p class="bibliographie" dir="ltr">Bouillé F., 1977, <em>Un modèle universel de banque de données simultanément partageable, portable, répartie</em>. Thèse d’Etat es sciences, Université de Paris VI, Paris.</p>
+                  <p class="bibliographie" dir="ltr">Cheylan J.-P., 2001, “Time and Spatial Database, a Conceptual application Framework” <em>in </em>Frank A., Raper J., Cheylan J.-P. eds, 2001, <em>Life and Motion of Socio-Economic Units</em>, GISDATA 8, London, Taylor &amp; Francis.</p>
+                  <p class="bibliographie" dir="ltr">Cheylan J.-P., 2007, “Les processus spatio-temporels&nbsp;: quelques notions et concepts préalables à leur représentation”,<em> M@ppemonde</em>, No.87.</p>
+                  <p class="bibliographie" dir="ltr">(<a href="http://mappemonde.mgm.fr/num15/articles/art07303.html">http://mappemonde.mgm.fr/num15/articles/art07303.html</a>).</p>
+                  <p class="bibliographie" dir="ltr">Egenhofer J. M., 1988, Golledge G R., <em>Spatial and Temporal Reasoning in Geographic Information</em>, Oxford, University Press.</p>
+                  <p class="bibliographie" dir="ltr">Frank A., Raper J., Cheylan J.-P. eds, 2001, <em>Life and Motion of Socio-Economic Units</em>, GISDATA 8, London, Taylor &amp; Francis.</p>
+                  <p class="bibliographie" dir="ltr">Frank A., 2001, “Socio-Economic Units: Their Life and Motion” <em>in </em>Frank A., Raper J., Cheylan J.-P. eds, 2001, <em>Life and Motion of Socio-Economic Units</em>, GISDATA 8, London, Taylor &amp; Francis.</p>
+                  <p class="bibliographie" dir="ltr">Galinié H., 2000, <em>Ville, espace urbain et archéologie</em>, coll. Sciences de la Ville No.16, Tours, MSH Villes et territoires.</p>
+                  <p class="bibliographie" dir="ltr">Galinié H., Rodier X., 2002, “ToToPI, un outil d’analyse urbaine”, <em>Les petits cahiers d’Anatole</em> No11, (<a href="http://www.univ-tours.fr/lat/pdf/F2_11.pdf">http://www.univ-tours.fr/lat/pdf/F2_11.pdf</a>).</p>
+                  <p class="bibliographie" dir="ltr">Galinié H., Rodier X., Saligny L., 2004, “Entités fonctionnelles, entités spatiales et dynamique urbaine dans la longue durée”, <em>Histoire &amp; Mesure</em>, vol.&nbsp;XIX, No.3/4, Paris, CNRS, 223-242.</p>
+                  <p class="bibliographie" dir="ltr">Gauthier E., 2008, 
+“Consumption and circulation of prehistoric products in Europe: 
+characterization of spatial evolutions using map algebra”,<em>in</em> Posluschny A., Lambers K., Hertog I. (eds.), 2008, <em>Layers of Perception, </em>Proceedings of the 35<sup>th</sup>
+ International Conference on Computer Applications and Quantitative 
+Methods in Archaeology (CAA) Berlin, Germany, April 2-6, 2007, 
+Kolloquien zur Vor- und Frühgeschichte, vol.&nbsp;10, Bonn.</p>
+                  <p class="bibliographie" dir="ltr">Heighway C., 1972, <em>The
+ erosion of history, Archaeology and Planning in Towns. A study of 
+historic towns affected by modern development in England, Wales and 
+Scotland</em>, Londres, Council for British Archaeology.</p>
+                  <p class="bibliographie" dir="ltr">Johnson I., 2004, “Putting Time on the Map: Using <em>Time</em>Map for Map Animation and Web Delivery”, <em>GeoInformatics</em>, July/August 2004.</p>
+                  <p class="bibliographie" dir="ltr">Langlois P., 2005, “Complexité et systèmes spatiaux”, <em>in</em> Guermond Y. (dir.), <em>Modélisations Géographiques</em>, Traité IGAT, Paris, Hermès.</p>
+                  <p class="bibliographie" dir="ltr">Lardon S., Libourel T., Cheylan J.-P., 1999, “Concevoir la dynamique des entités spatio-temporelles”, i<em>n</em> Représentation de l’espace et du temps dans les SIG, <em>Revue internationale de géomatique, </em>No9, 45-65.</p>
+                  <p class="bibliographie" dir="ltr">Laurent A., 2007, “L’espace urbanisé ancien” <em>in</em> Galinié H., dir. – <em>Tours antique et médiéval, lieux de vie, temps de la ville</em>, Tours, FERACF, 440&nbsp;p. ill. Cdrom (Suppl. RACF&nbsp;; 30), 41.</p>
+                  <p class="bibliographie" dir="ltr">Le Ber F., Ligozat G., Papini O. (dir.), 2007, <em>Raisonnements sur l’espace et le temps&nbsp;: des modèles aux applications</em>, Traité IGAT, Paris, Hermès.</p>
+                  <p class="bibliographie" dir="ltr">Lefebvre B., 2006, Construction et déconstruction de l’espace urbain&nbsp;: une modélisation en volume du bâti ancien, <em>MIA Journal</em>, vol.&nbsp;0, No.2, VII, (<a href="http://www.map.archi.fr/mia/journal/">http://www.map.archi.fr/mia/journal/</a>).</p>
+                  <p class="bibliographie" dir="ltr">Lefebvre B., 2010, “How to show Dynamics of Urban Fabric&nbsp;: Cartography and Chronography”, <em>in</em><em>Online
+ proceedings of the 37th annual international conference on Computer 
+Applications and Quantitative Methods in Archaeology (CAA) 2009</em>, Willamsbourg, Virginie, USA, March 22-26, 2009, (<a href="http://www.caa2009.org/articles/Lefebvre_Contribution224_a.pdf"><span style="letter-spacing:-0.0016in;">http://www.caa2009.org/articles/Lefebvre_Contribution224_a.pdf</span></a>).</p>
+                  <p class="bibliographie" dir="ltr">Lefebvre B, Rodier X., Saligny L., 2008, “Understanding Urban Fabric with the OH_FET model based on Social Use, Space and Time” <em>in</em><em>Archeologia e Calcolatori,</em> No.19, 195-214, (<a href="http://soi.cnr.it/archcalc/indice/PDF19/16_Lefebvre.pdf">http://soi.cnr.it/archcalc/indice/PDF19/16_Lefebvre.pdf</a>).</p>
+                  <p class="bibliographie" dir="ltr">Lepetit B., 1988,<em> Les villes dans la France moderne (1740-1840)</em>, Paris, Albin Michel.</p>
+                  <p class="bibliographie" dir="ltr">Muller P., Dugat V., 2007, “Représentation en logique classique”, <em>in</em> Le Ber F., Ligozat G., Papini O. (dir.), <em>Raisonnements sur l’espace et le temps&nbsp;: des modèles aux applications</em>, Traité IGAT, Paris, Hermès, 33-70.</p>
+                  <p class="bibliographie" dir="ltr">Nuninger L., Sanders L. <em>et al.</em>, 2006, “La modélisation des réseaux d’habitat en archéologie&nbsp;: trois expériences”, <em>M@ppemonde</em>, No.83. (<a href="http://mappemonde.mgm.fr/num11/articles/art06302.html">http://mappemonde.mgm.fr/num11/articles/art06302.html</a>).</p>
+                  <p class="bibliographie" dir="ltr">Nuninger L., 
+Tourneux F.-P., Favory F., 2008, “From Archaeomedes to Archaedyn”, in 
+Posluschny A., Lambers K., Hertog I. (eds.), 2008, Layers of Perception,
+ Proceedings of the 35<sup>th</sup> International Conference on Computer
+ Applications and Quantitative Methods in Archaeology (CAA) Berlin, 
+Germany, April 2-6, 2007, Kolloquien zur Vor- und Frühgeschichte, 
+vol.&nbsp;10, Bonn.</p>
+                  <p class="bibliographie" dir="ltr">Olivier L., 2008, <em>Le sombre abîme du temps - Mémoire et archéologie</em>, Paris, Seuil.</p>
+                  <p class="bibliographie" dir="ltr">Ott T., Swiaczny F., 2001, <em>Time-Integrative Geographic Information Systems, Management and Analysis of Spatio-Temporal Data</em>, Berlin, Springer.</p>
+                  <p class="bibliographie" dir="ltr">Panopoulos G., Stamatopoulos A., Kavouras M., 2003, “Spatio-temporal generalization: the chronograph application”, <em>Proceedings of the 21st International Cartographic Conference</em>, Durban, South Africa, 10-16 August 2003, (<a href="http://ontogeo.ntua.gr/publications/icc2003_panopoulos_etal..pdf">http://ontogeo.ntua.gr/publications/icc2003_panopoulos_etal..pdf</a>).</p>
+                  <p class="bibliographie" dir="ltr">Peuquet D. J., 
+1994, “It’s about time; A conceptual framework for the representation of
+ temporal dynamics in geographic information systems”, <em>Annals of the Association of the American Geographers</em>, No.3, 441-461. </p>
+                  <p class="bibliographie" dir="ltr">Pumain D., 1993, “L’espace, le temps et la matérialité des villes”, <em>in</em> Lepetit B., Pumain D. (dir.), <em>Temporalités urbaines</em>, Paris, coll. «&nbsp;Villes&nbsp;», Anthropos, 135-157.</p>
+                  <p class="bibliographie" dir="ltr">Raper J., 2001, “Defining Spatial Socio-Economic Units: Retrospective and Prospective” <em>in </em>Frank A., Raper J., Cheylan J.-P. eds, 2001, <em>Life and Motion of Socio-Economic Units</em>, GISDATA 8, London, Taylor &amp; Francis.</p>
+                  <p class="bibliographie" dir="ltr">Rodier X., 2000, “Le système d’information géographique TOTOPI&nbsp;: TOpographie de TOurs Pré-Industriel”, <em>Les petits cahiers d’Anatole</em>, 4, 22/12/2000, 28600 signes, 5 fig., (<a href="http://www.univ-tours.fr/lat/Pages/F2_4.pdf">http://www.univ-tours.fr/lat/pdf/F2_4.pdf</a>).</p>
+                  <p class="bibliographie" dir="ltr">Rodier X., Galinié H., 2006, “Figurer l’espace/temps de Tours préindustriel&nbsp;: essai de chrono-chorématique urbaine”, <em>M@ppemonde</em>, No83.. (<a href="http://mappemonde.mgm.fr/num11/articles/art06303.html">http://mappemonde.mgm.fr/num11/articles/art06303.html</a>).</p>
+                  <p class="bibliographie" dir="ltr">Rodier X., Saligny L., 2007, “Modélisation des objets urbains pour l’étude des dynamiques urbaines dans la longue durée”, <em>in</em>, Batton-Hubert M., Joliveau T., Lardon S.(dir.)<em>, SAGEO 2007, Rencontres internationales Géomatique et territoire, </em>2007(<a href="http://www.emse.fr/site/SAGEO2007/CDROM/index.html">http://www.emse.fr/site/SAGEO2007/CDROM/index.html</a>).</p>
+                  <p class="bibliographie" dir="ltr">Rodier X., Saligny L., 2008, “Social features, Spatial features, Time features: An urban archaeological data model”, <em>in</em> Posluschny A., Lambers K., Hertog I. (eds.), 2008, <em>Layers of Perception, </em>Proceedings of the 35<sup>th</sup>
+ International Conference on Computer Applications and Quantitative 
+Methods in Archaeology (CAA) Berlin, Germany, April 2-6, 2007, 
+Kolloquien zur Vor- und Frühgeschichte, vol.&nbsp;10, Bonn.</p>
+                  <p class="bibliographie" dir="ltr">Rodier X., Saligny 
+L, Lefebvre B., Pouliot J., 2010, “ToToPI (Topographie de Tours 
+Pré-Industriel), a GIS for understanding urban dynamics based on the 
+OH_FET model (Social Use, Space and Time)”, <em>in</em> Fricher B., Crawford J., Koler D. (eds), 2010, <em>Making History Interactive</em>, Computer Application and Quantitative Methods in Archaeology (CAA), Proceedings of the 37<sup>th</sup>
+ International Conference, Williamsburg, Virginia, USA, March 22-26, 
+2009, BAR International Series 2079, Oxford, Archeopress, 337-349.</p>
+                  <p class="bibliographie" dir="ltr">Ruas A. (dir.), 2002, <em>Généralisation et représentation multiple</em>, Paris, Hermès.</p>
+                  <p class="bibliographie" dir="ltr">Saligny L., 2004, “La modélisation des entités spatiales” <em>in Informatisation des documents d’évaluation du patrimoine archéologique des villes de France</em>, Tours, Ministère de la Culture et de la Communication, Centre National d’Archéologie Urbaine, 35-38.</p>
+                  <p class="bibliographie" dir="ltr">Saint-Gérand T., 2005, “Comprendre pour mesurer... ou mesurer pour comprendre&nbsp;?”, <em>in</em> Guermond Y. dir., 2005, <em>Modélisations Géographiques</em>, Traité IGAT, Paris, Hermès.</p>
+                  <p class="bibliographie" dir="ltr">Thériault M., 
+Claramunt C., 1999, “La représentation du temps et des processus dans 
+les SIG&nbsp;: une nécessité pour la recherche interdisciplinaire”, <em>in</em> Représentation de l’espace et du temps dans les SIG, <em>Revue internationale de géomatique </em>9, 67-99.</p>
+                  <p class="bibliographie" dir="ltr">Van Es W., 
+Poldermans J., Sarfatij H., 1982, Het bodemarchief bedreigtd&nbsp;: 
+archeologie en planologie in de binnensteden van Nederland, Amersfoort.</p>
+                </div><a class="go-top" href="#article-23175">Haut de page</a></div><!-- #bibliography -->
+              <div id="notes" class="section">
+                <h2 class="section"><span class="text">Notes</span></h2>
+                <p class="notebaspage" dir="ltr"><a id="ftn1" class="FootnoteSymbol" href="#bodyftn1">1</a> &nbsp;<em>Documents d’évaluation du patrimoine archéologique des villes de France</em>,
+ 21 documents publiés depuis 1990 par le Centre National d’Archéologie 
+Urbaine, Ministère de la Culture et de la Communication, Tours.</p>
+                <p class="notebaspage" dir="ltr"><a id="ftn2" class="FootnoteSymbol" href="#bodyftn2">2</a> &nbsp;<em>Graphe planaire topologique sans isthme</em>&nbsp;:
+ Un graphe&nbsp;G est planaire s’il est possible de le représenter sur 
+un plan de sorte que les sommets soient des points distincts et les arcs
+ des courbes simples ne se rencontrant pas en dehors de leurs 
+extrémités. Un graphe planaire topologique est une représentation d’un 
+graphe planaire&nbsp;G sur un plan. <br>Dans un graphe planaire 
+topologique, une face est par définition une partie du plan limitée par 
+des arcs de sorte que deux points de la face puissent toujours être 
+reliés par un trait continu ne rencontrant ni sommet, ni arc. Deux faces
+ sont adjacentes si elles ont un arc en commun. Deux faces sont opposées
+ si elles ont un sommet commun sans être adjacentes. Un graphe planaire 
+topologique sans isthme est un graphe planaire topologique sans <em>arc pendant. Cf. C.</em>&nbsp;<span style="font-variant:small-caps;">B</span>erge<span style="font-variant:small-caps;">, 1970. (</span>Définition
+ empruntée à Françoise Pirot&nbsp;: Glossaire du n°&nbsp;3/4 - 
+vol.&nbsp;XIX, Systèmes d’information géographique, archéologie et 
+histoire, revue <em>Histoire &amp; Mesure</em> 2004)</p>
+                <p class="notebaspage" dir="ltr"><a id="ftn3" class="FootnoteSymbol" href="#bodyftn3">3</a> &nbsp;Voir l’annuaire des opérations de terrain en milieu urbain 2005, en ligne sur le site du Cnau <a href="http://www.culture.gouv.fr/culture/cnau/fr/index.html">http://www.culture.gouv.fr/culture/cnau/fr/index.html</a></p><a class="go-top" href="#article-23175">Haut de page</a></div><!-- #notes -->
+              <div id="illustrations" class="section">
+                <h2 class="section"><span class="text">Table des illustrations</span></h2>
+                <table id="docImages">
+                  <tbody>
+                    <tr class="image">
+                      <th colspan="2" rowspan="3"><img alt="" src="Mod%C3%A9lisation%20des%20objets%20historiques%20selon%20la%20fonction,%20l%E2%80%99espace%20et%20le%20temps%20pour%20l%E2%80%99%C3%A9tude%20des%20dynamiques%20urbaines%20dans%20la%20longue%20dur%C3%A9e_fichiers/img-1-small64.jpg"></th>
+                    </tr>
+                    <tr class="source">
+                      <th scope="row"><abbr title="Uniform Resource Locator" xml:lang="en" lang="en">URL</abbr></th>
+                      <td><a href="http://cybergeo.revues.org/docannexe/image/23175/img-1.jpg">http://cybergeo.revues.org/docannexe/image/23175/img-1.jpg</a></td>
+                    </tr>
+                    <tr class="info">
+                      <th scope="row">Fichier</th>
+                      <td>image/jpeg, 132k</td>
+                    </tr>
+                  </tbody>
+                  <tbody>
+                    <tr class="image">
+                      <th colspan="2" rowspan="3"><img alt="" src="Mod%C3%A9lisation%20des%20objets%20historiques%20selon%20la%20fonction,%20l%E2%80%99espace%20et%20le%20temps%20pour%20l%E2%80%99%C3%A9tude%20des%20dynamiques%20urbaines%20dans%20la%20longue%20dur%C3%A9e_fichiers/img-2-small64.jpg"></th>
+                    </tr>
+                    <tr class="source">
+                      <th scope="row"><abbr title="Uniform Resource Locator" xml:lang="en" lang="en">URL</abbr></th>
+                      <td><a href="http://cybergeo.revues.org/docannexe/image/23175/img-2.jpg">http://cybergeo.revues.org/docannexe/image/23175/img-2.jpg</a></td>
+                    </tr>
+                    <tr class="info">
+                      <th scope="row">Fichier</th>
+                      <td>image/jpeg, 128k</td>
+                    </tr>
+                  </tbody>
+                  <tbody>
+                    <tr class="image">
+                      <th colspan="2" rowspan="3"><img alt="" src="Mod%C3%A9lisation%20des%20objets%20historiques%20selon%20la%20fonction,%20l%E2%80%99espace%20et%20le%20temps%20pour%20l%E2%80%99%C3%A9tude%20des%20dynamiques%20urbaines%20dans%20la%20longue%20dur%C3%A9e_fichiers/img-3-small64.png"></th>
+                    </tr>
+                    <tr class="source">
+                      <th scope="row"><abbr title="Uniform Resource Locator" xml:lang="en" lang="en">URL</abbr></th>
+                      <td><a href="http://cybergeo.revues.org/docannexe/image/23175/img-3.png">http://cybergeo.revues.org/docannexe/image/23175/img-3.png</a></td>
+                    </tr>
+                    <tr class="info">
+                      <th scope="row">Fichier</th>
+                      <td>image/png, 42k</td>
+                    </tr>
+                  </tbody>
+                  <tbody>
+                    <tr class="image">
+                      <th colspan="2" rowspan="3"><img alt="" src="Mod%C3%A9lisation%20des%20objets%20historiques%20selon%20la%20fonction,%20l%E2%80%99espace%20et%20le%20temps%20pour%20l%E2%80%99%C3%A9tude%20des%20dynamiques%20urbaines%20dans%20la%20longue%20dur%C3%A9e_fichiers/img-4-small64.png"></th>
+                    </tr>
+                    <tr class="source">
+                      <th scope="row"><abbr title="Uniform Resource Locator" xml:lang="en" lang="en">URL</abbr></th>
+                      <td><a href="http://cybergeo.revues.org/docannexe/image/23175/img-4.png">http://cybergeo.revues.org/docannexe/image/23175/img-4.png</a></td>
+                    </tr>
+                    <tr class="info">
+                      <th scope="row">Fichier</th>
+                      <td>image/png, 1,5k</td>
+                    </tr>
+                  </tbody>
+                  <tbody>
+                    <tr class="image">
+                      <th colspan="2" rowspan="3"><img alt="" src="Mod%C3%A9lisation%20des%20objets%20historiques%20selon%20la%20fonction,%20l%E2%80%99espace%20et%20le%20temps%20pour%20l%E2%80%99%C3%A9tude%20des%20dynamiques%20urbaines%20dans%20la%20longue%20dur%C3%A9e_fichiers/img-5-small64.png"></th>
+                    </tr>
+                    <tr class="source">
+                      <th scope="row"><abbr title="Uniform Resource Locator" xml:lang="en" lang="en">URL</abbr></th>
+                      <td><a href="http://cybergeo.revues.org/docannexe/image/23175/img-5.png">http://cybergeo.revues.org/docannexe/image/23175/img-5.png</a></td>
+                    </tr>
+                    <tr class="info">
+                      <th scope="row">Fichier</th>
+                      <td>image/png, 1,8k</td>
+                    </tr>
+                  </tbody>
+                  <tbody>
+                    <tr class="image">
+                      <th colspan="2" rowspan="3"><img alt="" src="Mod%C3%A9lisation%20des%20objets%20historiques%20selon%20la%20fonction,%20l%E2%80%99espace%20et%20le%20temps%20pour%20l%E2%80%99%C3%A9tude%20des%20dynamiques%20urbaines%20dans%20la%20longue%20dur%C3%A9e_fichiers/img-6.png"></th>
+                    </tr>
+                    <tr class="source">
+                      <th scope="row"><abbr title="Uniform Resource Locator" xml:lang="en" lang="en">URL</abbr></th>
+                      <td><a href="http://cybergeo.revues.org/docannexe/image/23175/img-6.png">http://cybergeo.revues.org/docannexe/image/23175/img-6.png</a></td>
+                    </tr>
+                    <tr class="info">
+                      <th scope="row">Fichier</th>
+                      <td>image/png, 508 octets</td>
+                    </tr>
+                  </tbody>
+                  <tbody>
+                    <tr class="image">
+                      <th colspan="2" rowspan="3"><img alt="" src="Mod%C3%A9lisation%20des%20objets%20historiques%20selon%20la%20fonction,%20l%E2%80%99espace%20et%20le%20temps%20pour%20l%E2%80%99%C3%A9tude%20des%20dynamiques%20urbaines%20dans%20la%20longue%20dur%C3%A9e_fichiers/img-7-small64.png"></th>
+                    </tr>
+                    <tr class="source">
+                      <th scope="row"><abbr title="Uniform Resource Locator" xml:lang="en" lang="en">URL</abbr></th>
+                      <td><a href="http://cybergeo.revues.org/docannexe/image/23175/img-7.png">http://cybergeo.revues.org/docannexe/image/23175/img-7.png</a></td>
+                    </tr>
+                    <tr class="info">
+                      <th scope="row">Fichier</th>
+                      <td>image/png, 2,2k</td>
+                    </tr>
+                  </tbody>
+                  <tbody>
+                    <tr class="image">
+                      <th colspan="2" rowspan="3"><img alt="" src="Mod%C3%A9lisation%20des%20objets%20historiques%20selon%20la%20fonction,%20l%E2%80%99espace%20et%20le%20temps%20pour%20l%E2%80%99%C3%A9tude%20des%20dynamiques%20urbaines%20dans%20la%20longue%20dur%C3%A9e_fichiers/img-8-small64.png"></th>
+                    </tr>
+                    <tr class="source">
+                      <th scope="row"><abbr title="Uniform Resource Locator" xml:lang="en" lang="en">URL</abbr></th>
+                      <td><a href="http://cybergeo.revues.org/docannexe/image/23175/img-8.png">http://cybergeo.revues.org/docannexe/image/23175/img-8.png</a></td>
+                    </tr>
+                    <tr class="info">
+                      <th scope="row">Fichier</th>
+                      <td>image/png, 2,7k</td>
+                    </tr>
+                  </tbody>
+                  <tbody>
+                    <tr class="image">
+                      <th colspan="2" rowspan="3"><img alt="" src="Mod%C3%A9lisation%20des%20objets%20historiques%20selon%20la%20fonction,%20l%E2%80%99espace%20et%20le%20temps%20pour%20l%E2%80%99%C3%A9tude%20des%20dynamiques%20urbaines%20dans%20la%20longue%20dur%C3%A9e_fichiers/img-9-small64.png"></th>
+                    </tr>
+                    <tr class="source">
+                      <th scope="row"><abbr title="Uniform Resource Locator" xml:lang="en" lang="en">URL</abbr></th>
+                      <td><a href="http://cybergeo.revues.org/docannexe/image/23175/img-9.png">http://cybergeo.revues.org/docannexe/image/23175/img-9.png</a></td>
+                    </tr>
+                    <tr class="info">
+                      <th scope="row">Fichier</th>
+                      <td>image/png, 1,7k</td>
+                    </tr>
+                  </tbody>
+                  <tbody>
+                    <tr class="image">
+                      <th colspan="2" rowspan="3"><img alt="" src="Mod%C3%A9lisation%20des%20objets%20historiques%20selon%20la%20fonction,%20l%E2%80%99espace%20et%20le%20temps%20pour%20l%E2%80%99%C3%A9tude%20des%20dynamiques%20urbaines%20dans%20la%20longue%20dur%C3%A9e_fichiers/img-10-small64.png"></th>
+                    </tr>
+                    <tr class="source">
+                      <th scope="row"><abbr title="Uniform Resource Locator" xml:lang="en" lang="en">URL</abbr></th>
+                      <td><a href="http://cybergeo.revues.org/docannexe/image/23175/img-10.png">http://cybergeo.revues.org/docannexe/image/23175/img-10.png</a></td>
+                    </tr>
+                    <tr class="info">
+                      <th scope="row">Fichier</th>
+                      <td>image/png, 1,6k</td>
+                    </tr>
+                  </tbody>
+                  <tbody>
+                    <tr class="image">
+                      <th colspan="2" rowspan="3"><img alt="" src="Mod%C3%A9lisation%20des%20objets%20historiques%20selon%20la%20fonction,%20l%E2%80%99espace%20et%20le%20temps%20pour%20l%E2%80%99%C3%A9tude%20des%20dynamiques%20urbaines%20dans%20la%20longue%20dur%C3%A9e_fichiers/img-11-small64.png"></th>
+                    </tr>
+                    <tr class="source">
+                      <th scope="row"><abbr title="Uniform Resource Locator" xml:lang="en" lang="en">URL</abbr></th>
+                      <td><a href="http://cybergeo.revues.org/docannexe/image/23175/img-11.png">http://cybergeo.revues.org/docannexe/image/23175/img-11.png</a></td>
+                    </tr>
+                    <tr class="info">
+                      <th scope="row">Fichier</th>
+                      <td>image/png, 2,3k</td>
+                    </tr>
+                  </tbody>
+                  <tbody>
+                    <tr class="image">
+                      <th colspan="2" rowspan="3"><img alt="" src="Mod%C3%A9lisation%20des%20objets%20historiques%20selon%20la%20fonction,%20l%E2%80%99espace%20et%20le%20temps%20pour%20l%E2%80%99%C3%A9tude%20des%20dynamiques%20urbaines%20dans%20la%20longue%20dur%C3%A9e_fichiers/img-12-small64.png"></th>
+                    </tr>
+                    <tr class="source">
+                      <th scope="row"><abbr title="Uniform Resource Locator" xml:lang="en" lang="en">URL</abbr></th>
+                      <td><a href="http://cybergeo.revues.org/docannexe/image/23175/img-12.png">http://cybergeo.revues.org/docannexe/image/23175/img-12.png</a></td>
+                    </tr>
+                    <tr class="info">
+                      <th scope="row">Fichier</th>
+                      <td>image/png, 2,7k</td>
+                    </tr>
+                  </tbody>
+                  <tbody>
+                    <tr class="image">
+                      <th colspan="2" rowspan="3"><img alt="" src="Mod%C3%A9lisation%20des%20objets%20historiques%20selon%20la%20fonction,%20l%E2%80%99espace%20et%20le%20temps%20pour%20l%E2%80%99%C3%A9tude%20des%20dynamiques%20urbaines%20dans%20la%20longue%20dur%C3%A9e_fichiers/img-13-small64.jpg"></th>
+                    </tr>
+                    <tr class="source">
+                      <th scope="row"><abbr title="Uniform Resource Locator" xml:lang="en" lang="en">URL</abbr></th>
+                      <td><a href="http://cybergeo.revues.org/docannexe/image/23175/img-13.jpg">http://cybergeo.revues.org/docannexe/image/23175/img-13.jpg</a></td>
+                    </tr>
+                    <tr class="info">
+                      <th scope="row">Fichier</th>
+                      <td>image/jpeg, 228k</td>
+                    </tr>
+                  </tbody>
+                  <tbody>
+                    <tr class="image">
+                      <th colspan="2" rowspan="3"><img alt="" src="Mod%C3%A9lisation%20des%20objets%20historiques%20selon%20la%20fonction,%20l%E2%80%99espace%20et%20le%20temps%20pour%20l%E2%80%99%C3%A9tude%20des%20dynamiques%20urbaines%20dans%20la%20longue%20dur%C3%A9e_fichiers/img-14-small64.jpg"></th>
+                    </tr>
+                    <tr class="source">
+                      <th scope="row"><abbr title="Uniform Resource Locator" xml:lang="en" lang="en">URL</abbr></th>
+                      <td><a href="http://cybergeo.revues.org/docannexe/image/23175/img-14.jpg">http://cybergeo.revues.org/docannexe/image/23175/img-14.jpg</a></td>
+                    </tr>
+                    <tr class="info">
+                      <th scope="row">Fichier</th>
+                      <td>image/jpeg, 48k</td>
+                    </tr>
+                  </tbody>
+                  <tbody>
+                    <tr class="image">
+                      <th colspan="2" rowspan="3"><img alt="" src="Mod%C3%A9lisation%20des%20objets%20historiques%20selon%20la%20fonction,%20l%E2%80%99espace%20et%20le%20temps%20pour%20l%E2%80%99%C3%A9tude%20des%20dynamiques%20urbaines%20dans%20la%20longue%20dur%C3%A9e_fichiers/img-15-small64.jpg"></th>
+                    </tr>
+                    <tr class="source">
+                      <th scope="row"><abbr title="Uniform Resource Locator" xml:lang="en" lang="en">URL</abbr></th>
+                      <td><a href="http://cybergeo.revues.org/docannexe/image/23175/img-15.jpg">http://cybergeo.revues.org/docannexe/image/23175/img-15.jpg</a></td>
+                    </tr>
+                    <tr class="info">
+                      <th scope="row">Fichier</th>
+                      <td>image/jpeg, 212k</td>
+                    </tr>
+                  </tbody>
+                  <tbody>
+                    <tr class="image">
+                      <th colspan="2" rowspan="3"><img alt="" src="Mod%C3%A9lisation%20des%20objets%20historiques%20selon%20la%20fonction,%20l%E2%80%99espace%20et%20le%20temps%20pour%20l%E2%80%99%C3%A9tude%20des%20dynamiques%20urbaines%20dans%20la%20longue%20dur%C3%A9e_fichiers/img-16-small64.jpg"></th>
+                    </tr>
+                    <tr class="source">
+                      <th scope="row"><abbr title="Uniform Resource Locator" xml:lang="en" lang="en">URL</abbr></th>
+                      <td><a href="http://cybergeo.revues.org/docannexe/image/23175/img-16.jpg">http://cybergeo.revues.org/docannexe/image/23175/img-16.jpg</a></td>
+                    </tr>
+                    <tr class="info">
+                      <th scope="row">Fichier</th>
+                      <td>image/jpeg, 184k</td>
+                    </tr>
+                  </tbody>
+                  <tbody>
+                    <tr class="image">
+                      <th colspan="2" rowspan="3"><img alt="" src="Mod%C3%A9lisation%20des%20objets%20historiques%20selon%20la%20fonction,%20l%E2%80%99espace%20et%20le%20temps%20pour%20l%E2%80%99%C3%A9tude%20des%20dynamiques%20urbaines%20dans%20la%20longue%20dur%C3%A9e_fichiers/img-17-small64.jpg"></th>
+                    </tr>
+                    <tr class="source">
+                      <th scope="row"><abbr title="Uniform Resource Locator" xml:lang="en" lang="en">URL</abbr></th>
+                      <td><a href="http://cybergeo.revues.org/docannexe/image/23175/img-17.jpg">http://cybergeo.revues.org/docannexe/image/23175/img-17.jpg</a></td>
+                    </tr>
+                    <tr class="info">
+                      <th scope="row">Fichier</th>
+                      <td>image/jpeg, 60k</td>
+                    </tr>
+                  </tbody>
+                  <tbody>
+                    <tr class="image">
+                      <th colspan="2" rowspan="3"><img alt="" src="Mod%C3%A9lisation%20des%20objets%20historiques%20selon%20la%20fonction,%20l%E2%80%99espace%20et%20le%20temps%20pour%20l%E2%80%99%C3%A9tude%20des%20dynamiques%20urbaines%20dans%20la%20longue%20dur%C3%A9e_fichiers/img-18-small64.jpg"></th>
+                    </tr>
+                    <tr class="source">
+                      <th scope="row"><abbr title="Uniform Resource Locator" xml:lang="en" lang="en">URL</abbr></th>
+                      <td><a href="http://cybergeo.revues.org/docannexe/image/23175/img-18.jpg">http://cybergeo.revues.org/docannexe/image/23175/img-18.jpg</a></td>
+                    </tr>
+                    <tr class="info">
+                      <th scope="row">Fichier</th>
+                      <td>image/jpeg, 128k</td>
+                    </tr>
+                  </tbody>
+                  <tbody>
+                    <tr class="image">
+                      <th colspan="2" rowspan="3"><img alt="" src="Mod%C3%A9lisation%20des%20objets%20historiques%20selon%20la%20fonction,%20l%E2%80%99espace%20et%20le%20temps%20pour%20l%E2%80%99%C3%A9tude%20des%20dynamiques%20urbaines%20dans%20la%20longue%20dur%C3%A9e_fichiers/img-19-small64.jpg"></th>
+                    </tr>
+                    <tr class="source">
+                      <th scope="row"><abbr title="Uniform Resource Locator" xml:lang="en" lang="en">URL</abbr></th>
+                      <td><a href="http://cybergeo.revues.org/docannexe/image/23175/img-19.jpg">http://cybergeo.revues.org/docannexe/image/23175/img-19.jpg</a></td>
+                    </tr>
+                    <tr class="info">
+                      <th scope="row">Fichier</th>
+                      <td>image/jpeg, 220k</td>
+                    </tr>
+                  </tbody>
+                  <tbody>
+                    <tr class="image">
+                      <th colspan="2" rowspan="3"><img alt="" src="Mod%C3%A9lisation%20des%20objets%20historiques%20selon%20la%20fonction,%20l%E2%80%99espace%20et%20le%20temps%20pour%20l%E2%80%99%C3%A9tude%20des%20dynamiques%20urbaines%20dans%20la%20longue%20dur%C3%A9e_fichiers/img-20-small64.jpg"></th>
+                    </tr>
+                    <tr class="source">
+                      <th scope="row"><abbr title="Uniform Resource Locator" xml:lang="en" lang="en">URL</abbr></th>
+                      <td><a href="http://cybergeo.revues.org/docannexe/image/23175/img-20.jpg">http://cybergeo.revues.org/docannexe/image/23175/img-20.jpg</a></td>
+                    </tr>
+                    <tr class="info">
+                      <th scope="row">Fichier</th>
+                      <td>image/jpeg, 52k</td>
+                    </tr>
+                  </tbody>
+                  <tbody>
+                    <tr class="image">
+                      <th colspan="2" rowspan="3"><img alt="" src="Mod%C3%A9lisation%20des%20objets%20historiques%20selon%20la%20fonction,%20l%E2%80%99espace%20et%20le%20temps%20pour%20l%E2%80%99%C3%A9tude%20des%20dynamiques%20urbaines%20dans%20la%20longue%20dur%C3%A9e_fichiers/img-21-small64.jpg"></th>
+                    </tr>
+                    <tr class="source">
+                      <th scope="row"><abbr title="Uniform Resource Locator" xml:lang="en" lang="en">URL</abbr></th>
+                      <td><a href="http://cybergeo.revues.org/docannexe/image/23175/img-21.jpg">http://cybergeo.revues.org/docannexe/image/23175/img-21.jpg</a></td>
+                    </tr>
+                    <tr class="info">
+                      <th scope="row">Fichier</th>
+                      <td>image/jpeg, 284k</td>
+                    </tr>
+                  </tbody>
+                </table><a class="go-top" href="#article-23175">Haut de page</a></div><!-- #illustrations -->
+              <div id="quotation" class="section">
+                <h2 class="section"><span class="text">Pour citer cet article</span></h2>
+                <h3>Référence électronique</h3>
+                <p> <strong>Xavier <span class="familyName">Rodier</span> et Laure <span class="familyName">Saligny</span></strong>,
+ «&nbsp;Modélisation des objets historiques selon la fonction, l’espace 
+et le temps pour l’étude des dynamiques urbaines dans la longue 
+durée&nbsp;», <em>Cybergeo : European Journal of Geography</em> [En 
+ligne], Systèmes, Modélisation, Géostatistiques, article 502, mis en 
+ligne le 17 juin 2010, consulté le 07 mars 2013. URL&nbsp;: 
+http://cybergeo.revues.org/23175&nbsp;; DOI&nbsp;: 
+10.4000/cybergeo.23175 </p><a class="go-top" href="#article-23175">Haut de page</a></div><!-- #quotation -->
+              <div id="authors" class="section">
+                <h2 class="section"><span class="text">Auteurs</span></h2>
+                <h3><a href="http://cybergeo.revues.org/23181">Xavier <span class="familyName">Rodier</span></a></h3>
+                <p class="description">Réseau Information Spatiale et Archéologie <a href="http://isa.univ-tours.fr/">http://isa.univ-tours.fr</a>&nbsp;;
+ Laboratoire Archéologie et Territoires UMR&nbsp;6173 CITERES, 
+Université de Tours – CNRS, B.P.&nbsp;60449 – 37204 Tours cedex 03, <a href="mailto:xavier.rodier@univ-tours.fr">xavier.rodier@univ-tours.fr</a></p>
+                <h3><a href="http://cybergeo.revues.org/23182">Laure <span class="familyName">Saligny</span></a></h3>
+                <p class="description">Réseau Information Spatiale et Archéologie <a href="http://isa.univ-tours.fr/">http://isa.univ-tours.fr</a>&nbsp;; Maison des Sciences de l’Homme de Dijon UMS&nbsp;2739, Université de Bourgogne – CNRS, B.P. 26611 – 21000 Dijon, <a href="mailto:laure.saligny@u-bourgogne.fr">laure.saligny@u-bourgogne.fr</a></p><a class="go-top" href="#article-23175">Haut de page</a></div><!-- #authors -->
+              <div id="license" class="section">
+                <h2 class="section"><span class="text">Droits d’auteur</span></h2>
+                <p>© CNRS-UMR Géographie-cités 8504</p><a class="go-top" href="#article-23175">Haut de page</a></div><!-- #license --></div><!-- #docBody -->
+            <div class="navEntities bottom"><a rev="contents" class="goContents" href="http://cybergeo.revues.org/54" title="Systèmes, Modélisation, Géostatistiques">Sommaire</a><span class="separator"> - </span><a rev="prev" class="goPrev" href="http://cybergeo.revues.org/23183" title="Performances des modélisations déterministes d’ozone à méso-échelle et à micro-échelle dans les Alpes-Maritimes">Document précédent</a><span class="separator"> - </span><a rel="next" class="goNext" href="http://cybergeo.revues.org/23131" title="Make them walk ! Simulating pedestrian movement in dynamic environments">Document suivant</a></div><!-- .navEntities bottom --></div><!-- #main --></div><!-- #content-->
+        <div id="nav">  
+          <h1 class="hidden">Navigation</h1>  
+          <div id="navEntries">    
+            <h2>Index</h2>    
+            <ul>      
+              <li><a href="http://cybergeo.revues.org/28">Auteurs</a></li>      
+              <li><a href="http://cybergeo.revues.org/33">Mots-clés</a></li>      
+              <li><a href="http://cybergeo.revues.org/36">chronologique</a></li>      
+              <li><a href="http://cybergeo.revues.org/?page=years">Années</a></li>      
+              <li><a href="http://cybergeo.revues.org/?page=lang">Langue</a></li>    </ul>  </div><!-- #navEntries -->  
+          <div id="navIssues"></div><!-- #navIssues -->  
+          <div id="navCollectionsSecondary">    
+            <h2>Rubriques</h2>    
+            <ul>      
+              <li><a href="http://cybergeo.revues.org/57">Politique, Culture, Représentations</a></li>      
+              <li><a href="http://cybergeo.revues.org/61">Espace, Société, Territoire</a></li>      
+              <li><a href="http://cybergeo.revues.org/54">Systèmes, Modélisation, Géostatistiques</a></li>      
+              <li><a href="http://cybergeo.revues.org/56">Epistémologie, Histoire de la Géographie, Didactique</a></li>      
+              <li><a href="http://cybergeo.revues.org/53">Cartographie, Imagerie, SIG</a></li>      
+              <li><a href="http://cybergeo.revues.org/60">Environnement, Nature, Paysage</a></li>      
+              <li><a href="http://cybergeo.revues.org/62">Aménagement, Urbanisme</a></li>      
+              <li><a href="http://cybergeo.revues.org/58">Science et Toile</a></li>      
+              <li><a href="http://cybergeo.revues.org/59">Dossiers</a></li>    </ul>    
+            <h2>Vie Scientifique</h2>    
+            <ul>      
+              <li><a href="http://cybergeo.revues.org/66">Débats</a></li>      
+              <li><a href="http://cybergeo.revues.org/128">E-Topiques</a></li>      
+              <li><a href="http://cybergeo.revues.org/67">Revue de livres</a></li>      
+              <li><a href="http://cybergeo.revues.org/64">Editoriaux</a></li>    </ul>    
+            <h2>Actualités et sites</h2>    
+            <ul>      
+              <li><a href="http://cybergeo.revues.org/4215">Revue de sommaires</a></li>      
+              <li><a href="http://cybergeo.revues.org/23867">Sites</a></li>    </ul>    
+            <h2>La Revue</h2>    
+            <ul>      
+              <li><a href="http://cybergeo.revues.org/5020"><span xml:lang="fr" lang="fr">Le projet scientifique</span></a></li>      
+              <li><a href="http://cybergeo.revues.org/5024"><span xml:lang="fr" lang="fr">Qui sommes-nous ?</span></a></li>      
+              <li><a href="http://cybergeo.revues.org/5516">Nos partenaires scientifiques</a></li>      
+              <li><a href="http://cybergeo.revues.org/5021"><span xml:lang="fr" lang="fr">Note aux auteurs</span></a></li>      
+              <li><a href="http://cybergeo.revues.org/5402">Contacts</a></li>      
+              <li><a href="http://cybergeo.revues.org/6302">Crédits</a></li>    </ul>  </div><!-- #navCollectionsSecondary -->  
+          <div id="log-in">    
+            <div id="loginbox" class="log-in">      
+              <form action="23175" method="post">        
+                <fieldset>          
+                  <legend><span>Accès abonnés</span></legend>          
+                  <div id="loginBlock" class="togglable fixed hidden">            
+                    <label for="login">Login</label>             
+                    <input class="text" id="login" name="login" type="text">
+                                <br><label for="passwd">Mot de passe</label>             
+                    <input class="text password" id="passwd" name="passwd" type="password">
+                                <br><button type="submit" class="submit" title="Se connecter">Se connecter</button>            
+                    <button type="reset" class="cancel" title="Annuler">Annuler</button>          </div>        </fieldset>      </form>    </div><!-- #loginbox.log-in --></div>  
+          <div id="navSyndication">    
+            <h2>Syndication</h2>    
+            <ul>      
+              <li><img alt="RSS" src="Mod%C3%A9lisation%20des%20objets%20historiques%20selon%20la%20fonction,%20l%E2%80%99espace%20et%20le%20temps%20pour%20l%E2%80%99%C3%A9tude%20des%20dynamiques%20urbaines%20dans%20la%20longue%20dur%C3%A9e_fichiers/feed-icon-14x14.png" height="14" width="14"> <a href="http://cybergeo.revues.org/backend?format=rssdocuments">Fil des documents</a></li>    </ul>  </div>  
+          <div id="navNewsletters">    
+            <h2>Lettres d’information</h2>    
+            <ul>      
+              <li><a href="http://www.revues.org/?page=lettre">La lettre de Revues.org</a></li>    </ul>  </div>  
+          <div id="navLogos">    
+            <h2 class="hidden">Affiliations/partenaires</h2>    
+            <ul>      
+              <li><a href="http://www.cnrs.fr/" title="Centre National de la Recherche Scientifique"><img alt="Centre National de la Recherche Scientifique" src="Mod%C3%A9lisation%20des%20objets%20historiques%20selon%20la%20fonction,%20l%E2%80%99espace%20et%20le%20temps%20pour%20l%E2%80%99%C3%A9tude%20des%20dynamiques%20urbaines%20dans%20la%20longue%20dur%C3%A9e_fichiers/logo-cnrs.gif" height="72" width="72"></a></li>      
+              <li><a href="http://www.revues.org/" title="Portail de revues en Sciences humaines et sociales"><img alt="Revues.org" src="Mod%C3%A9lisation%20des%20objets%20historiques%20selon%20la%20fonction,%20l%E2%80%99espace%20et%20le%20temps%20pour%20l%E2%80%99%C3%A9tude%20des%20dynamiques%20urbaines%20dans%20la%20longue%20dur%C3%A9e_fichiers/logo-revues-org.png" height="20" width="94"></a></li>    </ul>  </div>
+        </div><!-- #nav -->
+        <div id="footer">  
+          <p class="first">ISSN électronique 1278-3366</p>  
+          <p><a href="http://cybergeo.revues.org/?page=map">Plan du site</a>&nbsp;– <a href="http://cybergeo.revues.org/5024"><span xml:lang="fr" lang="fr">Qui sommes-nous ?</span></a>&nbsp;– <a href="http://cybergeo.revues.org/5516">Nos partenaires scientifiques</a>&nbsp;– <a href="http://cybergeo.revues.org/5021"><span xml:lang="fr" lang="fr">Note aux auteurs</span></a>&nbsp;– <a href="http://cybergeo.revues.org/5402">Contacts</a>&nbsp;– <a href="http://cybergeo.revues.org/6302">Crédits</a>&nbsp;– <a href="http://cybergeo.revues.org/?page=backend">Flux de syndication</a></p>  
+          <p class="last"><a href="http://www.revues.org/">Nous adhérons à Revues.org</a>&nbsp;– <a href="http://www.lodel.org/">Édité avec Lodel</a>&nbsp;– <a href="http://cybergeo.revues.org/lodel/">Accès réservé</a></p>
+        </div><!-- #footer --></div><!-- #wrapper --></div><!-- #outerWrapper -->
+    <script type="text/javascript" src="Mod%C3%A9lisation%20des%20objets%20historiques%20selon%20la%20fonction,%20l%E2%80%99espace%20et%20le%20temps%20pour%20l%E2%80%99%C3%A9tude%20des%20dynamiques%20urbaines%20dans%20la%20longue%20dur%C3%A9e_fichiers/jquery.js"></script>
+    <script type="text/javascript" src="Mod%C3%A9lisation%20des%20objets%20historiques%20selon%20la%20fonction,%20l%E2%80%99espace%20et%20le%20temps%20pour%20l%E2%80%99%C3%A9tude%20des%20dynamiques%20urbaines%20dans%20la%20longue%20dur%C3%A9e_fichiers/common.js"></script>
+    <script type="text/javascript">//<![CDATA[
+var translations = {
+// Widgets
+strWidget: {
+largest: "Taille du texte : très grande",
+large  : "Taille du texte : grande",
+medium : "Taille du texte : normale",
+print  : "Imprimer ce document"
+},
+// Zoom images
+strTextIcon: {
+prev     : "Précédent",
+next     : "Suivant",
+close    : "Fermer",
+original : "Original",
+magnify  : "Agrandir"
+},
+// Divers
+strArticle: {
+illustrations : "Illustrations"
+}
+};
+//]]></script>
+    <script type="text/javascript" src="Mod%C3%A9lisation%20des%20objets%20historiques%20selon%20la%20fonction,%20l%E2%80%99espace%20et%20le%20temps%20pour%20l%E2%80%99%C3%A9tude%20des%20dynamiques%20urbaines%20dans%20la%20longue%20dur%C3%A9e_fichiers/jquery_003.js"></script>
+    <script type="text/javascript" src="Mod%C3%A9lisation%20des%20objets%20historiques%20selon%20la%20fonction,%20l%E2%80%99espace%20et%20le%20temps%20pour%20l%E2%80%99%C3%A9tude%20des%20dynamiques%20urbaines%20dans%20la%20longue%20dur%C3%A9e_fichiers/article.js"></script>
+    <script type="text/javascript">    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-12411712-1']);
+    _gaq.push(['_setDomainName', '.revues.org']);
+    _gaq.push(['_setAllowLinker', true]);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();</script><!-- Piwik -->
+    <script type="text/javascript">var pkBaseURL = (("https:" == document.location.protocol) ? "https://statistiques.cleo.cnrs.fr/piwik/" : "http://statistiques.cleo.cnrs.fr/piwik/");
+document.write(unescape("%3Cscript src='" + pkBaseURL + "piwik.js' type='text/javascript'%3E%3C/script%3E"));</script><script src="Mod%C3%A9lisation%20des%20objets%20historiques%20selon%20la%20fonction,%20l%E2%80%99espace%20et%20le%20temps%20pour%20l%E2%80%99%C3%A9tude%20des%20dynamiques%20urbaines%20dans%20la%20longue%20dur%C3%A9e_fichiers/piwik.js" type="text/javascript"></script>
+    <script type="text/javascript">try {
+var piwikTracker = Piwik.getTracker(pkBaseURL + "piwik.php", 6);
+piwikTracker.trackPageView();
+piwikTracker.enableLinkTracking();
+} catch( err ) {}</script>
+    <noscript>  
+      <p><img src="http://statistiques.cleo.cnrs.fr/piwik/piwik.php?idsite=6" style="border:0" alt="" /></p>
+    </noscript><!-- End Piwik Tracking Code --><!--
+<script type="text/javascript" src="http://static.openedition.org/js/jquery-latest.min.js"></script>-->
+  <script type="text/javascript" src="Mod%C3%A9lisation%20des%20objets%20historiques%20selon%20la%20fonction,%20l%E2%80%99espace%20et%20le%20temps%20pour%20l%E2%80%99%C3%A9tude%20des%20dynamiques%20urbaines%20dans%20la%20longue%20dur%C3%A9e_fichiers/cleo.js"></script>
+  <script type="text/javascript" src="Mod%C3%A9lisation%20des%20objets%20historiques%20selon%20la%20fonction,%20l%E2%80%99espace%20et%20le%20temps%20pour%20l%E2%80%99%C3%A9tude%20des%20dynamiques%20urbaines%20dans%20la%20longue%20dur%C3%A9e_fichiers/jquery_002.js"></script>
+  <script type="text/javascript" src="Mod%C3%A9lisation%20des%20objets%20historiques%20selon%20la%20fonction,%20l%E2%80%99espace%20et%20le%20temps%20pour%20l%E2%80%99%C3%A9tude%20des%20dynamiques%20urbaines%20dans%20la%20longue%20dur%C3%A9e_fichiers/buttons.js"></script>
+  <script type="text/javascript"><!--
+//    jQuery.noConflict();
+    jQuery(document).ready(function($) {
+        //alert(jQuery.fn.jquery);
+        if ( $.fn.fancybox == undefined ) {
+            $.getScript("http://static.openedition.org/js/fancybox/jquery.fancybox-1.3.1.js", function() {
+                $('a.iframe').fancybox();
+            });
+        } else {
+            $('a.iframe').fancybox();
+        }
+        $.jsonp({
+            url: 'http://auth.openedition.org/authenticate',
+            callbackParameter: 'callback',
+            success: function(data) {
+                $('#authdata').html('<img src="'+data.favicon+'"> <a href="'+data.url+'">'+data.name+'</a>');
+                $.ajax({
+                  type: "GET",
+                  url: "mkDlList.php?current=23175&auth=1",
+                  success: function(msg){
+                      $('#dlLinks').append(msg);
+                  }
+                });
+            },
+            error: function(data){
+                //$('#authdata').html('guest, <a href="http://auth.openedition.org">sign in</a>');
+                $.ajax({
+                    type: "GET",
+                    url: "mkDlList.php?current=23175",
+                    success: function(msg){
+                        $('#dlLinks').append(msg);
+                    }
+                });
+            }
+        });
+        $('#plateformes li').live('touchend', function(e) {});
+        $('input[name=q]').focus(function() {
+            if ( $(this).attr('value') == 'Rechercher' ) {
+                $(this).attr('value', '');
+            }
+        });
+        });
+--></script>
+  <div id="openbarre">      
+    <div id="openedition">            
+      <div class="test">              
+        <h1><a href="http://www.openedition.org/">OpenEdition</a><span class="dots">:</span></h1>              
+        <ul id="plateformes">                    
+          <li><a href="http://books.openedition.org/">OpenEdition Books</a>                <ul>                                
+              <li><a href="http://books.openedition.org/"><span class="title">OpenEdition Books</span>Livres en sciences humaines et sociales</a></li>                                
+              <li><a href="http://books.openedition.org/catalogue">Livres (361)</a></li>                                
+              <li><a href="http://books.openedition.org/publishers">Éditeurs (13)</a></li>                                
+              <li><a href="http://books.openedition.org/">En savoir plus</a></li>                </ul>            </li>                    
+          <li><a href="http://www.revues.org/">Revues.org</a>                <ul>                                
+              <li><a href="http://www.revues.org/"><span class="title">Revues.org</span>Revues en sciences humaines et sociales</a></li>                                
+              <li><a href="http://www.openedition.org/8864">Les revues (350)</a></li>                                
+              <li><a href="http://www.revues.org/6438">En savoir plus</a></li>                </ul>            </li>                    
+          <li><a href="http://calenda.org/">Calenda</a>                <ul>                                
+              <li><a href="http://calenda.org/"><span class="title">Calenda</span>Annonces scientifiques</a></li>                                
+              <li><a href="http://calenda.org/search">Accéder aux annonces (21388)</a></li>                                
+              <li><a href="http://calenda.org/about">En savoir plus</a></li>                </ul>            </li>                    
+          <li><a href="http://hypotheses.org/">Hypothèses</a>                <ul>                                
+              <li><a href="http://hypotheses.org/"><span class="title">Hypothèses</span>Carnets de recherche</a></li>                                
+              <li><a href="http://www.openedition.org/catalogue-notebooks">Accéder aux carnets (528)</a></li>                                
+              <li><a href="http://hypotheses.org/about">En savoir plus</a></li>                </ul>            </li>        </ul><!-- /plateformes -->              
+        <ul id="services">                    
+          <li>Lettre &amp; alertes                          
+            <ul>                                
+              <li><a href="http://www.revues.org/?page=lettre"><span class="title">Lettre</span>S'abonner à la Lettre d'OpenEdition</a></li>                                
+              <li><a href="http://search.openedition.org/indexalert.php?a=description"><span class="title">Alertes &amp; abonnements</span>Accéder au service</a></li>                </ul>            </li>                    
+          <li><a href="http://www.openedition.org/8873">OpenEdition Freemium</a></li>            </ul><!-- /services -->        </div>            
+      <form action="http://search.openedition.org/" method="get" id="openbar-searchform">                  
+        <fieldset>                    
+          <div class="popupcontainer">                          
+            <input name="q" value="Rechercher" type="text">
+            <input value="" type="submit">
+            <div id="searchchoice">                                    
+              <input id="thejournalradio" name="ul" value="http://cybergeo.revues.org" checked="checked" type="radio">
+              <label for="thejournalradio">dans la revue</label><br>                        <input id="openeditionradio" name="ul" value="" type="radio"> <label for="openeditionradio">dans OpenEdition</label>                    </div>                                </div>            </fieldset>        </form>    </div><!-- /openedition -->      
+    <div id="contextwrapper">                        
+      <ul id="context">                      
+        <li>&nbsp;                             
+          <ul>              
+            <li>                    
+              <dl>                    
+                <dt>Titre&nbsp;:</dt>                    
+                <dd class="title">Cybergeo : revue européenne de géographie / European journal of geography</dd>                      
+                <dd class="subtitle">Revue fondée en 1996 / Journal founded in 1996</dd>                      
+                <dt>En bref&nbsp;:</dt>                            
+                <dd class="fr first">Revue de géographie et espace de discussion entre lecteurs et auteurs</dd>                        
+                <dd class="en second">A geography webjournal which intends to generate an interaction between authors and readers.</dd>                        
+                <dt>Sujets&nbsp;:</dt>                    
+                <dd>    Géographie,       Épistémologie et méthodes,    
+   Systèmes ; modélisation ; géostatistiques,       Espace ; société et 
+territoire,       Géographie : politique ; culture et représentation  </dd>    </dl>  </li>              
+            <li>                    
+              <dl>                                                      
+                <dt>Dir. de publication&nbsp;:</dt>                    
+                <dd>      Denise Pumain      </dd>                                                
+                <dt>Éditeur&nbsp;:</dt>                            
+                <dd>UMR 8504 Géographie-cités</dd>                                    
+                <dt>Support&nbsp;:</dt>                          
+                <dd>Électronique</dd>                                  
+                <dt>EISSN&nbsp;:</dt>                          
+                <dd>1278-3366</dd>            </dl>  </li>                
+            <li>                    
+              <dl>                        
+                <dt>Accès&nbsp;:</dt>                        
+                <dd>Open access Freemium</dd>    </dl>  </li>                
+            <li><a href="http://www.openedition.org/485">Voir la notice dans le catalogue OpenEdition</a></li>        </ul>                </li><!-- /i -->                                                                  
+        <li>DOI / Références                                    
+          <ul>          
+            <li>            
+              <dl>              
+                <dt>DOI :</dt>              
+                <dd>10.4000/cybergeo.23175</dd>            </dl>          </li>                                                                              
+            <li><a class="iframe" href="http://cybergeo.revues.org/23175?format=citation">Citer cette référence</a></li>                                                            </ul>                        </li><!-- /DOI / Références -->                                              
+        <li id="dlLinks">
+
+</li>                                                                   
+                                                                        
+                                                                        
+                                   
+        <li style="border-right: none; background: none;">                            
+          <div style="margin-top: 4px;margin-bottom:-4px;">                        <span st_processed="yes" class="st_twitter"><span class="stButton" style="text-decoration: none; color: rgb(0, 0, 0); display: inline-block; cursor: pointer; padding-left: 0px; padding-right: 0px; width: 16px;"><span class="chicklets twitter">&nbsp;</span><img style="position: absolute; top: -6px; right: -7px; width: 13px; height: 13px; max-width: 13px; max-height: 13px; display: none;" src="Mod%C3%A9lisation%20des%20objets%20historiques%20selon%20la%20fonction,%20l%E2%80%99espace%20et%20le%20temps%20pour%20l%E2%80%99%C3%A9tude%20des%20dynamiques%20urbaines%20dans%20la%20longue%20dur%C3%A9e_fichiers/check-small.png"></span></span>                        <span st_processed="yes" class="st_facebook"><span class="stButton" style="text-decoration: none; color: rgb(0, 0, 0); display: inline-block; cursor: pointer; padding-left: 0px; padding-right: 0px; width: 16px;"><span class="chicklets facebook">&nbsp;</span><img style="position: absolute; top: -6px; right: -7px; width: 13px; height: 13px; max-width: 13px; max-height: 13px; display: none;" src="Mod%C3%A9lisation%20des%20objets%20historiques%20selon%20la%20fonction,%20l%E2%80%99espace%20et%20le%20temps%20pour%20l%E2%80%99%C3%A9tude%20des%20dynamiques%20urbaines%20dans%20la%20longue%20dur%C3%A9e_fichiers/check-small.png"></span></span>                        <span st_processed="yes" class="st_sharethis"><span class="stButton" style="text-decoration: none; color: rgb(0, 0, 0); display: inline-block; cursor: pointer; padding-left: 0px; padding-right: 0px; width: 16px;"><span class="chicklets sharethis">&nbsp;</span><img style="position: absolute; top: -6px; right: -7px; width: 13px; height: 13px; max-width: 13px; max-height: 13px; display: none;" src="Mod%C3%A9lisation%20des%20objets%20historiques%20selon%20la%20fonction,%20l%E2%80%99espace%20et%20le%20temps%20pour%20l%E2%80%99%C3%A9tude%20des%20dynamiques%20urbaines%20dans%20la%20longue%20dur%C3%A9e_fichiers/check-small.png"></span></span>                    </div>                </li>            </ul><!-- /context -->                    
+      <div id="authdata"></div>    </div>
+  </div><!-- /openbarre -->
+<div id="fancybox-tmp"></div><div id="fancybox-loading"><div></div></div><div id="fancybox-overlay"></div><div id="fancybox-wrap"><div id="fancybox-outer"><div class="fancy-bg" id="fancy-bg-n"></div><div class="fancy-bg" id="fancy-bg-ne"></div><div class="fancy-bg" id="fancy-bg-e"></div><div class="fancy-bg" id="fancy-bg-se"></div><div class="fancy-bg" id="fancy-bg-s"></div><div class="fancy-bg" id="fancy-bg-sw"></div><div class="fancy-bg" id="fancy-bg-w"></div><div class="fancy-bg" id="fancy-bg-nw"></div><div id="fancybox-inner"></div><a id="fancybox-close"></a><a href="javascript:;" id="fancybox-left"><span class="fancy-ico" id="fancybox-left-ico"></span></a><a href="javascript:;" id="fancybox-right"><span class="fancy-ico" id="fancybox-right-ico"></span></a></div></div><iframe style="display:none;" src="Mod%C3%A9lisation%20des%20objets%20historiques%20selon%20la%20fonction,%20l%E2%80%99espace%20et%20le%20temps%20pour%20l%E2%80%99%C3%A9tude%20des%20dynamiques%20urbaines%20dans%20la%20longue%20dur%C3%A9e_fichiers/getSegment.html" name="stSegmentFrame" id="stSegmentFrame" frameborder="0" height="0px" scrolling="no" width="0px"></iframe><div style="visibility: hidden; top: -999px; left: -999px;" class="stwrapper" id="stwrapper"><div class="stclose"></div><iframe src="Mod%C3%A9lisation%20des%20objets%20historiques%20selon%20la%20fonction,%20l%E2%80%99espace%20et%20le%20temps%20pour%20l%E2%80%99%C3%A9tude%20des%20dynamiques%20urbaines%20dans%20la%20longue%20dur%C3%A9e_fichiers/index.html" style="top: 0px; left: 0px;" name="stLframe" class="stLframe" id="stLframe" allowtransparency="true" frameborder="0" height="350px" scrolling="no" width="353px"></iframe></div></body></html>
