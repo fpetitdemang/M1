@@ -56,7 +56,7 @@ public class Client {
 			registry.bind("mon-alerte", monAlerte);
 			
 			
-			cabinet1.inscriptionAlerte(host);
+			cabinet1.inscriptionAlerte(IAlerte i);
 			
 			for (int i = 0; i < 200; i++) {
 				cabinet1.ajoutAnimal("tintin", "rintintin", new Espece("Chien", 10));
