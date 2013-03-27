@@ -5,41 +5,64 @@ import java.util.Vector;
 
 public class Sommet {
 	
-	String identifiant;
+	int id;
 	Graphe monGraphe;
 	Vector<Arete> laretes = new Vector<>();
 	
-	public Sommet(String id){
-		identifiant = id;
+	
+
+	public Sommet(Graphe m_graphe){
+		//invariant : un sommet appartient toujours a un graphe
+		this.id = m_graphe.getNbSommet() + 1;
+		ajout(m_graphe);
+		
+		//passage de reference
+		//invariant -> association bidirectionnelle
+		monGraphe.ajouter(this);
+	}
+	
+	
+	//Methode referencement -graphe, aretes-
+	public void ajouter(Arete a){
+		laretes.add(a);
+	}
+	
+	public void ajout(Graphe m_graphe){
+		this.monGraphe = m_graphe;
 	}
 	
 
 	
-	public void detacherSommet(){
-		for (int i = 0; i < laretes.size(); i++) {
-			laretes.get(i).supprimerArete();
-		}
+	//Methode dereferencement -graphe, aretes-
+	
+	public void supprimer(Arete m_arete){
+		laretes.remove(m_arete);
 	}
+	
+	
+	
+	
+	
+	
 	
 	public void supprimer(){
+		
+		//dereference aretes
 		for (int i = 0; i < laretes.size(); i++) {
-			laretes.get(i).supprimerArete(this);
+			laretes.get(i).supprimer(this);
 		}
+		//dereference graphe
+		monGraphe.supprimer(this);
 	}
 	
+
 	
-	public void ajouterSommet(Arete a){
-		laretes.add(a);
-	}
-	
+	/*
 	public void ajouterGraphe(Graphe m_Graphe){
 		this.monGraphe = m_Graphe;
 	}
 
 		
-	public Graphe getGraphe(){
-		return monGraphe;
-	}
 
 	public void setGraphe(Graphe graphe) {
 		monGraphe = graphe;		
@@ -47,12 +70,17 @@ public class Sommet {
 	
 	public Vector<Arete> getAreteGreffer(){
 		return laretes;
-	}
+	}*/
 	
 	
 	
 	
 	/*************/
+	
+	
+	public Graphe getGraphe(){
+		return this.monGraphe;
+	}
 	
 	
 	public String toString(){

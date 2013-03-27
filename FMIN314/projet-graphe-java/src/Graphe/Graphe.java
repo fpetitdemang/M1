@@ -11,30 +11,63 @@ public class Graphe {
 		this.nom = nom;
 	}
 	
-	public void ajouterSommet(Sommet m_sommet){
+	//Methode referencement -sommets, aretes-
+	
+	/**
+	 * ajoute un sommet dans la collection de sommet du graphe
+	 * rmq : un sommet appartient toujours à un graphe
+	 *  + methode appeler depuis une instance de sommet
+	 * @param m_sommet
+	 */
+	public void ajouter(Sommet m_sommet){
+		
+		//teste si sommet n'est pas deja dans le graphe
 		for (int i = 0; i < lSommet.size(); i++) {
 			if (m_sommet == lSommet.get(i)){
 				return;
 			}
 		}
-		lSommet.add(m_sommet);
-		m_sommet.ajouterGraphe(this);
+		
+		lSommet.add(m_sommet);//ajoute sommet aux vecteur
 	}
 
-	public void ajouterArete(Arete m_arete){
+	 
+	/**
+	 * ajoute une arete dans la collection d'arete du graphe
+	 * rmq : un sommet appartient toujours à un graphe
+	 *  + methode apeller depuis une instance de arete
+	 * @param m_arete
+	 */
+	public void ajouter(Arete m_arete){
 		lArete.add(m_arete);
-		ajouterSommet(m_arete.sommet1);
-		ajouterSommet(m_arete.sommet2);
-		m_arete.setGraphe(this);
 	}
 	
-	public void supprimerSommet(Sommet m_sommet){
-		lSommet.remove(m_sommet);
+	
+	//Methode de dereferencement -sommets, aretes-
+	
+	public void supprimer(Sommet m_sommet){
 		m_sommet.supprimer();
-		//invariant pas d'arete pendante -> supprime arete
-		
-		
 	}
+	
+	public void supprimer(Arete arete) {
+		lArete.remove(arete);
+	}
+	
+	
+	
+	//FABRIQUE
+	
+	/**
+	 * Fabrique d'arete
+	 * @param m_sommet
+	 * @param m_sommet
+	 * @return reference à l'arete construite
+	 */
+	public Arete ajouter(Sommet m_sommet1, Sommet m_sommet2){
+		return new Arete(m_sommet1, m_sommet2);
+	}
+	
+
 	
 	
 	/*public void grefferArete(Vector<Arete> l_arete){
@@ -43,6 +76,14 @@ public class Graphe {
 		}
 	}*/
 	
+	
+	public int getNbSommet(){
+		return lSommet.size();
+	}
+	
+	public int getNbArete(){
+		return lArete.size();
+	}
 	
 	
 	
@@ -61,9 +102,6 @@ public class Graphe {
 		return listeArete+"]\n"+listeSommet+")";
 	}
 
-	public void supprimerArete(Arete arete) {
-		lArete.remove(arete);
-		
-	}
+
 
 }

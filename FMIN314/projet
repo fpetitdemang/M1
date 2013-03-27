@@ -1,4 +1,10 @@
 graphe
- aretes -> associaton
+ aretes -> associaton de sommet
  sommet -> objet
- graphe -> collection d'objet
+ graphe -> collection d'arete
+ 
+ cahier des charges :
+	1 - implemeter graphe
+	2 - implementer specification graphe en evitant les chimeres -> forcer typage covariant
+	3 - chaque objet connait tout les autres -> association bidirectionnelle
+	4 - collection d'arete, sommet pas modifiable par la monde exterieur

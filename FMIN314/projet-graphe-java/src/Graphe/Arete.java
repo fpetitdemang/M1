@@ -1,57 +1,55 @@
 package Graphe;
 
 public class Arete {
-	String nom;
+	int id;
 	Graphe monGraphe;
 	Sommet sommet1;
 	Sommet sommet2;
 	
 	
-	public Arete (Sommet smt1, Sommet smt2, String m_nom){
-		sommet1 = smt1;
-		sommet2 = smt2;
-		nom = m_nom;
-		smt1.ajouterSommet(this);
-		smt2.ajouterSommet(this);
-	}
-	
-	public Arete(Sommet smt1, Sommet smt2, Graphe m_graphe, String m_nom){
-		this(smt1, smt2, m_nom);
+	public Arete (Sommet smt1, Sommet smt2){
 		
 		try {
-			//invariant sommet doivent faire parti du meme graphe
+			//invariant -> sommet doivent faire parti du meme graphe
 			if (smt1.getGraphe() != smt2.getGraphe()) throw new Exception();
-			monGraphe = m_graphe;
-
 			
-		} catch (Exception e) {
+			sommet1 = smt1;
+			sommet2 = smt2;
+			monGraphe = smt1.getGraphe();
+			id = monGraphe.getNbArete() + 1;
+			
+			//passage de reference
+			//invariant -> association bidirectionnelle
+			monGraphe.ajouter(this);
+			smt1.ajouter(this);
+			smt2.ajouter(this);
+
+			} catch (Exception e) {
 			// TODO: handle exception
-		}
-	}
-	
-	public void grefferAreteGraphe(Graphe m_graphe){
-		monGraphe = m_graphe;
-	}
-	
-	
-	public String toString(){
-		return nom+"("+sommet1.toString()+","+sommet2.toString()+")";
-	}
-
-	public void setGraphe(Graphe graphe) {
-		monGraphe = graphe;
-		sommet1.setGraphe(graphe);
-		sommet2.setGraphe(graphe);		
-	}
-
-	public void supprimerArete() {
-		monGraphe.supprimerArete(this);
+			}	
+		
 		
 	}
-
-
-	public void supprimerArete(Sommet sommet) {
-		monGraphe.supprimerArete(this);
+	
+	
+	public void supprimer(Sommet m_sommet) {
+		//invariant pas d'arete pendante
+		this.supprimer();
 	}
+	
+	/*public void supprimer(Graphe m_graphe) {
+	}*/
+
+
+
+	public void supprimer() {
+		//invariant -> supprimer arete => supprimer association en 2 sommets, mais supprime pas les sommets
+		monGraphe.supprimer(this);
+		sommet1.supprimer(this);
+		sommet2.supprimer(this);
+	}
+
+
+
 
 }
