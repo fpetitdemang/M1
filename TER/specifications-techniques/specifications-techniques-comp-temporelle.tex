@@ -1,5 +1,5 @@
 \documentclass[10pt,a4paper]{article}
-\usepackage[latin1]{inputenc}
+\usepackage[utf8x]{inputenc}
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{amssymb}
@@ -7,9 +7,102 @@
 \title{Spécification Techniques composante temporelle}
 \begin{document}
 \subsection{Introduction}
-Pour la composante temporelle, nous avons décidé d'exploiter une api existant. Cette Api doit donc s'intègrer dans la continuité technologique de l'application existante.Elle doit être compatible avec les technologies orientés client : ici Javascript. Elle doit bien évidement répondre aux spécifications fonctionnelles décrient plus haut, mais aussi présenter des garantis de fiabilité.
+Pour la composante temporelle, nous avons décidé d'exploiter une api existant. Cette Api doit donc s'intègrer dans la continuité technologique de l'application existante. Elle doit être compatible avec les technologies orientés client : ici Javascript. Elle doit bien évidement répondre aux spécifications fonctionnelles décrient plus haut, mais aussi présenter des garantis de fiabilité.
 
-\subsection{Gestion des flux Json}
+\subsection{SIMILE Timeline}
+\subsubsection{Gestion des flux Json}
+Timeline gère différents format de donnée : 
+\begin{itemize}
+\item Json
+\item Xml
+\item SPARQL
+\end{itemize}
+L'application gère nativement les données Json est permet un chargement dynamique de celle-ci.\\
+Exemple de chargement d'un flux Json depuis le client :  
+\begin{verbatim}
+   tl = Timeline.create(document.getElementById("my-timeline"), bandInfos);
+   tl.loadJSON("jsonized.php?"+ (new Date().getTime()), function(json, url) {
+       eventSource.loadJSON(json, url);
+   });
+\end{verbatim}
+Exemple (coté serveur):
+\begin{verbatim}
+<?php
+header('Content-Type: application/json; charset=utf-8');
+
+$json_data = array (
+        'wiki-url'=>'http://simile.mit.edu/shelf',
+        'wiki-section'=>'Simile Cubism Timeline',
+        'dateTimeFormat'=>'Gregorian',
+        'events'=> array (
+               array(
+                       'start'=>'May 28 2006 09:00:00 GMT',
+                       'end'=>'Jun 15 2006 09:00:00 GMT',
+                       'isDuration'=>'true',
+                       'title'=>'Writing Timeline documentation',
+                       'image'=>'http://simile.mit.edu/images/csail-logo.gif',
+                       'description'=>'A few days to write some documentation for Timeline'
+               ),
+               array(
+                       'start'=>'Jun 16 2006 00:00:00 GMT',
+                       'end'=>'Jun 26 2006 00:00:00 GMT',
+                       'title'=>'Friend\'s wedding',
+                       'description'=>'I\'m not sure precisely when my friend\'s wedding is.'
+               ),
+               array(
+                       'start'=>'Aug 02 2006 00:00:00 GMT',
+                       'title'=>'Trip to Beijing',
+                       'link'=>'http://travel.yahoo.com/',
+                       'description'=>'Woohoo!'
+               )
+       )
+);
+$json_encoded=json_encode($json_data);
+echo $json_encoded;
+?>
+\end{verbatim}
+La Grammaire des données Json est la suivante :\\
+\begin{tabular}{|c|c|}
+\hline 
+Attribut & Comportement \\ 
+\hline 
+start & date de début de l’événement \\ 
+\hline 
+end & date de fin de l'événement \\ 
+\hline 
+title & description textuel de l’événement \\ 
+\hline 
+\end{tabular}  
+\\
+Exemple : 
+\begin{verbatim}
+{ 
+  'wiki-url':"http://simile.mit.edu/shelf/", 
+  'wiki-section':"Simile JFK Timeline", 
+  'dateTimeFormat': 'Gregorian',
+  'events': [
+    {
+       'start':"Sat May 20 1961 00:00:00 GMT-0600",
+       'title':"'Bay of Pigs' Invasion",
+       'durationEvent':false // Notes: not "false". And no trailing comma.
+     }, {
+       'start':"Wed May 01 1963 00:00:00 GMT-0600" ,
+       'end':"Sat Jun 01 1963 00:00:00 GMT-0600" ,
+       'durationEvent':true,
+       'title':"Oswald moves to New Orleans",
+       'description':"Oswald moves to New Orleans, and finds employment at the
+William B. Riley Coffee Company. <i>ref. Treachery in Dallas, p 320</i>"
+     }, {
+      ...
+     } ]    // Note: Do NOT include a trailing comma! (Breaks on IE)
+}
+\end{verbatim}
+
+\subsubsection{Agrandissement-rétrécissement}
+\subsubsection{Navigation}
+\subsubsection{Popup}
+\subsubsection{Intégration de l'opinion}
+
 
 
 \end{document}
