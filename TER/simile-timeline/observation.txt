@@ -1,0 +1,28 @@
+description Api : http://simile.mit.edu/timeline/docs/
+implementation script : http://simile.mit.edu/timeline/api/scripts/
+
+
+Objet Ethers : mappage entre les pixels de la timeline et une date
+
+Bande variable - http://simile.mit.edu/timeline/docs/ethers.html - :
+	bande-min-date/bande-max-date
+	bande-visible-min/bande-visible-max 
+	item-position = bande-visible-min + pixel-offset
+
+problematique -> trouver solution pour integrer l'opinion dans le mappage (= positionner les données sur l'ordonnée + code couleur)
+
+1 - Colorier les items en fonction des opinions:
+    	rouge -> négatif
+    	jaune -> neutre
+    	vert -> positif
+    
+    
+    
+    
+    
+    
+    
+    
+2 - reflechir a la synchronisation du défilement de la frise avec les données de la map
+
+

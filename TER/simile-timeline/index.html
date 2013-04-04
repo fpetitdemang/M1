@@ -5,11 +5,38 @@
 
      <script src="http://api.simile-widgets.org/timeline/2.3.1/timeline-api.js?bundle=true" type="text/javascript"></script>
      <script src="timeline-simile.js" type="text/javascript"></script>
+     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js">
+</script>
    </head>
    <body onload="onLoad();" onresize="onResize();">
+        
     <div id="my-timeline" style="height: 350px; border: 1px solid #aaa"></div>
     <noscript>
     This page uses Javascript to show you a Timeline. Please enable Javascript in your browser to see the full page. Thank you.
     </noscript>
+    <style type="text/css">
+     
+     .positif img{
+     	background-image:url('images/green-circle.png');
+     	background-color:green;
+	}  
+	
+	
+     .neutre img{
+     	background-image:url('images/red-circle.png');
+     	background-color:yellow;
+	} 
+	
+     .negatif img{
+     	background-image:url('images/red-circle.png');
+     	background-color:red;
+	} 
+     </style>
+   
    </body>
+     <script type="text/javascript">
+     	//modifier les attr src en fonction des classe de balises parents
+	var attrSrc = $("div.neutre img").attr("scr","images/red-circle.png");
+	console.log($("div.neutre img").html());
+     </script>
  </html>

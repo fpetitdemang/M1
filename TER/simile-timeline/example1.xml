@@ -1,50 +1,56 @@
 <data>
     <event 
-        start="May 28 2006 09:00:00 GMT"
+        start="May 20 2006 09:00:00 GMT"
         isDuration="true"
         title="Positif"
         image="http://simile.mit.edu/images/csail-logo.gif"
+        classname="positif"
         >
-        Positif
+
    </event>
    
     <event 
-        start="May 29 2006 09:00:00 GMT"
+        start="May 22 2006 09:00:00 GMT"
         isDuration="true"
-        title="Neutre1"
+        title="Positif"
         image="http://simile.mit.edu/images/csail-logo.gif"
+        classname="positif"
         >
    </event>
    
        <event 
-        start="May 29 2006 10:00:00 GMT"
+        start="May 25 2006 10:00:00 GMT"
         isDuration="true"
-        title="Neutre2"
+        title="Neutre"
         image="http://simile.mit.edu/images/csail-logo.gif"
+        classname="neutre"
         >
    </event>
    
        <event 
-        start="May 29 2006 11:00:00 GMT"
+        start="June 29 2006 11:00:00 GMT"
         isDuration="true"
-        title="Neutre3"
+        title="Negatif"
         image="http://simile.mit.edu/images/csail-logo.gif"
+        classname="negatif"
         >
    </event>
    
        <event 
-        start="May 29 2006 12:00:00 GMT"
+        start="May 18 2006 12:00:00 GMT"
         isDuration="true"
-        title="Neutre4"
+        title="Neutre"
         image="http://simile.mit.edu/images/csail-logo.gif"
+        classname="neutre"
         >
    </event>
    
        <event 
-        start="May 29 2006 13:00:00 GMT"
+        start="May 10 2006 13:00:00 GMT"
         isDuration="true"
-        title="Neutre5"
+        title="Neutre"
         image="http://simile.mit.edu/images/csail-logo.gif"
+        classname="neutre"
         >
    </event>
   
