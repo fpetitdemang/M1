@@ -1,6 +1,8 @@
 description Api : http://simile.mit.edu/timeline/docs/
 implementation script : http://simile.mit.edu/timeline/api/scripts/
 
+lien ajout manuel d'evenement : http://blog.jeromeparadis.com/2007/06/28/SIMILE-Timeline-Manually-Adding-Events/
+
 
 Objet Ethers : mappage entre les pixels de la timeline et une date
 
