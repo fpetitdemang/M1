@@ -41,22 +41,6 @@ function onLoad() {
 	//theme.event.instant.icon = "images/red-circle.png";
 	
 	
-	var dateEvent = new Date();
-      	dateEvent.setTime(dateEvent.getTime() + ((Math.floor(Math.random()*41) - 20) * 24 * 60 * 60 * 1000));
-	
-	var evt = new Timeline.DefaultEventSource.Event(
-         dateEvent, //start
-         dateEvent, //end
-         dateEvent, //latestStart
-         dateEvent, //earliestEnd
-         true, //instant
-         "Event ", //text
-         "Description for Event ", //description
-         "images/red-circle.png"
-      );
-      
-      eventSource.add(evt);
-      eventSource.add(evt);
 	
 	//console.log(maFonction());
    
@@ -82,9 +66,12 @@ function onLoad() {
  
    
    tl = Timeline.create(document.getElementById("my-timeline"), bandInfos);
-   Timeline.loadXML("example1.xml", function(xml, url) { eventSource.loadXML(xml, url); });
+   Timeline.loadXML("example1.xml", function(xml, url) { 
+   	eventSource.loadXML(xml, url);
+   	$(document).trigger("isDone"); 
+   });
   
-   console.log(eventSource);
+   console.log("Event source",eventSource);
    
 
    //dynTest();

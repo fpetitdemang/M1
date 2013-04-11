@@ -17,14 +17,25 @@ problematique -> trouver solution pour integrer l'opinion dans le mappage (= pos
     	rouge -> négatif
     	jaune -> neutre
     	vert -> positif
+    solution : attribut "icon" dans evenement.
+    
+2 - générer fichier json depuis serveur
+    lien algo en php : http://simile-widgets.org/wiki/Timeline_LoadEventsDynamically
+    
+    installer postgresql
+    creer bdd
+    faire des insertions
+    recuperer les insertions (moyenne des opinions pour un document -> temps = date du document)
+    		evenenement :
+    			-titre doc
+    			-url acceder document
+    			-moyenne avis exprime dans le document
+    			-auteur
+    			-date
+    generer le flux json  
+    	api json (http://json.org/javadoc/org/json/JSONObject.html - http://wiki.fasterxml.com/JacksonInFiveMinutes#Streaming_API_Example)
     
     
-    
-    
-    
-    
-    
-    
-2 - reflechir a la synchronisation du défilement de la frise avec les données de la map
+3 - reflechir a la synchronisation du défilement de la frise avec les données de la map
 
 

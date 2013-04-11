@@ -5,6 +5,7 @@
         title="Positif"
         image="http://simile.mit.edu/images/csail-logo.gif"
         classname="positif"
+        icon="images/green-circle.png"
         >
 
    </event>
@@ -15,6 +16,7 @@
         title="Positif"
         image="http://simile.mit.edu/images/csail-logo.gif"
         classname="positif"
+        icon="images/green-circle.png"
         >
    </event>
    
@@ -24,6 +26,7 @@
         title="Neutre"
         image="http://simile.mit.edu/images/csail-logo.gif"
         classname="neutre"
+        icon="images/green-circle.png"
         >
    </event>
    
@@ -33,6 +36,7 @@
         title="Negatif"
         image="http://simile.mit.edu/images/csail-logo.gif"
         classname="negatif"
+        icon="images/red-circle.png"
         >
    </event>
    
